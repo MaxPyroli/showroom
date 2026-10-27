@@ -1,5 +1,5 @@
 {
-  "_aide": "Source unique du site. Après modification : python3 scripts/build_site.py (régénère les sections « apps » de index.html). Captures : assets/shots/<slug>/NN-light.jpg et NN-dark.jpg (01 = vue d'ensemble, puis une par fonctionnalité dans l'ordre ; NN.jpg seul = identique dans les deux thèmes). Décors dessinés (avant les vraies captures) : data/mockups/<slug>.html.",
+  "_aide": "Source unique du site. Après modification : python3 scripts/build_site.py (régénère les sections « apps » de index.html). Captures : assets/shots/<slug>/NN-light.jpg et NN-dark.jpg (01 = vue d'ensemble, puis une par fonctionnalité dans l'ordre ; NN.jpg seul = identique dans les deux thèmes). Décors dessinés (avant les vraies captures) : data/mockups/<slug>.html. Formats : phone (portrait), window (bureau 16:10), duo (bureau + mobile : fichiers NN-desktop-light/dark et NN-mobile-light/dark).",
   "apps": [
     {
       "slug": "grand-paname",
@@ -58,7 +58,7 @@
       "icon": "toolproj.png",
       "accent": "#14b8a6",
       "glow": "#0fb5a6",
-      "format": "phone",
+      "format": "duo",
       "tag": "Productivité",
       "tagline": "Le carnet de bord de tes projets d'apps.",
       "pitch": "Avancement, tâches, idées et équipe, sur un mur de post-it qu'on zoome du bout des doigts. Installable sur téléphone.",
@@ -73,32 +73,32 @@
           "url": "https://maxpyroli.github.io/Tool-Proj/"
         }
       ],
-      "hero_hint": "L'aperçu d'un projet",
+      "hero_hint": "L'aperçu d'un projet : bureau et mobile",
       "features": [
         {
           "title": "Le plan de travail de post-it",
           "text": "Un grand mur qu'on zoome (pincement ou Ctrl + molette) et qu'on parcourt en glissant, avec une mini-carte, le plein écran, « Ranger » par couleur, votes ou date, et des votes 👍.",
-          "hint": "Le mur de post-it, avec la mini-carte"
+          "hint": "Le mur de post-it, avec la mini-carte (bureau + mobile)"
         },
         {
           "title": "Feuille de route et tableau",
           "text": "Les grands chantiers rangés en Maintenant, Ensuite, Plus tard et Terminé, ou un tableau À faire / En cours / Fait où chaque chantier est un grand post-it.",
-          "hint": "La feuille de route ou le tableau"
+          "hint": "La feuille de route ou le tableau (bureau + mobile)"
         },
         {
           "title": "Tâches, bugs, idées",
           "text": "Chaque élément a son type et sa couleur, sa priorité, une personne assignée. Une idée mûre se transforme en chantier, tâche, bug ou amélioration.",
-          "hint": "Une tâche ouverte avec ses détails"
+          "hint": "Une tâche ouverte avec ses détails (bureau + mobile)"
         },
         {
           "title": "L'aperçu du projet",
           "text": "Une jauge d'avancement, les chantiers en cours, les bugs ouverts, les idées les plus votées et l'activité récente.",
-          "hint": "L'aperçu avec la jauge d'avancement"
+          "hint": "L'aperçu avec la jauge d'avancement (bureau + mobile)"
         },
         {
           "title": "Équipe et connexion",
           "text": "Rôles admin ou membre par projet, avatars emoji, notifications quand une tâche t'est assignée, et connexion sans mot de passe : lien, code ou Face ID.",
-          "hint": "La liste des membres ou l'écran de connexion"
+          "hint": "La liste des membres ou l'écran de connexion (bureau + mobile)"
         }
       ],
       "legal": []
@@ -252,7 +252,7 @@
       "icon": "urbasim-icon.png",
       "accent": "#3d86f0",
       "glow": "#4a90f2",
-      "format": "phone",
+      "format": "window",
       "tag": "Jeu · Bêta",
       "tagline": "Le Monopoly de l'immobilier réel.",
       "pitch": "Achète de vrais terrains, construis, vends, et bats tes concurrents promoteurs.",
@@ -268,27 +268,27 @@
           "ghost": true
         }
       ],
-      "hero_hint": "L'écran d'accueil du jeu",
+      "hero_hint": "L'écran d'accueil du jeu (version bureau)",
       "features": [
         {
           "title": "Choisis le lieu de la partie",
           "text": "La partie se joue sur de vrais terrains, dans le lieu de ton choix (ici, Montreuil · centre).",
-          "hint": "Le choix du lieu"
+          "hint": "Le choix du lieu (version bureau)"
         },
         {
           "title": "Achète et construis",
           "text": "Tu achètes des terrains et tu construis dessus.",
-          "hint": "Un terrain acheté, avec la construction"
+          "hint": "Un terrain acheté, avec la construction (version bureau)"
         },
         {
           "title": "Vends et bats tes concurrents",
           "text": "Le but : devenir le meilleur promoteur face aux autres.",
-          "hint": "Le classement ou le tableau de la partie"
+          "hint": "Le classement ou le tableau de la partie (version bureau)"
         },
         {
           "title": "Mode d'emploi et nouveautés",
           "text": "Un mode d'emploi intégré, et des notes de version pour suivre les nouveautés de la bêta.",
-          "hint": "Le mode d'emploi ou les nouveautés"
+          "hint": "Le mode d'emploi ou les nouveautés (version bureau)"
         }
       ],
       "legal": []

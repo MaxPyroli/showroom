@@ -218,8 +218,8 @@ aside hr{border:0;border-top:1px solid #2a323d;margin:6px 0}aside span{padding:4
 .shotarea>*{position:relative}
 .stage{min-height:0}
 .stage::before{display:none}
-.shotarea.withmock .slot:not(.has){display:none}
-.shotarea.withmock:has(.slot.has) .tilt,.shotarea.withmock:has(.slot.has) .float{display:none}
+.shotarea.withmock .slot:not(:has(.part.has)){display:none}
+.shotarea.withmock:has(.part.has) .tilt,.shotarea.withmock:has(.part.has) .float{display:none}
 .tilt{transition:transform .25s var(--ease);transform-style:preserve-3d;will-change:transform}
 
 .ctrl{position:absolute;left:0;bottom:6px;display:flex;align-items:center;gap:14px}
@@ -234,27 +234,27 @@ aside hr{border:0;border-top:1px solid #2a323d;margin:6px 0}aside span{padding:4
 /* emplacement de capture */
 .slot{margin:0;position:relative;width:100%}
 .slot .frame{position:relative;background:var(--ph-bg);box-shadow:0 30px 60px -20px rgba(0,0,0,.55),0 0 0 1px rgba(var(--tint),.1);overflow:hidden}
-.slot.phone{width:min(228px,64vw);margin-inline:auto}
-.slot.phone .frame{aspect-ratio:9/19;border-radius:34px;border:8px solid #1b2236}
-.slot.window{width:min(560px,100%);margin-inline:auto}
-.slot.window .frame{aspect-ratio:16/10;border-radius:12px}
+.part.phone{width:min(228px,64vw);margin-inline:auto}
+.part.phone .frame{aspect-ratio:9/19;border-radius:34px;border:8px solid #1b2236}
+.part.window{width:min(560px,100%);margin-inline:auto}
+.part.window .frame{aspect-ratio:16/10;border-radius:12px}
 .wbar{height:26px;background:#0d111b;display:flex;align-items:center;gap:6px;padding:0 12px}
 .wbar i{width:9px;height:9px;border-radius:50%;background:#2a3246}
 .slot img[hidden]{display:none}
 .slot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
-.slot.window img{height:calc(100% - 26px)}
+.part.window img{height:calc(100% - 26px)}
 .slot .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:18px;color:var(--mut);
   background:repeating-linear-gradient(135deg,rgba(var(--tint),.04) 0 12px,transparent 12px 24px),radial-gradient(circle at 50% 0,color-mix(in oklab,var(--a) 18%,transparent),transparent 70%)}
-.slot.window .ph{top:26px}
+.part.window .ph{top:26px}
 .slot .ph::before{content:"";position:absolute;inset:12px;border:2px dashed color-mix(in oklab,var(--a) 55%,transparent);border-radius:18px}
 .slot .ph b{font:800 2.4rem var(--display);color:var(--at,var(--a))}
 .slot .ph span{font-weight:600;color:var(--fg);font-size:.9rem}
 .slot .ph small{font-size:.76rem;line-height:1.4;max-width:90%}
 .slot .ph code{font-size:.64rem;background:rgba(var(--tint),.08);padding:2px 8px;border-radius:6px;margin-top:6px;word-break:break-all}
-.slot.has .ph{display:none}
-.slot.has{cursor:zoom-in}
-.slot.has .frame{transition:transform .35s var(--ease)}
-.slot.has:hover .frame{transform:translateY(-4px)}
+.part.has .ph{display:none}
+.part.has{cursor:zoom-in}
+.part.has .frame{transition:transform .35s var(--ease)}
+.part.has:hover .frame{transform:translateY(-4px)}
 
 /* agrandissement d'une capture */
 .zoom{position:fixed;inset:0;z-index:100;background:rgba(5,7,12,.88);backdrop-filter:blur(10px);display:grid;place-items:center;padding:24px;cursor:zoom-out;animation:fadein .25s}
@@ -278,3 +278,15 @@ aside hr{border:0;border-top:1px solid #2a323d;margin:6px 0}aside span{padding:4
 :root[data-theme="light"] .tbtn .sun{display:block}:root[data-theme="light"] .tbtn .moon{display:none}
 @media (prefers-color-scheme:light){:root:not([data-theme]) .tbtn .sun{display:block}:root:not([data-theme]) .tbtn .moon{display:none}}
 .slot picture{display:contents}
+
+/* format « duo » : fenêtre de bureau + téléphone qui la chevauche */
+.slot.duo{position:relative;width:min(620px,100%);aspect-ratio:620/395;margin-inline:auto}
+.slot.duo .part.window{position:absolute;left:0;top:0;width:89%}
+.slot.duo .part.phone{position:absolute;right:0;bottom:0;width:25%;z-index:2;filter:drop-shadow(0 18px 24px rgba(0,0,0,.45))}
+.slot.duo .part.phone .frame{border-width:clamp(3px,.9vw,7px);border-radius:clamp(14px,3.4vw,28px)}
+.slot.duo .ph::before{inset:8px;border-radius:10px}
+.slot.duo .ph b{font-size:1.6rem}
+.slot.duo .part.phone .ph{padding:6px}
+.slot.duo .part.phone .ph span,.slot.duo .part.phone .ph small,.slot.duo .part.phone .ph code{display:none}
+.slot.duo .part.phone .ph b{font-size:1.2rem}
+.slot.duo .part.window .ph code:nth-of-type(n+1){font-size:.58rem}

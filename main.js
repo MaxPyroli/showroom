@@ -80,7 +80,7 @@
   });
 
   // Agrandissement d'une capture au clic
-  document.querySelectorAll('figure.slot.has').forEach((fig) => {
+  document.querySelectorAll('.slot .part.has').forEach((fig) => {
     fig.addEventListener('click', () => {
       const img = fig.querySelector('img');
       const z = document.createElement('div');

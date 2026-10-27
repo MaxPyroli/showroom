@@ -24,36 +24,41 @@ e = html.escape
 EXTS = ("jpg", "jpeg", "png", "webp")
 
 
-def find(app, num, variant):
-    """Chemin relatif de assets/shots/<slug>/NN[-variant].<ext> s'il existe, sinon None."""
-    name = f"{num}-{variant}" if variant else num
-    for ext in EXTS:
-        if (ROOT / "assets" / "shots" / app["slug"] / f"{name}.{ext}").exists():
-            return f"assets/shots/{app['slug']}/{name}.{ext}"
+def find(app, stem, theme):
+    """assets/shots/<slug>/<stem>-<theme>.<ext> ou <stem>.<ext>, s'il existe."""
+    for name in (f"{stem}-{theme}", stem):
+        for ext in EXTS:
+            if (ROOT / "assets" / "shots" / app["slug"] / f"{name}.{ext}").exists():
+                return f"assets/shots/{app['slug']}/{name}.{ext}"
     return None
 
 
-def slot(app, n, hint, alt):
-    num = f"{n:02d}"
-    fmt = app["format"]
-    light, dark, both = find(app, num, "light"), find(app, num, "dark"), find(app, num, "")
-    src_light = light or both or dark
-    src_dark = dark or both or light
-    bar = '<div class="wbar"><i></i><i></i><i></i></div>' if fmt == "window" else ""
+def part(app, stem, kind, hint, alt):
+    """Un cadre (téléphone ou fenêtre) avec la capture claire/sombre si elle existe."""
+    light, dark = find(app, stem, "light"), find(app, stem, "dark")
+    src_light, src_dark = light or dark, dark or light
+    bar = '<div class="wbar"><i></i><i></i><i></i></div>' if kind == "window" else ""
     if src_light:
         body = (f'<picture><source media="(prefers-color-scheme: light)" srcset="{src_light}">'
                 f'<img src="{src_dark}" alt="{e(alt)}" data-light="{src_light}" data-dark="{src_dark}" loading="lazy"></picture>')
         has = " has"
     else:
-        base = f"assets/shots/{app['slug']}/{num}"
-        body = (f'<div class="ph"><b>{num}</b><span>Capture à ajouter</span><small>{e(hint)}</small>'
+        base = f"assets/shots/{app['slug']}/{stem}"
+        body = (f'<div class="ph"><b>{stem.split("-")[0]}</b><span>Capture à ajouter</span><small>{e(hint)}</small>'
                 f'<code>{base}-light.jpg</code><code>{base}-dark.jpg</code></div>')
         has = ""
-    return f'''<figure class="slot {fmt}{has}">
-            <div class="frame">{bar}
-              {body}
-            </div>
-          </figure>'''
+    return f'<div class="part {kind}{has}"><div class="frame">{bar}{body}</div></div>'
+
+
+def slot(app, n, hint, alt):
+    num = f"{n:02d}"
+    fmt = app["format"]
+    if fmt == "duo":
+        inner = (part(app, f"{num}-desktop", "window", hint, alt + " (bureau)")
+                 + part(app, f"{num}-mobile", "phone", hint, alt + " (mobile)"))
+    else:
+        inner = part(app, num, fmt, hint, alt)
+    return f'<figure class="slot {fmt}">{inner}</figure>'
 
 
 def section(app):

@@ -54,11 +54,11 @@ Ancien contact à **remplacer partout** : `contact@grandpaname.fun`. Grand Panam
 | App | Accent | Matière / ambiance | Police | Plateforme |
 |---|---|---|---|---|
 | Grand Paname | `#3aa0ff`, fond nuit `#010e26` | Carte plein écran, barre de recherche et navigation flottantes, verre dépoli, trois thèmes (clair, sombre, OLED) | GrandParis | Android (Expo) |
-| Tool Proj | `#14b8a6` (teal `#0d7c72`) | Papier : post-it colorés légèrement penchés | Système | Web / PWA |
+| Tool Proj | `#14b8a6` (teal `#0d7c72`) | Papier : post-it colorés légèrement penchés | Système | Web / PWA, bureau + mobile |
 | Desk Mail | `#396cd8` | Sobre et dense, logiciel de bureau | Segoe UI | Windows |
 | Near Pass | `#8a6bff` (dégradé `#5b7bff` → `#8a4dff`) | Radar, halos, lumière | Système | Android |
 | ScoreBoard (écrit « Score Board » dans l'app) | `#2fbf8f` (thème app `#1f6f5c`) + jaune | Papier crème, contour épais sombre, ombre pleine ; chaque jeu a sa carte en dégradé (Tarot violet, Skyjo bleu, Aventuriers du Rail rouge, Sushi Go Party corail, 6 qui prend orange) | Système, titres gras | Android + Web / PWA |
-| UrbaSim (jeu, bêta) | `#3d86f0` (bouton `#2a6ff0`) | Ciel en dégradé, immeubles colorés (rose, jaune, bleu, vert), ton ludique | Système | Web (navigateur) |
+| UrbaSim (jeu, bêta) | `#3d86f0` (bouton `#2a6ff0`) | Ciel en dégradé, immeubles colorés (rose, jaune, bleu, vert), ton ludique | Système | Web, version bureau (mobile non optimisé) |
 
 Sur le site : une app = une variable `--a`.
 
@@ -97,6 +97,7 @@ Légende : ✅ fait · ⬜ à faire · ❓ à vérifier. Mis à jour le 2026-10-
 - 2026-10-27 : le site vitrine utilise de vraies captures d'écran dans des cadres de téléphone (plus de maquettes dessinées pour Grand Paname, ScoreBoard, UrbaSim).
 - 2026-10-27 : slogan du site remplacé par l'histoire réelle : « Des apps faites pour l'utilisateur, par un utilisateur. » (titre d'accueil ; le paragraphe d'intro raconte l'histoire : des apps que l'auteur voulait, qui n'existaient pas, donc il les a créées). « Fait à la main » retiré (faux, les apps sont codées avec Claude). Les promesses « hors-ligne », « sans pub », « sans pistage » ne se disent que page par page, jamais pour tout le site.
 - 2026-10-27 : le site devient une page unique avec un carrousel par app (capture + texte qui changent), à la place de sous-pages. Thèmes clair et sombre sur le site ; chaque capture existe en version claire et sombre.
+- 2026-10-27 : Tool Proj est montré en version bureau **et** mobile (format `duo`) ; UrbaSim en version bureau uniquement (le mobile n'est pas optimisé).
 - 2026-10-27 : icône du site (favicon) propre à Paname Dev : six tuiles aux couleurs des six apps, et non l'icône d'une app.
 - 2026-10-27 : création de la charte. Socle léger, une couleur d'accent par app, tutoiement. Domaine `panamedev.fr`, contact unique `contact@panamedev.fr`. Copyright et mention de conception à poser partout.
 - *(à compléter à chaque décision, avec la date et l'app concernée)*
@@ -108,7 +109,11 @@ Le site est **une seule page** (`index.html`). Chaque app y a une section avec u
 - **Thèmes** : le site suit le thème de l'utilisateur (clair ou sombre), avec un bouton pour changer. Les captures suivent aussi.
 - **Captures** : à déposer dans `assets/shots/<slug>/`, **en deux versions** : `NN-light.jpg` (thème clair) et `NN-dark.jpg` (thème sombre). `.png` et `.webp` sont acceptés. Si une seule version existe, elle sert pour les deux thèmes ; `NN.jpg` sans suffixe sert aussi pour les deux.
 - **Numérotation** : `01` = vue d'ensemble, puis `02`, `03`… une par fonctionnalité, dans l'ordre de `features` dans `data/apps.json`.
-- **Format** : capture d'écran brute du téléphone (portrait) ; Desk Mail en fenêtre (16:10). Largeur 1000 à 1300 px, JPEG qualité ≈ 85.
+- **Formats** (champ `format` de chaque app dans `data/apps.json`) :
+  - `phone` : capture brute du téléphone (portrait) : Grand Paname, Near Pass, ScoreBoard.
+  - `window` : capture de la version bureau (16:10) : Desk Mail, UrbaSim (la version mobile d'UrbaSim n'est pas à l'ordre du jour et n'est pas optimisée : ne pas la montrer).
+  - `duo` : bureau **et** mobile dans le même cadre (fenêtre + téléphone qui la chevauche) : Tool Proj, qui existe dans les deux versions. Fichiers `NN-desktop-light.jpg`, `NN-desktop-dark.jpg`, `NN-mobile-light.jpg`, `NN-mobile-dark.jpg`.
+  - Largeur 1000 à 1300 px, JPEG qualité ≈ 85.
 - **Emplacement vide** : un cadre pointillé indique le fichier attendu et l'écran à montrer. Les maquettes dessinées (`data/mockups/<slug>.html`) servent de vue d'ensemble pour Tool Proj, Desk Mail et Near Pass tant que `01-…` n'existe pas.
 - **Contenu des captures** : pas de données personnelles (vrais noms, e-mails, positions). Mettre des données de démonstration.
 - **Nouvelle fonctionnalité d'une app** : ajouter une entrée dans `features` de `data/apps.json`, puis déposer la capture suivante.
