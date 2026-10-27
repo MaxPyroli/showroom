@@ -60,6 +60,19 @@ Inspirées de Tool Proj et Desk Mail (leur charte d'icônes complète est gardé
 - **Des objets qui se chevauchent**, un peu inclinés, pour donner de la vie.
 - **Rester lisible en tout petit** (32 px).
 
+**Mesures de référence** (pour une icône de 512 px ; tout se règle en pourcentage de la taille, donc ça se transpose à toute taille) :
+
+| Quoi | Repère |
+|---|---|
+| Coins du carré de fond | **22 %** du côté (≈ 113 px) |
+| Marge intérieure | **12 %** de chaque côté (≈ 62 px) : le dessin reste dans le carré intérieur |
+| Épaisseur du trait (symbole) | **≈ 4,5 %** de l'icône (≈ 23 à 30 px), bouts et angles arrondis |
+| Coins des objets | **≈ 14 %** de la hauteur de l'objet (≈ 20 à 30 px) |
+| Inclinaison des objets | **+12°** (derrière) et **−6°** (devant) chez Desk Mail ; ≈ 6° et −4° chez Tool Proj |
+| Tailles de test | 96, 48 et 32 px |
+
+Ce sont des **repères pour garder l'air de famille**, pas des obligations : s'écarter un peu est normal quand l'icône l'exige.
+
 | App | Couleur | Encre |
 |---|---|---|
 | Tool Proj | `#0d7c72` | `#0d5c55` |
