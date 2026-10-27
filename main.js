@@ -148,9 +148,19 @@
       { opacity: 0, scale: cover, backgroundColor: pageBg, offset: .96 },
       { opacity: 0, scale: cover, backgroundColor: pageBg, offset: 1 }
     ], { duration: D, easing: 'linear', fill: 'forwards' }));
+    // pendant la séquence, on garde la page en haut (sinon le cercle se décalerait) ; rien n'interrompt l'animation
+    const stop = (e) => e.preventDefault();
+    const stopKeys = (e) => { if ([' ', 'PageDown', 'PageUp', 'Home', 'End', 'ArrowDown', 'ArrowUp'].includes(e.key)) e.preventDefault(); };
+    const keepTop = () => { if (scrollY) scrollTo({ top: 0, behavior: 'instant' }); };
+    addEventListener('wheel', stop, { passive: false });
+    addEventListener('touchmove', stop, { passive: false });
+    addEventListener('keydown', stopKeys);
+    addEventListener('scroll', keepTop);
     let ended = false;
     const end = () => {
       if (ended) return; ended = true;
+      removeEventListener('wheel', stop); removeEventListener('touchmove', stop);
+      removeEventListener('keydown', stopKeys); removeEventListener('scroll', keepTop);
       anims.forEach((a) => a.cancel());
       logo.remove(); document.querySelectorAll('.orbit .tile').forEach((t) => t.remove());
       root.classList.remove('intro-fly');
@@ -158,8 +168,7 @@
     };
     setTimeout(done, D * 0.78);
     anims[0].finished.then(end).catch(end);
-    const skip = () => { end(); removeEventListener('pointerdown', skip); removeEventListener('keydown', skip); removeEventListener('wheel', skip); };
-    addEventListener('pointerdown', skip); addEventListener('keydown', skip); addEventListener('wheel', skip, { passive: true });
+    setTimeout(end, D + 600);
   };
   runIntro();
 
@@ -187,6 +196,7 @@
   // Icônes du hero : parallaxe à la souris
   const icons = [...document.querySelectorAll('.ico')];
   addEventListener('pointermove', (e) => {
+    if (root.classList.contains('intro-fly')) return;
     const x = e.clientX / innerWidth - 0.5, y = e.clientY / innerHeight - 0.5;
     for (const el of icons) {
       const d = +el.dataset.depth;
