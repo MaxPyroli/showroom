@@ -4,7 +4,7 @@
 :root{
   --bg:#0b0d14; --fg:#eef1f8; --mut:#9aa3b8; --card:rgba(255,255,255,.06); --line:rgba(255,255,255,.12); --tint:255,255,255;
   --nav-bg:rgba(14,16,25,.6); --float-bg:rgba(18,21,32,.78); --ph-bg:#101524; --blob1:.5; --blob2:.35; --blob3:.28;
-  --g1:#6db6ff; --g2:#a07bff; --g3:#ff7fb0; --g4:#ffb86b; --atx-mix:#fff; --atx-pct:100%;
+  --g1:#6db6ff; --g2:#a07bff; --g3:#ff7fb0; --g4:#ffb86b; --atx-mix:#fff; --atx-pct:50%;
   color-scheme:dark;
   --glow:#3aa0ff; --a:#3aa0ff;
   --display:"Bricolage Grotesque","Inter",system-ui,sans-serif; --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;

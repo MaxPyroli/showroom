@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Charte graphique — famille d'apps Paname</title>
+<style>
+  :root {
+    --page: #f6f3ee; --card: #ffffff; --text: #2b2623; --muted: #7a6f66; --line: #e6dfd6;
+    --yellow: #ffe66d; --pink: #ff9ec3;
+    --green: #0d7c72; --green-ink: #0d5c55;
+    --coral: #e8604c; --coral-ink: #a63a2b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --page: #1d1a18; --card: #272321; --text: #f3ede6; --muted: #a59a90; --line: #3a3430; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--text);
+         font: 16px/1.55 "Segoe UI", system-ui, sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 56px 20px 96px; }
+  h1 { font-size: 2rem; margin: 0 0 6px; letter-spacing: -.01em; }
+  h2 { font-size: 1.25rem; margin: 56px 0 6px; }
+  .lead { color: var(--muted); margin: 0 0 8px; max-width: 62ch; }
+  .note { color: var(--muted); font-size: .88rem; margin: 6px 0 0; }
+  .hero { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; margin: 28px 0 0; }
+  .hero svg { width: 150px; height: 150px; flex: none; }
+  .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); margin-top: 18px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px; }
+  .sw { height: 84px; border-radius: 12px; margin-bottom: 10px; display: flex; align-items: flex-end; padding: 8px 10px; font-weight: 700; font-size: .85rem; }
+  .card b { display: block; }
+  .card code { font-size: .85rem; color: var(--muted); }
+  .pair { display: flex; gap: 6px; margin-bottom: 10px; }
+  .pair .sw { flex: 1; margin: 0; }
+  ol, ul { padding-left: 1.2em; margin: 10px 0 0; }
+  li { margin-bottom: 6px; max-width: 70ch; }
+  .family { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 18px; }
+  .family figure { margin: 0; text-align: center; width: 140px; }
+  .family svg { width: 140px; height: 140px; }
+  .family figcaption { font-size: .85rem; margin-top: 6px; }
+  .family .todo svg { opacity: .95; }
+  .sizes { display: flex; gap: 16px; align-items: flex-end; margin-top: 14px; }
+  .anatomy { display: grid; gap: 22px; grid-template-columns: 260px 1fr; align-items: center; margin-top: 16px; }
+  @media (max-width: 640px) { .anatomy { grid-template-columns: 1fr; } }
+  .no { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); margin-top: 16px; }
+  .no .card { text-align: center; font-size: .88rem; }
+  .no svg { width: 96px; height: 96px; margin-bottom: 6px; }
+  .tag { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+         padding: 2px 8px; border-radius: 99px; background: var(--yellow); color: #5c4a00; margin-left: 6px; vertical-align: middle; }
+</style>
+</head>
+<body>
+<main>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Enveloppe: corps arrondi + rabat en V, trait epais aux bouts ronds (dessinee dans un cadre 287 x 205) -->
+    <symbol id="env" viewBox="0 0 287 205" overflow="visible">
+      <rect width="287" height="205" rx="29" fill="currentColor"/>
+      <polyline points="20,41 143,119 267,41" fill="none" stroke="var(--ink)" stroke-width="23" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<h1>Charte graphique — famille d'apps Paname</h1>
+<p class="lead">Tirée de deux icônes existantes : <b>Tool Proj</b> (vert) et <b>Desk Mail</b> (corail). Elles suivent la même recette ; voici cette recette écrite noir sur blanc pour que la prochaine app ait l'air de la même famille.</p>
+
+<div class="hero">
+  <!-- Tool Proj -->
+  <svg viewBox="0 0 512 512" role="img" aria-label="Icône Tool Proj (redessinée)">
+    <rect width="512" height="512" rx="113" fill="#0d7c72"/>
+    <g transform="rotate(6 360 190)"><rect x="206" y="84" width="218" height="212" rx="20" fill="#ff9ec3"/></g>
+    <g transform="rotate(-4 200 300)">
+      <path d="M100 146h232a20 20 0 0 1 20 20v142l-62 82H120a20 20 0 0 1-20-20z" fill="#ffe66d"/>
+      <path d="M290 390l62-82v62a20 20 0 0 1-20 20z" fill="#f2c94c"/>
+      <polyline points="150,248 206,300 304,200" fill="none" stroke="#0d5c55" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </svg>
+  <!-- Desk Mail -->
+  <svg viewBox="0 0 512 512" role="img" aria-label="Icône Desk Mail (redessinée)" style="--ink:#a63a2b">
+    <rect width="512" height="512" rx="113" fill="#e8604c"/>
+    <g style="color:#ff9ec3"><use href="#env" x="0" y="0" width="287" height="205" transform="translate(160 106) rotate(12 143 102)"/></g>
+    <g style="color:#ffe66d"><use href="#env" x="0" y="0" width="287" height="205" transform="translate(62 197) rotate(-6 143 102)"/></g>
+  </svg>
+  <p class="lead" style="flex:1; min-width:220px">Même fond uni en carré très arrondi, deux objets pastel qui se chevauchent, un seul trait foncé épais pour le symbole. Pas de dégradé, pas d'ombre, pas de contour.
+  <span class="note" style="display:block">Les deux icônes ci-dessus sont redessinées en SVG à l'identique, à quelques pixels près. Tes fichiers de référence restent les PNG d'origine.</span></p>
+</div>
+
+<h2>1. Palette</h2>
+<p class="lead">Un <b>socle commun</b> (jaune, rose) que toutes les apps partagent, et une <b>couleur d'app</b> qui change d'une app à l'autre, toujours accompagnée de son encre foncée.</p>
+
+<div class="grid">
+  <div class="card"><div class="sw" style="background:var(--yellow);color:#5c4a00">Jaune</div><b>Objet principal</b><code>#ffe66d</code></div>
+  <div class="card"><div class="sw" style="background:var(--pink);color:#7a2349">Rose</div><b>Objet secondaire</b><code>#ff9ec3</code></div>
+</div>
+<p class="note" style="margin-top:14px">Couleurs d'app, avec leur encre foncée :</p>
+<div class="grid">
+  <div class="card"><div class="pair"><div class="sw" style="background:#0d7c72;color:#fff">Fond</div><div class="sw" style="background:#0d5c55;color:#fff">Encre</div></div><b>Vert — Tool Proj</b><code>#0d7c72 · #0d5c55</code></div>
+  <div class="card"><div class="pair"><div class="sw" style="background:#e8604c;color:#fff">Fond</div><div class="sw" style="background:#a63a2b;color:#fff">Encre</div></div><b>Corail — Desk Mail</b><code>#e8604c · #a63a2b</code></div>
+  <div class="card"><div class="pair"><div class="sw" style="background:#3b4cc0;color:#fff">Fond</div><div class="sw" style="background:#232f86;color:#fff">Encre</div></div><b>Indigo <span class="tag">gardé de côté</span></b><code>#3b4cc0 · #232f86</code></div>
+</div>
+<p class="note" style="margin-top:14px">Propositions pour les prochaines apps (à valider à l'œil, je les ai calculées, pas testées sur une vraie icône) :</p>
+<div class="grid">
+  <div class="card"><div class="pair"><div class="sw" style="background:#f08a24;color:#3d2100">Fond</div><div class="sw" style="background:#a85a10;color:#fff">Encre</div></div><b>Orange</b><code>#f08a24 · #a85a10</code></div>
+  <div class="card"><div class="pair"><div class="sw" style="background:#7a4fd1;color:#fff">Fond</div><div class="sw" style="background:#4f2f94;color:#fff">Encre</div></div><b>Violet</b><code>#7a4fd1 · #4f2f94</code></div>
+  <div class="card"><div class="pair"><div class="sw" style="background:#2f9fe0;color:#04304d">Fond</div><div class="sw" style="background:#1c6a9c;color:#fff">Encre</div></div><b>Bleu ciel</b><code>#2f9fe0 · #1c6a9c</code></div>
+</div>
+<p class="note">Règle pour l'encre : même teinte que le fond, environ 30 % plus sombre. Sur les trois couleurs existantes, l'encre vaut à peu près 60 à 75 % de la luminosité du fond.</p>
+
+<h2>2. Anatomie d'une icône</h2>
+<div class="anatomy">
+  <svg viewBox="0 0 512 512" style="width:260px;height:260px;--ink:#a63a2b" role="img" aria-label="Schéma de l'icône avec ses repères">
+    <rect width="512" height="512" rx="113" fill="#e8604c"/>
+    <g style="color:#ff9ec3"><use href="#env" width="287" height="205" transform="translate(160 106) rotate(12 143 102)"/></g>
+    <g style="color:#ffe66d"><use href="#env" width="287" height="205" transform="translate(62 197) rotate(-6 143 102)"/></g>
+    <rect x="62" y="62" width="388" height="388" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="10 8" opacity=".85"/>
+  </svg>
+  <ol>
+    <li><b>Carré arrondi</b> : le rayon vaut <b>22 %</b> du côté. Fond d'un seul aplat.</li>
+    <li><b>Marge intérieure</b> : le dessin reste dans le carré pointillé, soit <b>12 %</b> de marge de chaque côté. Tu avais demandé de ne pas coller aux bords : c'est cette règle.</li>
+    <li><b>Deux objets</b> qui se chevauchent : le rose derrière, en haut à droite, penché de <b>+12°</b> ; le jaune devant, en bas à gauche, penché de <b>−6°</b>.</li>
+    <li><b>Un seul trait foncé</b> pour le symbole : épaisseur ≈ <b>4,5 %</b> de l'icône, bouts et angles arrondis.</li>
+    <li><b>Objets arrondis</b> : coins à environ 14 % de leur hauteur.</li>
+  </ol>
+</div>
+
+<h2>3. Formes</h2>
+<ul>
+  <li>Tout est <b>arrondi</b> : coins des objets, bouts de traits, angles du symbole. Aucun angle vif.</li>
+  <li>Formes <b>plates</b> : aplats de couleur, jamais de dégradé, d'ombre portée, de brillance ni de contour.</li>
+  <li>Symbole <b>simple et lisible à 32 px</b> : une coche, un rabat d'enveloppe. Si un détail disparaît en petit, on l'enlève.</li>
+  <li>Le symbole décrit l'app : une coche pour les tâches, une enveloppe pour le mail. Une idée par icône.</li>
+</ul>
+<div class="sizes">
+  <svg viewBox="0 0 512 512" width="96" height="96" style="--ink:#a63a2b"><rect width="512" height="512" rx="113" fill="#e8604c"/><g style="color:#ff9ec3"><use href="#env" width="287" height="205" transform="translate(160 106) rotate(12 143 102)"/></g><g style="color:#ffe66d"><use href="#env" width="287" height="205" transform="translate(62 197) rotate(-6 143 102)"/></g></svg>
+  <svg viewBox="0 0 512 512" width="48" height="48" style="--ink:#a63a2b"><rect width="512" height="512" rx="113" fill="#e8604c"/><g style="color:#ff9ec3"><use href="#env" width="287" height="205" transform="translate(160 106) rotate(12 143 102)"/></g><g style="color:#ffe66d"><use href="#env" width="287" height="205" transform="translate(62 197) rotate(-6 143 102)"/></g></svg>
+  <svg viewBox="0 0 512 512" width="32" height="32" style="--ink:#a63a2b"><rect width="512" height="512" rx="113" fill="#e8604c"/><g style="color:#ff9ec3"><use href="#env" width="287" height="205" transform="translate(160 106) rotate(12 143 102)"/></g><g style="color:#ffe66d"><use href="#env" width="287" height="205" transform="translate(62 197) rotate(-6 143 102)"/></g></svg>
+  <span class="note">Test de taille : 96, 48, 32 px.</span>
+</div>
+
+<h2>4. La famille côte à côte</h2>
+<div class="family">
+  <figure>
+    <svg viewBox="0 0 512 512"><rect width="512" height="512" rx="113" fill="#0d7c72"/><g transform="rotate(6 360 190)"><rect x="206" y="84" width="218" height="212" rx="20" fill="#ff9ec3"/></g><g transform="rotate(-4 200 300)"><path d="M100 146h232a20 20 0 0 1 20 20v142l-62 82H120a20 20 0 0 1-20-20z" fill="#ffe66d"/><path d="M290 390l62-82v62a20 20 0 0 1-20 20z" fill="#f2c94c"/><polyline points="150,248 206,300 304,200" fill="none" stroke="#0d5c55" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+    <figcaption><b>Tool Proj</b><br>vert</figcaption>
+  </figure>
+  <figure>
+    <svg viewBox="0 0 512 512" style="--ink:#a63a2b"><rect width="512" height="512" rx="113" fill="#e8604c"/><g style="color:#ff9ec3"><use href="#env" width="287" height="205" transform="translate(160 106) rotate(12 143 102)"/></g><g style="color:#ffe66d"><use href="#env" width="287" height="205" transform="translate(62 197) rotate(-6 143 102)"/></g></svg>
+    <figcaption><b>Desk Mail</b><br>corail</figcaption>
+  </figure>
+  <figure class="todo">
+    <svg viewBox="0 0 512 512" style="--ink:#232f86"><rect width="512" height="512" rx="113" fill="#3b4cc0"/><g style="color:#ff9ec3"><use href="#env" width="287" height="205" transform="translate(160 106) rotate(12 143 102)"/></g><g style="color:#ffe66d"><use href="#env" width="287" height="205" transform="translate(62 197) rotate(-6 143 102)"/></g></svg>
+    <figcaption><b>Exemple</b><br>même objet, autre couleur</figcaption>
+  </figure>
+</div>
+<p class="note">Le troisième n'est pas une app : c'est la variante indigo de Desk Mail, pour montrer que seule la couleur d'app change.</p>
+
+<h2>5. À éviter</h2>
+<div class="no">
+  <div class="card"><svg viewBox="0 0 512 512"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a6b"/><stop offset="1" stop-color="#b8321f"/></linearGradient></defs><rect width="512" height="512" rx="113" fill="url(#g)"/></svg><br>Dégradés et ombres</div>
+  <div class="card"><svg viewBox="0 0 512 512"><rect width="512" height="512" rx="113" fill="#e8604c"/><rect x="0" y="130" width="512" height="250" fill="#ffe66d"/></svg><br>Dessin collé aux bords</div>
+  <div class="card"><svg viewBox="0 0 512 512"><rect width="512" height="512" rx="113" fill="#e8604c"/><circle cx="256" cy="256" r="90" fill="#ffe66d"/><circle cx="256" cy="256" r="150" fill="none" stroke="#ff9ec3" stroke-width="10"/><circle cx="256" cy="256" r="195" fill="none" stroke="#fff" stroke-width="6"/></svg><br>Trop de détails et de contours</div>
+  <div class="card"><svg viewBox="0 0 512 512"><rect width="512" height="512" rx="113" fill="#e8604c"/><polygon points="120,150 380,130 400,380 140,400" fill="#00e5ff"/><polygon points="180,200 440,190 420,420" fill="#7cff00"/></svg><br>Couleurs hors palette</div>
+</div>
+
+<h2>6. Recette pour une nouvelle app</h2>
+<ol>
+  <li>Choisir une <b>couleur d'app</b> inutilisée (voir les propositions) et calculer son encre.</li>
+  <li>Trouver <b>un objet</b> qui dit l'app, et un <b>symbole</b> en un seul trait.</li>
+  <li>Dessiner : carré arrondi à 22 %, objet rose derrière (+12°), objet jaune devant (−6°), symbole en encre, marge de 12 %.</li>
+  <li>Tester à <b>96, 48 et 32 px</b> : si le symbole n'est plus lisible, simplifier.</li>
+  <li>Comparer à côté de Tool Proj et Desk Mail : on doit voir tout de suite que c'est la même famille.</li>
+</ol>
+<p class="note" style="margin-top:18px">Le script <code>branding/logo.py</code> applique déjà cette recette pour l'enveloppe : changer les couleurs et le symbole suffit à produire un nouveau logo.</p>
+
+<h2>Ce qui reste à décider</h2>
+<p class="lead">Je n'ai trouvé aucune règle écrite pour la <b>typographie</b>, ni pour les <b>sites web</b> et les interfaces des apps. Ce document couvre les icônes et les couleurs. Dis-moi si tu veux le compléter (polices, boutons, mode sombre).</p>
+
+</main>
+</body>
+</html>
