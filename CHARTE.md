@@ -46,7 +46,7 @@ Ancien contact à **remplacer partout** : `contact@grandpaname.fun`. Grand Panam
 | Accent | **Une seule couleur d'accent par app**, pour les actions et l'état actif. Le rouge est réservé aux problèmes |
 | Thèmes | Toute nouvelle couleur vérifiée en clair et en sombre (Grand Paname ajoute un sombre OLED) |
 | Mouvement | Courbe `cubic-bezier(.2,.8,.2,1)`, 250–400 ms, apparition douce vers le haut ; respecter `prefers-reduced-motion` |
-| Vie privée | Même promesse partout : sans pub, sans pistage, données chez l'utilisateur (à ne dire que si c'est vrai pour l'app) |
+| Vie privée | **Sans pub, sans pistage, données chez l'utilisateur : vrai pour toutes les apps**, donc on peut le dire partout (site, fiches, README) |
 | Pages légales | Gabarit sobre : fond neutre, carte « En résumé » avec filet d'accent à gauche, accent de l'app |
 | Textes | Phrases courtes, vocabulaire simple, pas de jargon ; mêmes mots pour les mêmes états (en cours, terminé, en direct, hors ligne) |
 
@@ -99,7 +99,21 @@ Ce sont des **repères pour garder l'air de famille**, pas des obligations : s'�
 
 L'encre est la même teinte que le fond, environ 30 % plus sombre. Les couleurs « piste » et « proposition » sont calculées, pas encore testées sur une vraie icône.
 
-Grand Paname, ScoreBoard et UrbaSim gardent leurs couleurs et leurs icônes (section 4).
+Score Board et UrbaSim gardent leurs couleurs et leurs icônes (section 4). **Grand Paname a sa propre palette, à part** (ci-dessous).
+
+**Palette propre de Grand Paname** (trois thèmes : clair / sombre / OLED), tirée de son guide graphique :
+
+| Rôle | Clair | Sombre | OLED |
+|---|---|---|---|
+| Fond | `#ffffff` | `#010e26` | `#000000` |
+| Fond discret | `#f1f2f6` | `#07213f` | `#050505` |
+| Fond de carte | `#ffffff` | `#031a3a` | `#000000` |
+| Texte | `#25303b` | `#ddeeff` | `#ddeeff` |
+| Texte secondaire | `#7f8c8d` | `#6e99cc` | `#6e99cc` |
+| Accent | `#3498db` | `#5ab3f5` | `#5ab3f5` |
+| Pastille active | `#ddeeff` | `#0a2d64` | `#0a0a0a` |
+
+Étoile de favori : or `#f2b705`. Le rouge est réservé aux problèmes de trafic. Police : GrandParis. Sur le site vitrine, l'accent utilisé est `#3aa0ff`.
 
 ## 4. L'âme de chaque app (reste libre)
 
@@ -109,7 +123,7 @@ Grand Paname, ScoreBoard et UrbaSim gardent leurs couleurs et leurs icônes (sec
 | Tool Proj | `#0d7c72` (vert, encre `#0d5c55`) | Papier : post-it colorés légèrement penchés | Système | Web / PWA, bureau + mobile |
 | Desk Mail | `#e8604c` (corail, encre `#a63a2b`, icône : deux enveloppes rose et jaune) | Sobre et dense, logiciel de bureau ; accents corail | Segoe UI | Windows |
 | Near Pass | `#8a6bff` (violet provisoire ; couleur d'app non définie) | Radar, halos, lumière | Système | Android |
-| ScoreBoard (écrit « Score Board » dans l'app) | `#2fbf8f` (thème app `#1f6f5c`) + jaune | Papier crème, contour épais sombre, ombre pleine ; chaque jeu a sa carte en dégradé (Tarot violet, Skyjo bleu, Aventuriers du Rail rouge, Sushi Go Party corail, 6 qui prend orange) | Système, titres gras | Android + Web / PWA |
+| Score Board (écrit « Score Board » dans l'app) | `#2fbf8f` (thème app `#1f6f5c`) + jaune | Papier crème, contour épais sombre, ombre pleine ; chaque jeu a sa carte en dégradé (Tarot violet, Skyjo bleu, Aventuriers du Rail rouge, Sushi Go Party corail, 6 qui prend orange) | Système, titres gras | Android + Web / PWA |
 | UrbaSim (jeu, bêta) | `#3d86f0` (bouton `#2a6ff0`) | Ciel en dégradé, immeubles colorés (rose, jaune, bleu, vert), ton ludique | Système | Web, version bureau (mobile non optimisé) |
 
 Sur le site : une app = une variable `--a`.
@@ -142,20 +156,21 @@ Légende : ✅ fait · ⬜ à faire · ❓ à vérifier. Mis à jour le 2026-10-
 | Tool Proj | ❓ | ⬜ | ⬜ | |
 | Desk Mail | ⬜ (page : `panamail-pages`) | ⬜ | ⬜ | Icône à dessiner ; le dépôt de la page s'appelle encore « panamail » |
 | Near Pass | ⬜ (page : `nearpass-site`, affiche `contact@grandpaname.fun`) | ⬜ | ⬜ | Icône à dessiner |
-| ScoreBoard | ❓ | ⬜ | ⬜ | Le README dit encore « PanaGames » ; `PRIVACY.md` à revoir |
+| Score Board | ❓ | ⬜ | ⬜ | Le README dit encore « PanaGames » ; `PRIVACY.md` à revoir |
 | UrbaSim | ❓ | ⬜ | ⬜ | |
 | Site Showroom | ✅ | ✅ | ✅ | |
 
 ## 8. Journal des décisions de design
 
 - 2026-10-27 : UrbaSim est désormais le **jeu** « Le Monopoly de l'immobilier réel » (bêta). L'outil de pré-faisabilité d'origine reste en ligne mais n'est plus la vitrine. Son accent passe de l'orange au bleu du jeu.
-- 2026-10-27 : le site vitrine utilise de vraies captures d'écran dans des cadres de téléphone (plus de maquettes dessinées pour Grand Paname, ScoreBoard, UrbaSim).
-- 2026-10-27 : slogan du site remplacé par l'histoire réelle : « Des apps faites pour l'utilisateur, par un utilisateur. » (titre d'accueil ; le paragraphe d'intro raconte l'histoire : des apps que l'auteur voulait, qui n'existaient pas, donc il les a créées). « Fait à la main » retiré (faux, les apps sont codées avec Claude). Les promesses « hors-ligne », « sans pub », « sans pistage » ne se disent que page par page, jamais pour tout le site.
+- 2026-10-27 : le site vitrine utilise de vraies captures d'écran dans des cadres de téléphone (plus de maquettes dessinées pour Grand Paname, Score Board, UrbaSim).
+- 2026-10-27 : slogan du site remplacé par l'histoire réelle : « Des apps faites pour l'utilisateur, par un utilisateur. » (titre d'accueil ; le paragraphe d'intro raconte l'histoire : des apps que l'auteur voulait, qui n'existaient pas, donc il les a créées). « Fait à la main » retiré (faux, les apps sont codées avec Claude). « Hors-ligne » ne se dit que page par page (pas vrai pour toutes les apps) ; « sans pub, sans pistage » est vrai pour toutes les apps et se dit partout.
 - 2026-10-27 : le site devient une page unique avec un carrousel par app (capture + texte qui changent), à la place de sous-pages. Thèmes clair et sombre sur le site ; chaque capture existe en version claire et sombre.
 - 2026-10-27 : mise en page en alternance : une app sur deux est en miroir (capture à gauche, texte à droite), pour éviter la répétition. À l'essai, à valider.
 - 2026-10-27 : Tool Proj est montré en version bureau **et** mobile (format `duo`) ; UrbaSim en version bureau uniquement (le mobile n'est pas optimisé).
 - 2026-10-27 : charte d'icônes de Desk Mail intégrée **en version très légère** (section 3 bis) : une palette et quelques idées à reprendre librement, aucune règle ni interdit. Tool Proj prend son vert d'icône `#0d7c72` comme accent. Near Pass garde son icône radar provisoire.
 - 2026-10-27 : icône réelle de Desk Mail (corail, deux enveloppes) : l'accent de l'app passe du bleu au corail. La page de confidentialité de Desk Mail, elle, est encore en bleu : à harmoniser.
+- 2026-10-27 : décisions : on garde toute la palette élargie (pastels et couleurs d'app) ; la palette de Grand Paname est une catégorie à part ; l'app s'écrit « Score Board » ; « sans pub, sans pistage » est vrai pour toutes les apps ; l'icône du site garde les six icônes, disposées **en cercle** plutôt qu'en deux lignes.
 - 2026-10-27 : icône du site (favicon) propre à Paname Dev : six tuiles aux couleurs des six apps, et non l'icône d'une app.
 - 2026-10-27 : création de la charte. Socle léger, une couleur d'accent par app, tutoiement. Domaine `panamedev.fr`, contact unique `contact@panamedev.fr`. Copyright et mention de conception à poser partout.
 - *(à compléter à chaque décision, avec la date et l'app concernée)*
@@ -168,7 +183,7 @@ Le site est **une seule page** (`index.html`). Chaque app y a une section avec u
 - **Captures** : à déposer dans `assets/shots/<slug>/`, **en deux versions** : `NN-light.jpg` (thème clair) et `NN-dark.jpg` (thème sombre). `.png` et `.webp` sont acceptés. Si une seule version existe, elle sert pour les deux thèmes ; `NN.jpg` sans suffixe sert aussi pour les deux.
 - **Numérotation** : `01` = vue d'ensemble, puis `02`, `03`… une par fonctionnalité, dans l'ordre de `features` dans `data/apps.json`.
 - **Formats** (champ `format` de chaque app dans `data/apps.json`) :
-  - `phone` : capture brute du téléphone (portrait) : Grand Paname, Near Pass, ScoreBoard.
+  - `phone` : capture brute du téléphone (portrait) : Grand Paname, Near Pass, Score Board.
   - `window` : capture de la version bureau (16:10) : Desk Mail, UrbaSim (la version mobile d'UrbaSim n'est pas à l'ordre du jour et n'est pas optimisée : ne pas la montrer).
   - `duo` : bureau **et** mobile dans le même cadre (fenêtre + téléphone qui la chevauche) : Tool Proj, qui existe dans les deux versions. Fichiers `NN-desktop-light.jpg`, `NN-desktop-dark.jpg`, `NN-mobile-light.jpg`, `NN-mobile-dark.jpg`.
   - Largeur 1000 à 1300 px, JPEG qualité ≈ 85.
