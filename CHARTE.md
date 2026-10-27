@@ -54,7 +54,17 @@ Ancien contact à **remplacer partout** : `contact@grandpaname.fun`. Grand Panam
 
 Inspirées de Tool Proj et Desk Mail (leur charte d'icônes complète est gardée comme référence dans `branding/charte-icones-paname.html`). Ce ne sont **pas des règles** : chaque app garde son âme, et on reprend une idée seulement quand elle sert l'app.
 
-- **Une palette douce partagée** : jaune `#ffe66d` et rose `#ff9ec3`, à utiliser si ça va bien avec l'app.
+- **Une palette douce partagée** pour les objets de l'icône (des pastels, jamais criards). Jaune et rose sont ceux de Tool Proj et Desk Mail ; les autres sont des **propositions** dans la même douceur, à valider à l'œil sur une vraie icône :
+
+| Pastel | Valeur | Statut |
+|---|---|---|
+| Jaune | `#ffe66d` | en usage |
+| Rose | `#ff9ec3` | en usage |
+| Ciel | `#8fd3ff` | proposition |
+| Pêche | `#ffb27a` | proposition |
+| Menthe | `#a8e6a1` | proposition |
+| Lavande | `#cdbcff` | proposition |
+| Crème | `#fff4d6` | proposition |
 - **Une couleur par app**, avec une version plus foncée pour les détails et le trait (l'« encre »).
 - **Des formes plates et arrondies**, sur un fond uni en carré arrondi.
 - **Des objets qui se chevauchent**, un peu inclinés, pour donner de la vie.
@@ -78,7 +88,16 @@ Ce sont des **repères pour garder l'air de famille**, pas des obligations : s'�
 | Tool Proj | `#0d7c72` | `#0d5c55` |
 | Desk Mail | `#e8604c` | `#a63a2b` |
 | Near Pass | `#8a6bff` (provisoire) | à choisir |
-| Pistes pour de futures apps | orange `#f08a24`, bleu ciel `#2f9fe0`, violet `#7a4fd1`, indigo `#3b4cc0` | environ 30 % plus sombre |
+| Orange (piste) | `#f08a24` | `#a85a10` |
+| Bleu ciel (piste) | `#2f9fe0` | `#1c6a9c` |
+| Violet (piste) | `#7a4fd1` | `#4f2f94` |
+| Indigo (gardé de côté) | `#3b4cc0` | `#232f86` |
+| Framboise (proposition) | `#d9467a` | `#a72251` |
+| Moutarde (proposition) | `#d9a21b` | `#987113` |
+| Ardoise (proposition) | `#4a6275` | `#344552` |
+| Bleu nuit (proposition) | `#2b4b8f` | `#1e3564` |
+
+L'encre est la même teinte que le fond, environ 30 % plus sombre. Les couleurs « piste » et « proposition » sont calculées, pas encore testées sur une vraie icône.
 
 Grand Paname, ScoreBoard et UrbaSim gardent leurs couleurs et leurs icônes (section 4).
 
