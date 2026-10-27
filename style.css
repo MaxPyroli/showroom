@@ -290,3 +290,12 @@ aside hr{border:0;border-top:1px solid #2a323d;margin:6px 0}aside span{padding:4
 .slot.duo .part.phone .ph span,.slot.duo .part.phone .ph small,.slot.duo .part.phone .ph code{display:none}
 .slot.duo .part.phone .ph b{font-size:1.2rem}
 .slot.duo .part.window .ph code:nth-of-type(n+1){font-size:.58rem}
+
+/* une app sur deux en miroir : capture à gauche, texte à droite */
+@media (min-width:861px){
+  .flip .aleft{order:2}
+  .flip .slide{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+  .flip .stxt{order:2}
+  .flip .shotarea{order:1}
+  .flip .ctrl{left:auto;right:0}
+}

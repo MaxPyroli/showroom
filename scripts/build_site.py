@@ -61,7 +61,7 @@ def slot(app, n, hint, alt):
     return f'<figure class="slot {fmt}">{inner}</figure>'
 
 
-def section(app):
+def section(app, index):
     slug, cls = app["slug"], CLS[app["slug"]]
     mock_file = ROOT / "data" / "mockups" / f"{slug}.html"
     mock = mock_file.read_text(encoding="utf-8").strip() if mock_file.exists() else ""
@@ -84,7 +84,7 @@ def section(app):
         for l in app["links"])
     links += "".join(f'<a class="btn ghost" href="{e(l["url"])}" target="_blank" rel="noopener">{e(l["label"])} ↗</a>' for l in app["legal"])
     chips = "".join(f"<span>{e(c)}</span>" for c in app["chips"])
-    return f'''<section class="app {cls}" id="{slug}" data-glow="{app['glow']}" style="--a:{app['accent']}">
+    return f'''<section class="app {cls}{' flip' if index % 2 else ''}" id="{slug}" data-glow="{app['glow']}" style="--a:{app['accent']}">
   <div class="wrap">
     <header class="ahead">
       <div class="aleft">
@@ -113,7 +113,7 @@ def section(app):
 
 index = ROOT / "index.html"
 src = index.read_text(encoding="utf-8")
-new = "\n\n".join(section(a) for a in APPS)
+new = "\n\n".join(section(a, i) for i, a in enumerate(APPS))
 pattern = re.compile(r"(<!-- APPS:START[^>]*-->\n).*?(<!-- APPS:END -->)", re.S)
 assert pattern.search(src), "marqueurs APPS:START / APPS:END introuvables dans index.html"
 index.write_text(pattern.sub(lambda m: m.group(1) + new + "\n\n" + m.group(2), src), encoding="utf-8")
