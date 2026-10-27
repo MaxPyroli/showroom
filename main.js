@@ -129,9 +129,17 @@
       anims.push(el.querySelector('img').animate([{ opacity: 0 }, { opacity: 0, offset: .6 }, { opacity: 1 }], o));
       anims.push(tile.animate([{ opacity: 1 }, { opacity: 1, offset: .6 }, { opacity: 0 }], { ...o, fill: 'forwards' }));
     });
+    // le fond du logo grandit jusqu'à couvrir l'écran et devient le fond de la page
+    const pageBg = getComputedStyle(document.body).backgroundColor;
+    const cover = 1.7 * Math.max(innerWidth, innerHeight) / L;
     anims.push(logo.animate([
-      { opacity: 0, scale: .85 }, { opacity: 1, scale: 1, offset: .1 }, { opacity: 1, scale: 1, offset: .5 }, { opacity: 0, scale: 1.2 }
-    ], { duration: D, easing: 'ease-out', fill: 'forwards' }));
+      { opacity: 0, scale: .85, offset: 0 },
+      { opacity: 1, scale: 1, offset: .1 },
+      { opacity: 1, scale: 1, offset: .42, easing: 'cubic-bezier(.65,0,.35,1)' },
+      { opacity: 1, scale: cover, backgroundColor: pageBg, offset: .76 },
+      { opacity: 0, scale: cover, backgroundColor: pageBg, offset: .96 },
+      { opacity: 0, scale: cover, backgroundColor: pageBg, offset: 1 }
+    ], { duration: D, easing: 'linear', fill: 'forwards' }));
     let ended = false;
     const end = () => {
       if (ended) return; ended = true;
@@ -139,7 +147,7 @@
       logo.remove(); document.querySelectorAll('.orbit .tile').forEach((t) => t.remove());
       done();
     };
-    setTimeout(done, D * 0.8);
+    setTimeout(done, D * 0.78);
     anims[0].finished.then(end).catch(end);
     const skip = () => { end(); removeEventListener('pointerdown', skip); removeEventListener('keydown', skip); removeEventListener('wheel', skip); };
     addEventListener('pointerdown', skip); addEventListener('keydown', skip); addEventListener('wheel', skip, { passive: true });
