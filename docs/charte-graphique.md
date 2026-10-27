@@ -41,7 +41,7 @@ Ces accents sont ceux de `style.css` (`.gp`, `.tp`, `.dm`…) : **dans le site, 
 
 - Icônes de Desk Mail et Near Pass : à faire d'après les règles ci-dessus (le site utilise des versions provisoires dessinées en SVG).
 - Pages de confidentialité de Desk Mail et Near Pass : mêmes structure et ton, accent propre (déjà quasi le cas).
-- Contact unique : `contact@grandpaname.fun` partout.
+- Contact unique : `contact@panamedev.fr` partout.
 - Un seul vocabulaire pour les états (en cours, terminé, en direct, hors ligne) et les mêmes puces de statut.
 - Noms : ScoreBoard (le dépôt dit encore « PanaGames » dans son README).
 
