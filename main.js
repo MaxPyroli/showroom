@@ -3,7 +3,8 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  document.getElementById('y').textContent = new Date().getFullYear();
+  const yr = new Date().getFullYear();
+  if (yr > 2026) document.getElementById('y').textContent = '–' + yr;
 
   // Apparition au scroll
   const io = new IntersectionObserver((entries) => {

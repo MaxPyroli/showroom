@@ -206,6 +206,7 @@ aside hr{border:0;border-top:1px solid #2a323d;margin:6px 0}aside span{padding:4
 .contact p{color:var(--mut);margin:16px 0 32px}
 .foot{display:flex;justify-content:space-between;gap:12px;padding:26px max(20px,calc(50% - 590px));border-top:1px solid var(--line);color:var(--mut);font-size:.85rem}
 .foot a:hover{color:var(--fg)}
+@media (max-width:640px){.foot{flex-wrap:wrap}}
 
 /* ---------- apparition au scroll ---------- */
 .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
