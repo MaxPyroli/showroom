@@ -28,7 +28,7 @@ Ancien contact à **remplacer partout** : `contact@grandpaname.fun`. Grand Panam
 
 À cocher pour chaque app, et à garder cohérent à chaque modification.
 
-- [ ] **Icône** dans l'esprit de la section 3 bis (fond uni arrondi, formes plates et arrondies, encre foncée, lisible à 32 px).
+- [ ] **Icône** à jour (idées de la section 3 bis, librement).
 - [ ] **Écran « À propos » / Paramètres** de l'app : version, ligne de crédit (section 1), lien confidentialité, contact.
 - [ ] **Page de confidentialité** : rubrique « Contact » = `contact@panamedev.fr`, pied de page = ligne de crédit, date de mise à jour.
 - [ ] **README du dépôt** : en bas, la ligne de crédit.
@@ -50,43 +50,24 @@ Ancien contact à **remplacer partout** : `contact@grandpaname.fun`. Grand Panam
 | Pages légales | Gabarit sobre : fond neutre, carte « En résumé » avec filet d'accent à gauche, accent de l'app |
 | Textes | Phrases courtes, vocabulaire simple, pas de jargon ; mêmes mots pour les mêmes états (en cours, terminé, en direct, hors ligne) |
 
-## 3 bis. Icônes : un esprit commun, pas une recette stricte
+## 3 bis. Icônes : quelques idées communes, à reprendre librement
 
-Source : `branding/charte-icones-paname.html` (la charte d'icônes de Desk Mail, avec schémas). Tool Proj et Desk Mail suivent la même recette exacte ; **les autres apps s'en inspirent sans la recopier**. Chaque app garde son âme : on ne met pas des post-it sur Near Pass ni des enveloppes sur ScoreBoard. Le but : qu'on sente « la même main », pas « la même icône ».
+Inspirées de Tool Proj et Desk Mail (leur charte d'icônes complète est gardée comme référence dans `branding/charte-icones-paname.html`). Ce ne sont **pas des règles** : chaque app garde son âme, et on reprend une idée seulement quand elle sert l'app.
 
-**Ce qu'on garde comme esprit commun**
-- Un **fond uni** en carré très arrondi (rayon ≈ **22 %** du côté), avec une **marge** intérieure d'environ 12 %.
-- Des **objets plats et pastel** qui racontent l'app, éventuellement **chevauchés** et légèrement **inclinés** (de l'ordre de ±6 à 12°) pour donner de la vie.
-- Un **trait ou des détails foncés** (l'« encre » de l'app), épais, aux bouts et angles **arrondis**.
-- **Tout est arrondi** (aucun angle vif) et **plat** : pas de dégradé, d'ombre portée, de brillance ni de contour fin.
-- **Une idée par icône**, lisible à **32 px** (test à 96, 48 et 32 px : si un détail disparaît en petit, on l'enlève).
+- **Une palette douce partagée** : jaune `#ffe66d` et rose `#ff9ec3`, à utiliser si ça va bien avec l'app.
+- **Une couleur par app**, avec une version plus foncée pour les détails et le trait (l'« encre »).
+- **Des formes plates et arrondies**, sur un fond uni en carré arrondi.
+- **Des objets qui se chevauchent**, un peu inclinés, pour donner de la vie.
+- **Rester lisible en tout petit** (32 px).
 
-**Ce qui est libre** : l'objet (c'est l'app qui le choisit : post-it, enveloppe, deux amis, un plateau, un immeuble…), le nombre d'objets, le symbole, l'inclinaison. Chaque écart est acceptable s'il garde l'esprit ; on le note en section 8 quand c'est un choix marquant.
+| App | Couleur | Encre |
+|---|---|---|
+| Tool Proj | `#0d7c72` | `#0d5c55` |
+| Desk Mail | `#e8604c` | `#a63a2b` |
+| Near Pass | `#8a6bff` (provisoire) | à choisir |
+| Pistes pour de futures apps | orange `#f08a24`, bleu ciel `#2f9fe0`, violet `#7a4fd1`, indigo `#3b4cc0` | environ 30 % plus sombre |
 
-**Palette graphique**
-- **Socle pastel partagé**, à utiliser quand il convient (il donne l'air de famille) : **jaune `#ffe66d`** et **rose `#ff9ec3`**.
-- Une **couleur d'app** (le fond) et son **encre** (le trait foncé) : même teinte que le fond, environ 30 % plus sombre.
-
-| App | Fond | Encre | Statut |
-|---|---|---|---|
-| Tool Proj (vert) | `#0d7c72` | `#0d5c55` | définitive |
-| Desk Mail (corail) | `#e8604c` | `#a63a2b` | définitive |
-| Near Pass (violet) | `#7a4fd1` | `#4f2f94` | provisoire, à choisir |
-| Orange | `#f08a24` | `#a85a10` | proposition |
-| Bleu ciel | `#2f9fe0` | `#1c6a9c` | proposition |
-| Indigo | `#3b4cc0` | `#232f86` | gardé de côté |
-
-Les propositions sont calculées, pas testées sur une vraie icône : à valider à l'œil. Grand Paname, ScoreBoard et UrbaSim gardent leurs couleurs actuelles (voir section 4) ; si on retouche leur icône, on peut leur emprunter la palette et les formes ci-dessus, sans obligation.
-
-**Formes et exemples d'adaptation**
-- Tool Proj : post-it rose (derrière) et jaune (devant) + coche. Desk Mail : deux enveloppes rose et jaune + rabat en V.
-- Near Pass (provisoire) : deux personnages rose et jaune qui se chevauchent = des amis tout près, sur fond violet, en gardant l'encre foncée. C'est l'esprit, sans recopier la recette.
-
-**À éviter** : dégradés et ombres ; dessin collé aux bords ; trop de détails ou de contours ; couleurs hors palette sans raison ; recopier l'objet d'une autre app.
-
-**Exceptions actuelles** (icônes antérieures à cette charte, à décider : garder, retoucher ou refaire) : Grand Paname (carte du réseau), ScoreBoard (pion + « 21 »), UrbaSim (immeubles colorés). Le script `branding/logo.py` (côté Desk Mail, non versionné ici) applique la recette exacte pour l'enveloppe.
-
-**Typographie, sites web, boutons, mode sombre** : non couverts par le document d'icônes ; ce sont les sections 3 et 4 de cette charte qui font foi.
+Grand Paname, ScoreBoard et UrbaSim gardent leurs couleurs et leurs icônes (section 4).
 
 ## 4. L'âme de chaque app (reste libre)
 
@@ -95,7 +76,7 @@ Les propositions sont calculées, pas testées sur une vraie icône : à valider
 | Grand Paname | `#3aa0ff`, fond nuit `#010e26` | Carte plein écran, barre de recherche et navigation flottantes, verre dépoli, trois thèmes (clair, sombre, OLED) | GrandParis | Android (Expo) |
 | Tool Proj | `#0d7c72` (vert, encre `#0d5c55`) | Papier : post-it colorés légèrement penchés | Système | Web / PWA, bureau + mobile |
 | Desk Mail | `#e8604c` (corail, encre `#a63a2b`, icône : deux enveloppes rose et jaune) | Sobre et dense, logiciel de bureau ; accents corail | Segoe UI | Windows |
-| Near Pass | `#7a4fd1` (violet provisoire, encre `#4f2f94` ; couleur d'app non définie) | Radar, halos, lumière ; icône : deux amis rose et jaune qui se chevauchent | Système | Android |
+| Near Pass | `#8a6bff` (violet provisoire ; couleur d'app non définie) | Radar, halos, lumière | Système | Android |
 | ScoreBoard (écrit « Score Board » dans l'app) | `#2fbf8f` (thème app `#1f6f5c`) + jaune | Papier crème, contour épais sombre, ombre pleine ; chaque jeu a sa carte en dégradé (Tarot violet, Skyjo bleu, Aventuriers du Rail rouge, Sushi Go Party corail, 6 qui prend orange) | Système, titres gras | Android + Web / PWA |
 | UrbaSim (jeu, bêta) | `#3d86f0` (bouton `#2a6ff0`) | Ciel en dégradé, immeubles colorés (rose, jaune, bleu, vert), ton ludique | Système | Web, version bureau (mobile non optimisé) |
 
@@ -111,7 +92,7 @@ Sur le site : une app = une variable `--a`.
 ## 6. Recette pour une nouvelle app
 
 1. Choisir un accent (contraste ≥ 4,5:1 pour le texte sur le bouton plein ; sinon texte sombre).
-2. Dessiner l'icône dans l'esprit de la section 3 bis et la déposer dans `assets/img/` (carrée, PNG ou SVG).
+2. Dessiner l'icône (idées de la section 3 bis, librement) et la déposer dans `assets/img/` (carrée, PNG ou SVG).
 3. Ajouter une entrée dans `data/apps.json` : `slug`, `name`, `icon`, `accent`, `glow`, `format` (`phone`, `window` ou `duo`), `tag`, `tagline`, `pitch`, `chips`, `links`, `legal`, `hero_hint` et `features` (une par diapo : titre, texte, `hint` de la capture à fournir).
 4. Lancer `python3 scripts/build_site.py` : la barre de navigation, l'icône de l'accueil et la section avec son carrousel se génèrent seules, avec l'accent de l'app (aucun CSS à écrire).
 5. Déposer les captures dans `assets/shots/<slug>/` (section 9).
@@ -141,7 +122,7 @@ Légende : ✅ fait · ⬜ à faire · ❓ à vérifier. Mis à jour le 2026-10-
 - 2026-10-27 : le site devient une page unique avec un carrousel par app (capture + texte qui changent), à la place de sous-pages. Thèmes clair et sombre sur le site ; chaque capture existe en version claire et sombre.
 - 2026-10-27 : mise en page en alternance : une app sur deux est en miroir (capture à gauche, texte à droite), pour éviter la répétition. À l'essai, à valider.
 - 2026-10-27 : Tool Proj est montré en version bureau **et** mobile (format `duo`) ; UrbaSim en version bureau uniquement (le mobile n'est pas optimisé).
-- 2026-10-27 : intégration de la charte d'icônes de Desk Mail (`branding/charte-icones-paname.html`) : esprit commun et palette (section 3 bis), à appliquer avec souplesse et non comme recette stricte (pas de post-it sur Near Pass). Tool Proj prend son vert d'icône `#0d7c72` comme accent ; l'icône provisoire de Near Pass est redessinée sans dégradé : deux amis qui se chevauchent, violet `#7a4fd1`.
+- 2026-10-27 : charte d'icônes de Desk Mail intégrée **en version très légère** (section 3 bis) : une palette et quelques idées à reprendre librement, aucune règle ni interdit. Tool Proj prend son vert d'icône `#0d7c72` comme accent. Near Pass garde son icône radar provisoire.
 - 2026-10-27 : icône réelle de Desk Mail (corail, deux enveloppes) : l'accent de l'app passe du bleu au corail. La page de confidentialité de Desk Mail, elle, est encore en bleu : à harmoniser.
 - 2026-10-27 : icône du site (favicon) propre à Paname Dev : six tuiles aux couleurs des six apps, et non l'icône d'une app.
 - 2026-10-27 : création de la charte. Socle léger, une couleur d'accent par app, tutoiement. Domaine `panamedev.fr`, contact unique `contact@panamedev.fr`. Copyright et mention de conception à poser partout.
