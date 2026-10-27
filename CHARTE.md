@@ -96,17 +96,22 @@ Légende : ✅ fait · ⬜ à faire · ❓ à vérifier. Mis à jour le 2026-10-
 - 2026-10-27 : UrbaSim est désormais le **jeu** « Le Monopoly de l'immobilier réel » (bêta). L'outil de pré-faisabilité d'origine reste en ligne mais n'est plus la vitrine. Son accent passe de l'orange au bleu du jeu.
 - 2026-10-27 : le site vitrine utilise de vraies captures d'écran dans des cadres de téléphone (plus de maquettes dessinées pour Grand Paname, ScoreBoard, UrbaSim).
 - 2026-10-27 : slogan du site remplacé par l'histoire réelle : « Des apps faites pour l'utilisateur, par un utilisateur. » (titre d'accueil ; le paragraphe d'intro raconte l'histoire : des apps que l'auteur voulait, qui n'existaient pas, donc il les a créées). « Fait à la main » retiré (faux, les apps sont codées avec Claude). Les promesses « hors-ligne », « sans pub », « sans pistage » ne se disent que page par page, jamais pour tout le site.
+- 2026-10-27 : le site devient une page unique avec un carrousel par app (capture + texte qui changent), à la place de sous-pages. Thèmes clair et sombre sur le site ; chaque capture existe en version claire et sombre.
+- 2026-10-27 : icône du site (favicon) propre à Paname Dev : six tuiles aux couleurs des six apps, et non l'icône d'une app.
 - 2026-10-27 : création de la charte. Socle léger, une couleur d'accent par app, tutoiement. Domaine `panamedev.fr`, contact unique `contact@panamedev.fr`. Copyright et mention de conception à poser partout.
 - *(à compléter à chaque décision, avec la date et l'app concernée)*
 
-## 9. Captures d'écran et pages détaillées
+## 9. Site vitrine : page unique, carrousels et captures d'écran
 
-Chaque app a une page sur le site vitrine : `apps/<slug>/`. Le contenu vient de `data/apps.json` ; la page se génère avec `python3 scripts/build_pages.py`.
+Le site est **une seule page** (`index.html`). Chaque app y a une section avec un **carrousel** : flèches, points et balayage tactile ; à chaque diapositive, la capture d'écran change et le texte à côté aussi. Le contenu vient de `data/apps.json`, et les sections se génèrent avec `python3 scripts/build_site.py` (le workflow GitHub Pages le fait aussi à chaque déploiement).
 
-- **Captures** : à déposer dans `assets/shots/<slug>/` sous les noms `01.jpg`, `02.jpg`… (`.png` et `.webp` acceptés). `01` = écran principal, puis une par fonctionnalité dans l'ordre de la page, puis la galerie. Un emplacement sans fichier affiche un cadre pointillé qui indique le fichier attendu et l'écran à montrer ; aucune régénération n'est nécessaire.
+- **Thèmes** : le site suit le thème de l'utilisateur (clair ou sombre), avec un bouton pour changer. Les captures suivent aussi.
+- **Captures** : à déposer dans `assets/shots/<slug>/`, **en deux versions** : `NN-light.jpg` (thème clair) et `NN-dark.jpg` (thème sombre). `.png` et `.webp` sont acceptés. Si une seule version existe, elle sert pour les deux thèmes ; `NN.jpg` sans suffixe sert aussi pour les deux.
+- **Numérotation** : `01` = vue d'ensemble, puis `02`, `03`… une par fonctionnalité, dans l'ordre de `features` dans `data/apps.json`.
 - **Format** : capture d'écran brute du téléphone (portrait) ; Desk Mail en fenêtre (16:10). Largeur 1000 à 1300 px, JPEG qualité ≈ 85.
-- **Contenu** : pas de données personnelles (vrais noms, e-mails, positions). Mettre des données de démonstration.
-- **Nouvelle fonctionnalité d'une app** : ajouter une entrée dans `features` de `data/apps.json`, relancer le script, déposer la capture suivante.
+- **Emplacement vide** : un cadre pointillé indique le fichier attendu et l'écran à montrer. Les maquettes dessinées (`data/mockups/<slug>.html`) servent de vue d'ensemble pour Tool Proj, Desk Mail et Near Pass tant que `01-…` n'existe pas.
+- **Contenu des captures** : pas de données personnelles (vrais noms, e-mails, positions). Mettre des données de démonstration.
+- **Nouvelle fonctionnalité d'une app** : ajouter une entrée dans `features` de `data/apps.json`, puis déposer la capture suivante.
 - **Faits** : ne décrire que ce que l'app fait vraiment ; en cas de doute, demander à l'utilisateur.
 
 ## 10. Bloc à copier dans le `CLAUDE.md` / `AGENTS.md` de chaque app

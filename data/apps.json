@@ -1,5 +1,5 @@
 {
-  "_aide": "Source unique des pages détaillées. Après modification : python3 scripts/build_pages.py. Captures : déposer assets/shots/<slug>/NN.jpg (01 = principale, puis une par fonctionnalité dans l'ordre, puis la galerie). Aucune régénération nécessaire pour de nouvelles images.",
+  "_aide": "Source unique du site. Après modification : python3 scripts/build_site.py (régénère les sections « apps » de index.html). Captures : assets/shots/<slug>/NN-light.jpg et NN-dark.jpg (01 = vue d'ensemble, puis une par fonctionnalité dans l'ordre ; NN.jpg seul = identique dans les deux thèmes). Décors dessinés (avant les vraies captures) : data/mockups/<slug>.html.",
   "apps": [
     {
       "slug": "grand-paname",
@@ -11,17 +11,45 @@
       "tag": "L'application phare",
       "tagline": "Tout le réseau d'Île-de-France dans la poche.",
       "pitch": "Une carte au centre, des horaires qui suivent ton doigt, et une app qui se sent vraiment native.",
-      "chips": ["Android", "React Native · Expo", "v3.3"],
-      "links": [{"label": "Voir le projet ↗", "url": "https://github.com/MaxPyroli/grand-paname-app"}],
+      "chips": [
+        "Android",
+        "React Native · Expo",
+        "v3.3"
+      ],
+      "links": [
+        {
+          "label": "Voir le projet ↗",
+          "url": "https://github.com/MaxPyroli/grand-paname-app"
+        }
+      ],
       "hero_hint": "L'écran d'accueil : la carte du réseau",
       "features": [
-        {"title": "La carte au centre", "text": "Une carte plein écran du réseau, avec les lignes de métro, RER et tram en couleurs. On cherche un arrêt, on touche, on voit.", "hint": "La carte zoomée sur un quartier, avec les lignes"},
-        {"title": "Les horaires, au doigt", "text": "Les prochains passages d'un arrêt dans un volet qui suit ton geste : on le tire pour l'ouvrir, on le glisse pour le fermer.", "hint": "Le volet des horaires ouvert sur un arrêt"},
-        {"title": "Info trafic", "text": "L'onglet Trafic regroupe les perturbations du réseau. Le rouge n'apparaît que lorsqu'il y a un vrai problème.", "hint": "L'onglet Trafic avec quelques perturbations"},
-        {"title": "Tes favoris", "text": "Tes arrêts et tes lignes habituels à portée de pouce, dans l'onglet Favoris.", "hint": "L'onglet Favoris rempli"},
-        {"title": "Trois thèmes", "text": "Clair, sombre, et sombre OLED pour les écrans qui éteignent les pixels noirs.", "hint": "Le même écran en thème sombre OLED"}
+        {
+          "title": "La carte au centre",
+          "text": "Une carte plein écran du réseau, avec les lignes de métro, RER et tram en couleurs. On cherche un arrêt, on touche, on voit.",
+          "hint": "La carte zoomée sur un quartier, avec les lignes"
+        },
+        {
+          "title": "Les horaires, au doigt",
+          "text": "Les prochains passages d'un arrêt dans un volet qui suit ton geste : on le tire pour l'ouvrir, on le glisse pour le fermer.",
+          "hint": "Le volet des horaires ouvert sur un arrêt"
+        },
+        {
+          "title": "Info trafic",
+          "text": "L'onglet Trafic regroupe les perturbations du réseau. Le rouge n'apparaît que lorsqu'il y a un vrai problème.",
+          "hint": "L'onglet Trafic avec quelques perturbations"
+        },
+        {
+          "title": "Tes favoris",
+          "text": "Tes arrêts et tes lignes habituels à portée de pouce, dans l'onglet Favoris.",
+          "hint": "L'onglet Favoris rempli"
+        },
+        {
+          "title": "Trois thèmes",
+          "text": "Clair, sombre, et sombre OLED pour les écrans qui éteignent les pixels noirs.",
+          "hint": "Le même écran en thème sombre OLED"
+        }
       ],
-      "gallery_hint": ["Paramètres", "Recherche d'un arrêt", "Au choix : tout autre écran à montrer"],
       "legal": []
     },
     {
@@ -34,17 +62,45 @@
       "tag": "Productivité",
       "tagline": "Le carnet de bord de tes projets d'apps.",
       "pitch": "Avancement, tâches, idées et équipe, sur un mur de post-it qu'on zoome du bout des doigts. Installable sur téléphone.",
-      "chips": ["PWA installable", "Supabase", "Gratuit"],
-      "links": [{"label": "Ouvrir l'app ↗", "url": "https://maxpyroli.github.io/Tool-Proj/"}],
+      "chips": [
+        "PWA installable",
+        "Supabase",
+        "Gratuit"
+      ],
+      "links": [
+        {
+          "label": "Ouvrir l'app ↗",
+          "url": "https://maxpyroli.github.io/Tool-Proj/"
+        }
+      ],
       "hero_hint": "L'aperçu d'un projet",
       "features": [
-        {"title": "Le plan de travail de post-it", "text": "Un grand mur qu'on zoome (pincement ou Ctrl + molette) et qu'on parcourt en glissant, avec une mini-carte, le plein écran, « Ranger » par couleur, votes ou date, et des votes 👍.", "hint": "Le mur de post-it, avec la mini-carte"},
-        {"title": "Feuille de route et tableau", "text": "Les grands chantiers rangés en Maintenant, Ensuite, Plus tard et Terminé, ou un tableau À faire / En cours / Fait où chaque chantier est un grand post-it.", "hint": "La feuille de route ou le tableau"},
-        {"title": "Tâches, bugs, idées", "text": "Chaque élément a son type et sa couleur, sa priorité, une personne assignée. Une idée mûre se transforme en chantier, tâche, bug ou amélioration.", "hint": "Une tâche ouverte avec ses détails"},
-        {"title": "L'aperçu du projet", "text": "Une jauge d'avancement, les chantiers en cours, les bugs ouverts, les idées les plus votées et l'activité récente.", "hint": "L'aperçu avec la jauge d'avancement"},
-        {"title": "Équipe et connexion", "text": "Rôles admin ou membre par projet, avatars emoji, notifications quand une tâche t'est assignée, et connexion sans mot de passe : lien, code ou Face ID.", "hint": "La liste des membres ou l'écran de connexion"}
+        {
+          "title": "Le plan de travail de post-it",
+          "text": "Un grand mur qu'on zoome (pincement ou Ctrl + molette) et qu'on parcourt en glissant, avec une mini-carte, le plein écran, « Ranger » par couleur, votes ou date, et des votes 👍.",
+          "hint": "Le mur de post-it, avec la mini-carte"
+        },
+        {
+          "title": "Feuille de route et tableau",
+          "text": "Les grands chantiers rangés en Maintenant, Ensuite, Plus tard et Terminé, ou un tableau À faire / En cours / Fait où chaque chantier est un grand post-it.",
+          "hint": "La feuille de route ou le tableau"
+        },
+        {
+          "title": "Tâches, bugs, idées",
+          "text": "Chaque élément a son type et sa couleur, sa priorité, une personne assignée. Une idée mûre se transforme en chantier, tâche, bug ou amélioration.",
+          "hint": "Une tâche ouverte avec ses détails"
+        },
+        {
+          "title": "L'aperçu du projet",
+          "text": "Une jauge d'avancement, les chantiers en cours, les bugs ouverts, les idées les plus votées et l'activité récente.",
+          "hint": "L'aperçu avec la jauge d'avancement"
+        },
+        {
+          "title": "Équipe et connexion",
+          "text": "Rôles admin ou membre par projet, avatars emoji, notifications quand une tâche t'est assignée, et connexion sans mot de passe : lien, code ou Face ID.",
+          "hint": "La liste des membres ou l'écran de connexion"
+        }
       ],
-      "gallery_hint": ["Les liens du projet", "Mon compte", "Au choix : tout autre écran à montrer"],
       "legal": []
     },
     {
@@ -57,17 +113,41 @@
       "tag": "Windows",
       "tagline": "Un client mail de bureau pour Windows.",
       "pitch": "Tous tes comptes au même endroit, et rien qui ne quitte ton ordinateur.",
-      "chips": ["Windows", "100 % local", "Aucun pistage"],
+      "chips": [
+        "Windows",
+        "100 % local",
+        "Aucun pistage"
+      ],
       "links": [],
       "hero_hint": "La fenêtre principale : comptes, liste des messages, lecture",
       "features": [
-        {"title": "Tous tes comptes", "text": "Gmail, Outlook, ou tout fournisseur IMAP/SMTP, depuis une seule application. Connexion « avec Google » ou « avec Microsoft » sans que Desk Mail connaisse ton mot de passe.", "hint": "L'ajout d'un compte ou la liste des comptes"},
-        {"title": "Lire et écrire", "text": "Consulte, écris et gère tes e-mails, avec brouillons et signatures enregistrés localement.", "hint": "La rédaction d'un message"},
-        {"title": "Hors ligne", "text": "Une copie locale des messages déjà consultés, dans une base SQLite privée : affichage rapide et lecture sans connexion.", "hint": "La liste des messages en mode hors ligne"},
-        {"title": "Un coffre pour tes mots de passe", "text": "Mots de passe et jetons de connexion sont stockés dans le Gestionnaire d'identification de Windows. Aucun serveur central, aucune télémétrie.", "hint": "Les réglages de confidentialité ou des comptes"}
+        {
+          "title": "Tous tes comptes",
+          "text": "Gmail, Outlook, ou tout fournisseur IMAP/SMTP, depuis une seule application. Connexion « avec Google » ou « avec Microsoft » sans que Desk Mail connaisse ton mot de passe.",
+          "hint": "L'ajout d'un compte ou la liste des comptes"
+        },
+        {
+          "title": "Lire et écrire",
+          "text": "Consulte, écris et gère tes e-mails, avec brouillons et signatures enregistrés localement.",
+          "hint": "La rédaction d'un message"
+        },
+        {
+          "title": "Hors ligne",
+          "text": "Une copie locale des messages déjà consultés, dans une base SQLite privée : affichage rapide et lecture sans connexion.",
+          "hint": "La liste des messages en mode hors ligne"
+        },
+        {
+          "title": "Un coffre pour tes mots de passe",
+          "text": "Mots de passe et jetons de connexion sont stockés dans le Gestionnaire d'identification de Windows. Aucun serveur central, aucune télémétrie.",
+          "hint": "Les réglages de confidentialité ou des comptes"
+        }
       ],
-      "gallery_hint": ["Le mode sombre", "Les réglages", "Au choix : tout autre écran à montrer"],
-      "legal": [{"label": "Politique de confidentialité", "url": "https://maxpyroli.github.io/panamail-pages/"}]
+      "legal": [
+        {
+          "label": "Politique de confidentialité",
+          "url": "https://maxpyroli.github.io/panamail-pages/"
+        }
+      ]
     },
     {
       "slug": "near-pass",
@@ -79,17 +159,41 @@
       "tag": "Android",
       "tagline": "Sache quand tes amis sont tout près.",
       "pitch": "Bluetooth et Ultra-Wideband mesurent la distance et la direction, sans jamais passer par un serveur.",
-      "chips": ["Android", "BLE + UWB", "Zéro serveur"],
+      "chips": [
+        "Android",
+        "BLE + UWB",
+        "Zéro serveur"
+      ],
       "links": [],
       "hero_hint": "L'écran principal avec un ami à proximité",
       "features": [
-        {"title": "Ajouter un ami", "text": "Par QR code, ou « à proximité » : les deux téléphones comparent un code à six chiffres, et l'échange est chiffré de bout en bout.", "hint": "L'écran « Ajouter à proximité » ou le scan du QR code"},
-        {"title": "Le radar de proximité", "text": "La distance et la direction de tes amis, mesurées en Ultra-Wideband quand ton téléphone le permet.", "hint": "La vue de proximité d'un ami"},
-        {"title": "En arrière-plan", "text": "Option « Détection en arrière-plan » : une alerte quand un ami arrive à proximité, avec un bouton pour tout arrêter.", "hint": "L'alerte d'un ami à proximité ou le réglage"},
-        {"title": "Mon code", "text": "Ton QR code personnel, et un bouton « Régénérer mon code » qui révoque l'accès de tous tes amis actuels.", "hint": "L'écran « Mon code »"}
+        {
+          "title": "Ajouter un ami",
+          "text": "Par QR code, ou « à proximité » : les deux téléphones comparent un code à six chiffres, et l'échange est chiffré de bout en bout.",
+          "hint": "L'écran « Ajouter à proximité » ou le scan du QR code"
+        },
+        {
+          "title": "Le radar de proximité",
+          "text": "La distance et la direction de tes amis, mesurées en Ultra-Wideband quand ton téléphone le permet.",
+          "hint": "La vue de proximité d'un ami"
+        },
+        {
+          "title": "En arrière-plan",
+          "text": "Option « Détection en arrière-plan » : une alerte quand un ami arrive à proximité, avec un bouton pour tout arrêter.",
+          "hint": "L'alerte d'un ami à proximité ou le réglage"
+        },
+        {
+          "title": "Mon code",
+          "text": "Ton QR code personnel, et un bouton « Régénérer mon code » qui révoque l'accès de tous tes amis actuels.",
+          "hint": "L'écran « Mon code »"
+        }
       ],
-      "gallery_hint": ["La liste d'amis", "Les réglages", "Au choix : tout autre écran à montrer"],
-      "legal": [{"label": "Politique de confidentialité", "url": "https://maxpyroli.github.io/nearpass-site/"}]
+      "legal": [
+        {
+          "label": "Politique de confidentialité",
+          "url": "https://maxpyroli.github.io/nearpass-site/"
+        }
+      ]
     },
     {
       "slug": "scoreboard",
@@ -101,17 +205,45 @@
       "tag": "Jeux de société",
       "tagline": "Fini le papier et le crayon.",
       "pitch": "Compte les points de tes soirées jeux avec un look de plateau, des confettis à la victoire et des parties partagées en direct.",
-      "chips": ["Android · Kotlin", "Web · PWA", "Temps réel"],
-      "links": [{"label": "Voir le projet ↗", "url": "https://github.com/MaxPyroli/Score-Board"}],
+      "chips": [
+        "Android · Kotlin",
+        "Web · PWA",
+        "Temps réel"
+      ],
+      "links": [
+        {
+          "label": "Voir le projet ↗",
+          "url": "https://github.com/MaxPyroli/Score-Board"
+        }
+      ],
       "hero_hint": "L'accueil avec les jeux",
       "features": [
-        {"title": "Choisis ton jeu", "text": "Tarot, Skyjo, Les Aventuriers du Rail, Sushi Go Party !, 6 qui prend ! et un compteur libre, chacun avec sa carte et ses règles.", "hint": "L'accueil avec la liste des jeux"},
-        {"title": "La saisie d'une manche", "text": "Au Tarot : preneur, appelé, contrat, bouts, poignée, petit au bout, chelem, avec l'aperçu des points en direct. Chaque jeu a sa propre saisie.", "hint": "La saisie d'une manche de Tarot"},
-        {"title": "Partage en direct", "text": "L'hôte partage la partie avec un code à 4 caractères ou un QR code ; chacun la suit sur son téléphone, avec une salle d'attente où les invités tapent leur pseudo.", "hint": "L'écran de partage avec le QR code"},
-        {"title": "Fin de partie", "text": "Quand l'objectif est atteint : écran « Partie terminée », suspense, confettis pour la victoire, puis l'historique pour rejouer.", "hint": "L'écran des résultats"},
-        {"title": "Le mode assistant", "text": "Pour Sushi Go Party ! : choix du menu, décompte carte par carte et comparaisons entre joueurs.", "hint": "Le décompte du mode assistant"}
+        {
+          "title": "Choisis ton jeu",
+          "text": "Tarot, Skyjo, Les Aventuriers du Rail, Sushi Go Party !, 6 qui prend ! et un compteur libre, chacun avec sa carte et ses règles.",
+          "hint": "L'accueil avec la liste des jeux"
+        },
+        {
+          "title": "La saisie d'une manche",
+          "text": "Au Tarot : preneur, appelé, contrat, bouts, poignée, petit au bout, chelem, avec l'aperçu des points en direct. Chaque jeu a sa propre saisie.",
+          "hint": "La saisie d'une manche de Tarot"
+        },
+        {
+          "title": "Partage en direct",
+          "text": "L'hôte partage la partie avec un code à 4 caractères ou un QR code ; chacun la suit sur son téléphone, avec une salle d'attente où les invités tapent leur pseudo.",
+          "hint": "L'écran de partage avec le QR code"
+        },
+        {
+          "title": "Fin de partie",
+          "text": "Quand l'objectif est atteint : écran « Partie terminée », suspense, confettis pour la victoire, puis l'historique pour rejouer.",
+          "hint": "L'écran des résultats"
+        },
+        {
+          "title": "Le mode assistant",
+          "text": "Pour Sushi Go Party ! : choix du menu, décompte carte par carte et comparaisons entre joueurs.",
+          "hint": "Le décompte du mode assistant"
+        }
       ],
-      "gallery_hint": ["Le tableau des scores d'une partie", "L'historique", "Au choix : tout autre écran à montrer"],
       "legal": []
     },
     {
@@ -124,16 +256,41 @@
       "tag": "Jeu · Bêta",
       "tagline": "Le Monopoly de l'immobilier réel.",
       "pitch": "Achète de vrais terrains, construis, vends, et bats tes concurrents promoteurs.",
-      "chips": ["Bêta 0.17", "Navigateur", "Prix et règles indicatifs"],
-      "links": [{"label": "Voir l'outil d'origine ↗", "url": "https://maxpyroli.github.io/urbasim/", "ghost": true}],
+      "chips": [
+        "Bêta 0.17",
+        "Navigateur",
+        "Prix et règles indicatifs"
+      ],
+      "links": [
+        {
+          "label": "Voir l'outil d'origine ↗",
+          "url": "https://maxpyroli.github.io/urbasim/",
+          "ghost": true
+        }
+      ],
       "hero_hint": "L'écran d'accueil du jeu",
       "features": [
-        {"title": "Choisis le lieu de la partie", "text": "La partie se joue sur de vrais terrains, dans le lieu de ton choix (ici, Montreuil · centre).", "hint": "Le choix du lieu"},
-        {"title": "Achète et construis", "text": "Tu achètes des terrains et tu construis dessus.", "hint": "Un terrain acheté, avec la construction"},
-        {"title": "Vends et bats tes concurrents", "text": "Le but : devenir le meilleur promoteur face aux autres.", "hint": "Le classement ou le tableau de la partie"},
-        {"title": "Mode d'emploi et nouveautés", "text": "Un mode d'emploi intégré, et des notes de version pour suivre les nouveautés de la bêta.", "hint": "Le mode d'emploi ou les nouveautés"}
+        {
+          "title": "Choisis le lieu de la partie",
+          "text": "La partie se joue sur de vrais terrains, dans le lieu de ton choix (ici, Montreuil · centre).",
+          "hint": "Le choix du lieu"
+        },
+        {
+          "title": "Achète et construis",
+          "text": "Tu achètes des terrains et tu construis dessus.",
+          "hint": "Un terrain acheté, avec la construction"
+        },
+        {
+          "title": "Vends et bats tes concurrents",
+          "text": "Le but : devenir le meilleur promoteur face aux autres.",
+          "hint": "Le classement ou le tableau de la partie"
+        },
+        {
+          "title": "Mode d'emploi et nouveautés",
+          "text": "Un mode d'emploi intégré, et des notes de version pour suivre les nouveautés de la bêta.",
+          "hint": "Le mode d'emploi ou les nouveautés"
+        }
       ],
-      "gallery_hint": ["La carte du jeu", "Les crédits et données", "Au choix : tout autre écran à montrer"],
       "legal": []
     }
   ]

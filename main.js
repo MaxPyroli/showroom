@@ -7,6 +7,22 @@
   const y = document.getElementById('y');
   if (y && yr > 2026) y.textContent = '–' + yr;
 
+  // Thème clair / sombre : suit le système, le bouton permet de forcer l'autre
+  const applyTheme = (t) => {
+    root.dataset.theme = t;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', t === 'light' ? '#f4f6fb' : '#0b0d14');
+    document.querySelectorAll('img[data-light]').forEach((img) => {
+      const want = t === 'light' ? img.dataset.light : img.dataset.dark;
+      if (!img.src.endsWith(want)) img.src = want;
+    });
+  };
+  applyTheme(root.dataset.theme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+  document.querySelector('.tbtn')?.addEventListener('click', () => {
+    const t = root.dataset.theme === 'light' ? 'dark' : 'light';
+    applyTheme(t);
+    try { localStorage.setItem('theme', t); } catch (e) {}
+  });
+
   // Apparition au scroll
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
@@ -29,26 +45,48 @@
   if (hero) new IntersectionObserver((es) => {
     if (es[0].isIntersecting) { root.style.setProperty('--glow', '#3aa0ff'); links.forEach((a) => a.classList.remove('on')); }
   }, { rootMargin: '-45% 0px -45% 0px' }).observe(hero);
-  document.querySelectorAll('.featsec[data-glow],.gallery[data-glow]').forEach((s) => glowIO.observe(s));
 
-  // Captures : on essaie .jpg, .png puis .webp ; sinon le cadre pointillé reste affiché
-  document.querySelectorAll('figure.slot[data-shot]').forEach((fig) => {
-    const img = fig.querySelector('img');
-    const exts = ['jpg', 'png', 'webp'];
-    const next = () => {
-      const ext = exts.shift();
-      if (!ext) return;
-      img.onerror = next;
-      img.onload = () => { img.hidden = false; fig.classList.add('has'); };
-      img.src = fig.dataset.shot + '.' + ext;
+  // Carrousels : flèches, points, balayage tactile et clavier
+  document.querySelectorAll('[data-car]').forEach((car) => {
+    const track = car.querySelector('.track');
+    const slides = [...track.children];
+    const dots = [...car.querySelectorAll('.dot')];
+    const prev = car.querySelector('.prev'), next = car.querySelector('.next');
+    const behavior = reduce ? 'auto' : 'smooth';
+    let cur = -1;
+    const show = (i) => {
+      if (i === cur) return;
+      cur = i;
+      slides.forEach((s, k) => s.classList.toggle('on', k === i));
+      dots.forEach((d, k) => d.classList.toggle('on', k === i));
+      prev.disabled = i === 0;
+      next.disabled = i === slides.length - 1;
     };
-    next();
+    const go = (i) => track.scrollTo({ left: Math.max(0, Math.min(slides.length - 1, i)) * track.clientWidth, behavior });
+    let raf = 0;
+    track.addEventListener('scroll', () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => show(Math.round(track.scrollLeft / track.clientWidth)));
+    }, { passive: true });
+    prev.addEventListener('click', () => go(cur - 1));
+    next.addEventListener('click', () => go(cur + 1));
+    dots.forEach((d, k) => d.addEventListener('click', () => go(k)));
+    car.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(cur + 1); }
+    });
+    addEventListener('resize', () => track.scrollTo({ left: cur * track.clientWidth, behavior: 'auto' }));
+    show(0);
+  });
+
+  // Agrandissement d'une capture au clic
+  document.querySelectorAll('figure.slot.has').forEach((fig) => {
     fig.addEventListener('click', () => {
-      if (!fig.classList.contains('has')) return;
+      const img = fig.querySelector('img');
       const z = document.createElement('div');
       z.className = 'zoom';
       z.innerHTML = '<img alt="">';
-      z.firstChild.src = img.src; z.firstChild.alt = img.alt;
+      z.firstChild.src = img.currentSrc || img.src; z.firstChild.alt = img.alt;
       z.onclick = () => z.remove();
       document.body.append(z);
     });
@@ -90,7 +128,7 @@
   document.querySelectorAll('.tilt').forEach((el) => {
     const base = getComputedStyle(el).transform;
     const start = base === 'none' ? '' : base;
-    const stage = el.closest('.stage, .fshot');
+    const stage = el.closest('.stage, .shotarea');
     if (!stage) return;
     stage.addEventListener('pointermove', (e) => {
       const r = stage.getBoundingClientRect();
