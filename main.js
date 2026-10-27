@@ -4,7 +4,8 @@
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   const yr = new Date().getFullYear();
-  if (yr > 2026) document.getElementById('y').textContent = '–' + yr;
+  const y = document.getElementById('y');
+  if (y && yr > 2026) y.textContent = '–' + yr;
 
   // Apparition au scroll
   const io = new IntersectionObserver((entries) => {
@@ -24,9 +25,35 @@
     }
   }, { rootMargin: '-45% 0px -45% 0px' });
   sections.forEach((s) => glowIO.observe(s));
-  new IntersectionObserver((es) => {
+  const hero = document.querySelector('.hero');
+  if (hero) new IntersectionObserver((es) => {
     if (es[0].isIntersecting) { root.style.setProperty('--glow', '#3aa0ff'); links.forEach((a) => a.classList.remove('on')); }
-  }, { rootMargin: '-45% 0px -45% 0px' }).observe(document.querySelector('.hero'));
+  }, { rootMargin: '-45% 0px -45% 0px' }).observe(hero);
+  document.querySelectorAll('.featsec[data-glow],.gallery[data-glow]').forEach((s) => glowIO.observe(s));
+
+  // Captures : on essaie .jpg, .png puis .webp ; sinon le cadre pointillé reste affiché
+  document.querySelectorAll('figure.slot[data-shot]').forEach((fig) => {
+    const img = fig.querySelector('img');
+    const exts = ['jpg', 'png', 'webp'];
+    const next = () => {
+      const ext = exts.shift();
+      if (!ext) return;
+      img.onerror = next;
+      img.onload = () => { img.hidden = false; fig.classList.add('has'); };
+      img.src = fig.dataset.shot + '.' + ext;
+    };
+    next();
+    fig.addEventListener('click', () => {
+      if (!fig.classList.contains('has')) return;
+      const z = document.createElement('div');
+      z.className = 'zoom';
+      z.innerHTML = '<img alt="">';
+      z.firstChild.src = img.src; z.firstChild.alt = img.alt;
+      z.onclick = () => z.remove();
+      document.body.append(z);
+    });
+  });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelector('.zoom')?.remove(); });
 
   // Compteurs du tableau de scores
   const ease = (t) => 1 - Math.pow(1 - t, 3);
@@ -63,7 +90,8 @@
   document.querySelectorAll('.tilt').forEach((el) => {
     const base = getComputedStyle(el).transform;
     const start = base === 'none' ? '' : base;
-    const stage = el.closest('.stage');
+    const stage = el.closest('.stage, .fshot');
+    if (!stage) return;
     stage.addEventListener('pointermove', (e) => {
       const r = stage.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;

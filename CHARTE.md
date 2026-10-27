@@ -34,7 +34,7 @@ Ancien contact à **remplacer partout** : `contact@grandpaname.fun`. Grand Panam
 - [ ] **Fiche du store** (Play Store, etc.) : e-mail de contact du développeur, mention « Conçu avec Claude » dans la description longue, lien de confidentialité.
 - [ ] **Site / PWA** (si applicable) : pied de page, `<meta name="author">`, manifeste.
 - [ ] **Licence** : si une licence existe, le titulaire est `Paname Dev`.
-- [ ] **Fichier de consignes Claude du dépôt** (`CLAUDE.md` ou `AGENTS.md`) : contient le bloc de la section 9.
+- [ ] **Fichier de consignes Claude du dépôt** (`CLAUDE.md` ou `AGENTS.md`) : contient le bloc de la section 10.
 
 ## 3. Socle graphique (ce qui se partage)
 
@@ -53,12 +53,12 @@ Ancien contact à **remplacer partout** : `contact@grandpaname.fun`. Grand Panam
 
 | App | Accent | Matière / ambiance | Police | Plateforme |
 |---|---|---|---|---|
-| Grand Paname | `#3aa0ff`, fond nuit `#010e26` | Verre dépoli, carte au centre, trois thèmes | GrandParis | Android (Expo) |
+| Grand Paname | `#3aa0ff`, fond nuit `#010e26` | Carte plein écran, barre de recherche et navigation flottantes, verre dépoli, trois thèmes (clair, sombre, OLED) | GrandParis | Android (Expo) |
 | Tool Proj | `#14b8a6` (teal `#0d7c72`) | Papier : post-it colorés légèrement penchés | Système | Web / PWA |
 | Desk Mail | `#396cd8` | Sobre et dense, logiciel de bureau | Segoe UI | Windows |
 | Near Pass | `#8a6bff` (dégradé `#5b7bff` → `#8a4dff`) | Radar, halos, lumière | Système | Android |
-| ScoreBoard | `#2fbf8f` (thème app `#1f6f5c`) + jaune | Jeu de société : contour épais, ombre pleine, tampons | Système, titres gras | Android + Web / PWA |
-| UrbaSim | `#ff9a4d` | Technique, plans, 3D | Système | Web |
+| ScoreBoard (écrit « Score Board » dans l'app) | `#2fbf8f` (thème app `#1f6f5c`) + jaune | Papier crème, contour épais sombre, ombre pleine ; chaque jeu a sa carte en dégradé (Tarot violet, Skyjo bleu, Aventuriers du Rail rouge, Sushi Go Party corail, 6 qui prend orange) | Système, titres gras | Android + Web / PWA |
+| UrbaSim (jeu, bêta) | `#3d86f0` (bouton `#2a6ff0`) | Ciel en dégradé, immeubles colorés (rose, jaune, bleu, vert), ton ludique | Système | Web (navigateur) |
 
 Sur le site : une app = une variable `--a`.
 
@@ -92,10 +92,22 @@ Légende : ✅ fait · ⬜ à faire · ❓ à vérifier. Mis à jour le 2026-10-
 
 ## 8. Journal des décisions de design
 
+- 2026-10-27 : UrbaSim est désormais le **jeu** « Le Monopoly de l'immobilier réel » (bêta). L'outil de pré-faisabilité d'origine reste en ligne mais n'est plus la vitrine. Son accent passe de l'orange au bleu du jeu.
+- 2026-10-27 : le site vitrine utilise de vraies captures d'écran dans des cadres de téléphone (plus de maquettes dessinées pour Grand Paname, ScoreBoard, UrbaSim).
 - 2026-10-27 : création de la charte. Socle léger, une couleur d'accent par app, tutoiement. Domaine `panamedev.fr`, contact unique `contact@panamedev.fr`. Copyright et mention de conception à poser partout.
 - *(à compléter à chaque décision, avec la date et l'app concernée)*
 
-## 9. Bloc à copier dans le `CLAUDE.md` / `AGENTS.md` de chaque app
+## 9. Captures d'écran et pages détaillées
+
+Chaque app a une page sur le site vitrine : `apps/<slug>/`. Le contenu vient de `data/apps.json` ; la page se génère avec `python3 scripts/build_pages.py`.
+
+- **Captures** : à déposer dans `assets/shots/<slug>/` sous les noms `01.jpg`, `02.jpg`… (`.png` et `.webp` acceptés). `01` = écran principal, puis une par fonctionnalité dans l'ordre de la page, puis la galerie. Un emplacement sans fichier affiche un cadre pointillé qui indique le fichier attendu et l'écran à montrer ; aucune régénération n'est nécessaire.
+- **Format** : capture d'écran brute du téléphone (portrait) ; Desk Mail en fenêtre (16:10). Largeur 1000 à 1300 px, JPEG qualité ≈ 85.
+- **Contenu** : pas de données personnelles (vrais noms, e-mails, positions). Mettre des données de démonstration.
+- **Nouvelle fonctionnalité d'une app** : ajouter une entrée dans `features` de `data/apps.json`, relancer le script, déposer la capture suivante.
+- **Faits** : ne décrire que ce que l'app fait vraiment ; en cas de doute, demander à l'utilisateur.
+
+## 10. Bloc à copier dans le `CLAUDE.md` / `AGENTS.md` de chaque app
 
 ```md
 ## Charte Paname Dev
