@@ -1,6 +1,6 @@
-# Charte Panamedev
+# Charte Paname Dev
 
-Charte commune à toutes les apps de Panamedev. Elle est **légère** : un socle partagé, et chaque app garde son âme.
+Charte commune à toutes les apps de Paname Dev. Elle est **légère** : un socle partagé, et chaque app garde son âme.
 
 > **Pour Claude** : si ce fichier t'est donné, applique-le à l'app sur laquelle tu travailles. Il fait foi sur l'identité (nom, contact, copyright, mention « Claude ») et sert de référence sur le graphisme. En cas d'écart entre cette charte et le code d'une app, **ne change rien en silence** : signale l'écart à l'utilisateur et propose la correction. Si tu fais un choix de design nouveau, ajoute-le ici (section 8).
 
@@ -10,10 +10,10 @@ Dépôt de référence : `MaxPyroli/showroom` (le site vitrine contient la mise 
 
 | Sujet | Valeur |
 |---|---|
-| Marque / éditeur | **Panamedev** |
+| Marque / éditeur | **Paname Dev** |
 | Domaine | `panamedev.fr` (le branchement des sous-domaines se fera plus tard) |
 | Contact | **`contact@panamedev.fr`** : adresse unique, partout |
-| Copyright | **`© 2026 Panamedev`** : l'année de première publication, puis `© 2026–<année en cours>` ; jamais l'année seule en dur sans raison |
+| Copyright | **`© 2026 Paname Dev`** : l'année de première publication, puis `© 2026–<année en cours>` ; jamais l'année seule en dur sans raison |
 | Mention de conception | **`Conçu et codé avec Claude`** (Claude, par Anthropic) |
 | Langue | Français, tutoiement, ton simple et direct |
 
@@ -21,8 +21,8 @@ Ancien contact à **remplacer partout** : `contact@grandpaname.fun`. Grand Panam
 
 ### Les deux lignes types
 
-- Pied de page / écran « À propos » / README : `© 2026 Panamedev · Conçu et codé avec Claude · contact@panamedev.fr`
-- Version courte (espace réduit, store) : `© 2026 Panamedev · Fait avec Claude`
+- Pied de page / écran « À propos » / README : `© 2026 Paname Dev · Conçu et codé avec Claude · contact@panamedev.fr`
+- Version courte (espace réduit, store) : `© 2026 Paname Dev · Fait avec Claude`
 
 ## 2. Où ça doit apparaître (liste de contrôle par app)
 
@@ -33,7 +33,7 @@ Ancien contact à **remplacer partout** : `contact@grandpaname.fun`. Grand Panam
 - [ ] **README du dépôt** : en bas, la ligne de crédit.
 - [ ] **Fiche du store** (Play Store, etc.) : e-mail de contact du développeur, mention « Conçu avec Claude » dans la description longue, lien de confidentialité.
 - [ ] **Site / PWA** (si applicable) : pied de page, `<meta name="author">`, manifeste.
-- [ ] **Licence** : si une licence existe, le titulaire est `Panamedev`.
+- [ ] **Licence** : si une licence existe, le titulaire est `Paname Dev`.
 - [ ] **Fichier de consignes Claude du dépôt** (`CLAUDE.md` ou `AGENTS.md`) : contient le bloc de la section 9.
 
 ## 3. Socle graphique (ce qui se partage)
@@ -98,8 +98,8 @@ Légende : ✅ fait · ⬜ à faire · ❓ à vérifier. Mis à jour le 2026-10-
 ## 9. Bloc à copier dans le `CLAUDE.md` / `AGENTS.md` de chaque app
 
 ```md
-## Charte Panamedev
+## Charte Paname Dev
 - La charte commune est dans `MaxPyroli/showroom`, fichier `CHARTE.md` (lien brut : https://raw.githubusercontent.com/MaxPyroli/showroom/main/CHARTE.md). La lire au début d'une tâche qui touche à l'interface, aux textes, aux pages légales, au README ou au store.
-- Identité à utiliser telle quelle : éditeur « Panamedev », contact `contact@panamedev.fr`, copyright `© 2026 Panamedev`, mention « Conçu et codé avec Claude ».
+- Identité à utiliser telle quelle : éditeur « Paname Dev », contact `contact@panamedev.fr`, copyright `© 2026 Paname Dev`, mention « Conçu et codé avec Claude ».
 - Si l'app s'écarte de la charte, le signaler à l'utilisateur au lieu de corriger en silence ; noter toute nouvelle décision de design dans la section 8 de la charte.
 ```
