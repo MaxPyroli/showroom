@@ -73,8 +73,6 @@ ul{list-style:none;padding:0}
 .ico{position:absolute;width:clamp(60px,10vw,96px);aspect-ratio:1;border-radius:24%;box-shadow:0 20px 50px -14px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.1);animation:bob 6s ease-in-out infinite;transition:translate .25s var(--ease),scale .3s}
 .ico:hover{scale:1.14}
 .ico img,.ico svg{width:100%;height:100%;border-radius:inherit}
-.i1{left:2%;top:10%;animation-delay:-.5s}.i2{left:18%;top:52%;animation-delay:-1.8s}.i3{left:35%;top:0;animation-delay:-3s}
-.i4{left:54%;top:48%;animation-delay:-2.2s}.i5{left:71%;top:2%;animation-delay:-4s}.i6{left:86%;top:46%;animation-delay:-1s}
 @keyframes bob{50%{transform:translateY(-14px) rotate(2deg)}}
 .scroll{position:absolute;bottom:22px;width:26px;height:42px;border:2px solid var(--line);border-radius:14px}
 .scroll span{position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--fg);animation:wheel 1.8s ease-in-out infinite}
@@ -99,7 +97,6 @@ ul{list-style:none;padding:0}
 /* couleurs par app */
 .gp{--a:#3aa0ff}.tp{--a:#14b8a6}.dm{--a:#4b7df0}.np{--a:#8a6bff}.sb{--a:#2fbf8f}.ub{--a:#3d86f0}
 .dm .f1{top:auto;bottom:8%;left:-2%}
-.gp h2{font-family:"GrandParis",var(--display);font-weight:700;letter-spacing:0}
 
 /* ---------- Grand Paname : téléphone ---------- */
 
@@ -196,7 +193,6 @@ aside hr{border:0;border-top:1px solid #2a323d;margin:6px 0}aside span{padding:4
 /* ---------- apps : en-tête + carrousel ---------- */
 .app{--a:#3aa0ff}
 .app{--at:color-mix(in oklab,var(--a) var(--atx-pct),var(--atx-mix))}
-.gp{--a:#3aa0ff}.tp{--a:#14b8a6}.dm{--a:#396cd8}.np{--a:#8a6bff}.sb{--a:#2fbf8f}.ub{--a:#3d86f0}
 .app{padding:clamp(60px,9vw,110px) 0}
 .ahead{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,5vw,70px);align-items:end;margin-bottom:clamp(24px,4vw,44px)}
 .ahead h2{font-size:clamp(2.4rem,5.6vw,4.4rem);margin:14px 0 0}

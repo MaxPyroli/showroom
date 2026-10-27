@@ -72,10 +72,13 @@ Sur le site : une app = une variable `--a`.
 ## 6. Recette pour une nouvelle app
 
 1. Choisir un accent (contraste ≥ 4,5:1 pour le texte sur le bouton plein ; sinon texte sombre).
-2. Dessiner l'icône d'après la section 3.
-3. Appliquer la liste de contrôle de la section 2.
-4. Sur le site vitrine : section `.app` avec `class="app xx"`, `data-glow="<accent>"` et `.xx{--a:<accent>}` ; la lueur, la nav, les puces et le bouton suivent seuls.
-5. Fabriquer une maquette dans la matière de l'app (pas une capture brute) avec une ou deux pastilles flottantes.
+2. Dessiner l'icône d'après la section 3 et la déposer dans `assets/img/` (carrée, PNG ou SVG).
+3. Ajouter une entrée dans `data/apps.json` : `slug`, `name`, `icon`, `accent`, `glow`, `format` (`phone`, `window` ou `duo`), `tag`, `tagline`, `pitch`, `chips`, `links`, `legal`, `hero_hint` et `features` (une par diapo : titre, texte, `hint` de la capture à fournir).
+4. Lancer `python3 scripts/build_site.py` : la barre de navigation, l'icône de l'accueil et la section avec son carrousel se génèrent seules, avec l'accent de l'app (aucun CSS à écrire).
+5. Déposer les captures dans `assets/shots/<slug>/` (section 9).
+6. Appliquer la liste de contrôle de la section 2 et ajouter l'app au tableau de la section 4 et de la section 7.
+
+Reste manuel : l'icône du site (`assets/img/favicon.svg`, six tuiles) et, si besoin, un décor dessiné (`data/mockups/<slug>.html`) avant les vraies captures.
 
 ## 7. État de l'harmonisation (à tenir à jour)
 

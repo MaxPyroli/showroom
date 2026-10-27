@@ -1,5 +1,5 @@
 {
-  "_aide": "Source unique du site. Après modification : python3 scripts/build_site.py (régénère les sections « apps » de index.html). Captures : assets/shots/<slug>/NN-light.jpg et NN-dark.jpg (01 = vue d'ensemble, puis une par fonctionnalité dans l'ordre ; NN.jpg seul = identique dans les deux thèmes). Décors dessinés (avant les vraies captures) : data/mockups/<slug>.html. Formats : phone (portrait), window (bureau 16:10), duo (bureau + mobile : fichiers NN-desktop-light/dark et NN-mobile-light/dark).",
+  "_aide": "Source unique du site. Après modification : python3 scripts/build_site.py (régénère les sections « apps » de index.html). Captures : assets/shots/<slug>/NN-light.jpg et NN-dark.jpg (01 = vue d'ensemble, puis une par fonctionnalité dans l'ordre ; NN.jpg seul = identique dans les deux thèmes). Décors dessinés (avant les vraies captures) : data/mockups/<slug>.html. Formats : phone (portrait), window (bureau 16:10), duo (bureau + mobile : fichiers NN-desktop-light/dark et NN-mobile-light/dark). Champs optionnels : title_font (police du titre), links (boutons), legal (liens légaux). Ajouter une app = ajouter une entrée ici, une icône dans assets/img/, puis lancer le script : nav, icônes d'accueil et section sont générées.",
   "apps": [
     {
       "slug": "grand-paname",
@@ -50,7 +50,8 @@
           "hint": "Le même écran en thème sombre OLED"
         }
       ],
-      "legal": []
+      "legal": [],
+      "title_font": "GrandParis"
     },
     {
       "slug": "tool-proj",

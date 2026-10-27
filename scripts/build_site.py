@@ -17,7 +17,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 APPS = json.loads((ROOT / "data" / "apps.json").read_text(encoding="utf-8"))["apps"]
-CLS = {"grand-paname": "gp", "tool-proj": "tp", "desk-mail": "dm", "near-pass": "np", "scoreboard": "sb", "urbasim": "ub"}
 e = html.escape
 
 
@@ -62,7 +61,7 @@ def slot(app, n, hint, alt):
 
 
 def section(app, index):
-    slug, cls = app["slug"], CLS[app["slug"]]
+    slug = app["slug"]
     mock_file = ROOT / "data" / "mockups" / f"{slug}.html"
     mock = mock_file.read_text(encoding="utf-8").strip() if mock_file.exists() else ""
     items = [{"title": "Vue d'ensemble", "text": app["pitch"], "hint": app["hero_hint"]}] + app["features"]
@@ -84,12 +83,13 @@ def section(app, index):
         for l in app["links"])
     links += "".join(f'<a class="btn ghost" href="{e(l["url"])}" target="_blank" rel="noopener">{e(l["label"])} ↗</a>' for l in app["legal"])
     chips = "".join(f"<span>{e(c)}</span>" for c in app["chips"])
-    return f'''<section class="app {cls}{' flip' if index % 2 else ''}" id="{slug}" data-glow="{app['glow']}" style="--a:{app['accent']}">
+    title_style = f' style="font-family:\'{app["title_font"]}\',var(--display);font-weight:700;letter-spacing:0"' if app.get("title_font") else ""
+    return f'''<section class="app {slug}{' flip' if index % 2 else ''}" id="{slug}" data-glow="{app['glow']}" style="--a:{app['accent']}">
   <div class="wrap">
     <header class="ahead">
       <div class="aleft">
         <div class="tag reveal"><img src="assets/img/{app['icon']}" alt="" class="mini"> {e(app['tag'])}</div>
-        <h2 class="reveal d1">{e(app['name'])}</h2>
+        <h2 class="reveal d1"{title_style}>{e(app['name'])}</h2>
       </div>
       <div class="aright">
         <p class="pitch reveal d2"><em>{e(app['tagline'])}</em> {e(app['pitch'])}</p>
@@ -111,8 +111,25 @@ def section(app, index):
 </section>'''
 
 
+def orbit(i, n, app):
+    left = 2 + i * (84 / max(n - 1, 1))
+    top = 6 if i % 2 == 0 else 50
+    delay = -((i * 1.3) % 5)
+    depth = (18, 26, 34, 40, 22, 44)[i % 6]
+    return (f'<a href="#{app["slug"]}" class="ico" data-depth="{depth}" '
+            f'style="left:{left:.1f}%;top:{top}%;animation-delay:{delay:.1f}s"><img src="assets/img/{app["icon"]}" alt=""></a>')
+
+
+def fill(src, name, content):
+    pat = re.compile(rf"(<!-- {name}:START[^>]*-->\n).*?(\s*<!-- {name}:END -->)", re.S)
+    assert pat.search(src), f"marqueurs {name} introuvables dans index.html"
+    return pat.sub(lambda m: m.group(1) + content + m.group(2), src)
+
+
 index = ROOT / "index.html"
 src = index.read_text(encoding="utf-8")
+src = fill(src, "NAV", "\n".join(f'    <a href="#{a["slug"]}">{e(a["name"])}</a>' for a in APPS))
+src = fill(src, "ORBIT", "\n".join("    " + orbit(i, len(APPS), a) for i, a in enumerate(APPS)))
 new = "\n\n".join(section(a, i) for i, a in enumerate(APPS))
 pattern = re.compile(r"(<!-- APPS:START[^>]*-->\n).*?(<!-- APPS:END -->)", re.S)
 assert pattern.search(src), "marqueurs APPS:START / APPS:END introuvables dans index.html"
