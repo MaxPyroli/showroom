@@ -95,7 +95,7 @@ Légende : ✅ fait · ⬜ à faire · ❓ à vérifier. Mis à jour le 2026-10-
 
 - 2026-10-27 : UrbaSim est désormais le **jeu** « Le Monopoly de l'immobilier réel » (bêta). L'outil de pré-faisabilité d'origine reste en ligne mais n'est plus la vitrine. Son accent passe de l'orange au bleu du jeu.
 - 2026-10-27 : le site vitrine utilise de vraies captures d'écran dans des cadres de téléphone (plus de maquettes dessinées pour Grand Paname, ScoreBoard, UrbaSim).
-- 2026-10-27 : slogan du site remplacé par l'histoire réelle : « Elles n'existaient pas. Maintenant, si. » (titre d'accueil ; le paragraphe d'intro raconte l'histoire : des apps que l'auteur voulait et qui n'existaient pas). « Fait à la main » retiré (faux, les apps sont codées avec Claude). Les promesses « hors-ligne », « sans pub », « sans pistage » ne se disent que page par page, jamais pour tout le site.
+- 2026-10-27 : slogan du site remplacé par l'histoire réelle : « Des apps faites pour l'utilisateur, par un utilisateur. » (titre d'accueil ; le paragraphe d'intro raconte l'histoire : des apps que l'auteur voulait, qui n'existaient pas, donc il les a créées). « Fait à la main » retiré (faux, les apps sont codées avec Claude). Les promesses « hors-ligne », « sans pub », « sans pistage » ne se disent que page par page, jamais pour tout le site.
 - 2026-10-27 : création de la charte. Socle léger, une couleur d'accent par app, tutoiement. Domaine `panamedev.fr`, contact unique `contact@panamedev.fr`. Copyright et mention de conception à poser partout.
 - *(à compléter à chaque décision, avec la date et l'app concernée)*
 

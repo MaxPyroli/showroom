@@ -48,7 +48,7 @@ ul{list-style:none;padding:0}
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:110px 20px 70px}
 .eyebrow{font:600 .8rem var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--mut);margin-bottom:18px}
-.hero h1{font:800 clamp(2.6rem,8.5vw,6.4rem)/1 var(--display);letter-spacing:-.035em}
+.hero h1{font:800 clamp(2.4rem,7.2vw,5.8rem)/1 var(--display);letter-spacing:-.035em}
 .grad{background:linear-gradient(100deg,#6db6ff,#a07bff 45%,#ff7fb0 75%,#ffb86b);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:shine 8s linear infinite}
 @keyframes shine{to{background-position:-200% 0}}
 .lead{max-width:640px;margin:26px auto 0;color:var(--mut);font-size:clamp(1rem,2.2vw,1.2rem)}
