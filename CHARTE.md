@@ -55,7 +55,7 @@ Ancien contact à **remplacer partout** : `contact@grandpaname.fun`. Grand Panam
 |---|---|---|---|---|
 | Grand Paname | `#3aa0ff`, fond nuit `#010e26` | Carte plein écran, barre de recherche et navigation flottantes, verre dépoli, trois thèmes (clair, sombre, OLED) | GrandParis | Android (Expo) |
 | Tool Proj | `#14b8a6` (teal `#0d7c72`) | Papier : post-it colorés légèrement penchés | Système | Web / PWA, bureau + mobile |
-| Desk Mail | `#396cd8` | Sobre et dense, logiciel de bureau | Segoe UI | Windows |
+| Desk Mail | `#e8604c` (corail, icône : deux enveloppes rose et jaune) | Sobre et dense, logiciel de bureau ; accents corail | Segoe UI | Windows |
 | Near Pass | `#8a6bff` (dégradé `#5b7bff` → `#8a4dff`) | Radar, halos, lumière | Système | Android |
 | ScoreBoard (écrit « Score Board » dans l'app) | `#2fbf8f` (thème app `#1f6f5c`) + jaune | Papier crème, contour épais sombre, ombre pleine ; chaque jeu a sa carte en dégradé (Tarot violet, Skyjo bleu, Aventuriers du Rail rouge, Sushi Go Party corail, 6 qui prend orange) | Système, titres gras | Android + Web / PWA |
 | UrbaSim (jeu, bêta) | `#3d86f0` (bouton `#2a6ff0`) | Ciel en dégradé, immeubles colorés (rose, jaune, bleu, vert), ton ludique | Système | Web, version bureau (mobile non optimisé) |
@@ -102,6 +102,7 @@ Légende : ✅ fait · ⬜ à faire · ❓ à vérifier. Mis à jour le 2026-10-
 - 2026-10-27 : le site devient une page unique avec un carrousel par app (capture + texte qui changent), à la place de sous-pages. Thèmes clair et sombre sur le site ; chaque capture existe en version claire et sombre.
 - 2026-10-27 : mise en page en alternance : une app sur deux est en miroir (capture à gauche, texte à droite), pour éviter la répétition. À l'essai, à valider.
 - 2026-10-27 : Tool Proj est montré en version bureau **et** mobile (format `duo`) ; UrbaSim en version bureau uniquement (le mobile n'est pas optimisé).
+- 2026-10-27 : icône réelle de Desk Mail (corail, deux enveloppes) : l'accent de l'app passe du bleu au corail. La page de confidentialité de Desk Mail, elle, est encore en bleu : à harmoniser.
 - 2026-10-27 : icône du site (favicon) propre à Paname Dev : six tuiles aux couleurs des six apps, et non l'icône d'une app.
 - 2026-10-27 : création de la charte. Socle léger, une couleur d'accent par app, tutoiement. Domaine `panamedev.fr`, contact unique `contact@panamedev.fr`. Copyright et mention de conception à poser partout.
 - *(à compléter à chaque décision, avec la date et l'app concernée)*

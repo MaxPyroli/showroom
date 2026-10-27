@@ -121,10 +121,10 @@ ul{list-style:none;padding:0}
 .wbody{display:grid;grid-template-columns:104px 1.15fr 1fr;height:300px;font-size:.74rem}
 aside{background:#161b23;padding:12px 10px;color:#9aa7b6;display:grid;gap:6px;align-content:start}
 aside hr{border:0;border-top:1px solid #2a323d;margin:6px 0}aside span{padding:4px 6px}
-.acct{display:flex;justify-content:space-between;padding:5px 6px;border-radius:6px;font-weight:600}.acct.on{background:#202a3a;color:#6f9cef}.acct small{background:#396cd8;color:#fff;border-radius:8px;padding:0 6px}
+.acct{display:flex;justify-content:space-between;padding:5px 6px;border-radius:6px;font-weight:600}.acct.on{background:color-mix(in oklab,var(--a) 22%,#161b23);color:var(--a)}.acct small{background:var(--a);color:#fff;border-radius:8px;padding:0 6px}
 .list{border-inline:1px solid #2a323d;overflow:hidden}
 .mail{display:flex;align-items:center;gap:9px;padding:11px 10px;border-bottom:1px solid #2a323d;color:#9aa7b6;transition:background .3s}
-.mail:hover{background:#202a3a}.mail.on{background:#202a3a;box-shadow:inset 3px 0 #396cd8}
+.mail:hover{background:#202a3a}.mail.on{background:color-mix(in oklab,var(--a) 14%,#1b212a);box-shadow:inset 3px 0 var(--a)}
 .mail.new{animation:slidein 1s var(--ease) 1s both}
 @keyframes slidein{from{opacity:0;transform:translateY(-30px)}}
 .mail div{flex:1;min-width:0;line-height:1.3}.mail strong{display:block;color:#e8ecf1;font-size:.77rem}.mail span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

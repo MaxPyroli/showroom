@@ -107,9 +107,9 @@
     {
       "slug": "desk-mail",
       "name": "Desk Mail",
-      "icon": "deskmail.svg",
-      "accent": "#396cd8",
-      "glow": "#4b7df0",
+      "icon": "deskmail.png",
+      "accent": "#e8604c",
+      "glow": "#e8604c",
       "format": "window",
       "tag": "Windows",
       "tagline": "Un client mail de bureau pour Windows.",
