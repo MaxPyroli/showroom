@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Charte Paname Dev</title>
+<style>
+  :root{--page:#f6f3ee;--card:#fff;--text:#2b2623;--muted:#776c63;--line:#e6dfd6;--accent:#e8604c}
+  @media (prefers-color-scheme:dark){:root{--page:#16141a;--card:#211e27;--text:#f3ede6;--muted:#a59fae;--line:#35303d}}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--page);color:var(--text);font:16px/1.6 "Segoe UI",system-ui,-apple-system,sans-serif}
+  main{max-width:1000px;margin:0 auto;padding:56px 20px 96px}
+  h1{font-size:2.2rem;letter-spacing:-.02em;line-height:1.15}
+  h2{font-size:1.35rem;margin:60px 0 6px;letter-spacing:-.01em}
+  h3{font-size:1rem;margin:26px 0 8px}
+  p{max-width:68ch}
+  .lead{color:var(--muted);margin-top:8px}
+  .note{color:var(--muted);font-size:.88rem;margin-top:8px}
+  code{font:.85em ui-monospace,Menlo,Consolas,monospace;background:rgba(127,127,127,.15);padding:1px 6px;border-radius:6px}
+  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));margin-top:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px}
+  .sw{height:74px;border-radius:11px;display:flex;align-items:flex-end;padding:7px 9px;font-weight:700;font-size:.8rem;margin-bottom:8px}
+  .pair{display:flex;gap:5px;margin-bottom:8px}.pair .sw{flex:1;margin:0;height:64px}
+  .card b{display:block;font-size:.9rem}.card small{color:var(--muted);font-size:.78rem}
+  .tag{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:1px 8px;border-radius:99px;margin-left:4px;vertical-align:middle}
+  .ok{background:#cdeccb;color:#1c5a1a}.try{background:#ffe9a6;color:#6a5200}.hold{background:#dfe3ff;color:#2a3180}
+  @media (prefers-color-scheme:dark){.ok{background:#1f4a1d;color:#bff0bb}.try{background:#5a4700;color:#ffe9a6}.hold{background:#2a2f6a;color:#cfd4ff}}
+  .row{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end;margin-top:14px}
+  .icon{width:96px;height:96px;border-radius:22%;display:block}
+  figure{margin:0;text-align:center;font-size:.85rem}figure figcaption{margin-top:6px}figure small{display:block;color:var(--muted);font-size:.74rem}
+  .sizes{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin-top:10px}
+  .anat{display:grid;gap:26px;grid-template-columns:260px 1fr;align-items:center;margin-top:14px}
+  @media (max-width:680px){.anat{grid-template-columns:1fr}}
+  .box{position:relative;width:260px;height:260px}
+  .box img{width:100%;height:100%;border-radius:22%;display:block}
+  .box .m{position:absolute;inset:12%;border:2px dashed #fff;opacity:.9}
+  table{border-collapse:collapse;width:100%;margin-top:12px;font-size:.92rem}
+  td,th{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-weight:600;font-size:.8rem}
+  .shapes{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:14px}
+  .s-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;max-width:230px;font-size:.9rem}
+  .s-pill{display:inline-block;padding:10px 22px;border-radius:999px;background:var(--accent);color:#fff;font-weight:600}
+  .s-pill.g{background:transparent;color:var(--text);border:1px solid var(--line)}
+  .s-chip{display:inline-block;padding:4px 12px;border-radius:999px;font-size:.78rem;font-weight:600;color:#a63a2b;background:rgba(232,96,76,.15);border:1px solid rgba(232,96,76,.4)}
+  @media (prefers-color-scheme:dark){.s-chip{color:#f4a89b}}
+  ul.q{list-style:none;padding:0;margin-top:12px;display:grid;gap:10px}
+  ul.q li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;max-width:72ch}
+  ul.q b{display:block;margin-bottom:2px}
+  .quote{border-left:4px solid var(--accent);padding:6px 14px;margin-top:12px;max-width:62ch;background:var(--card);border-radius:0 12px 12px 0}
+</style>
+</head>
+<body>
+<main>
+
+<h1>Charte Paname Dev</h1>
+<p class="lead">Un socle léger partagé par toutes les apps, et chaque app garde son âme. Cette page résume <code>CHARTE.md</code> pour qu'on en discute : tout ce qui est marqué <span class="tag try">proposition</span> est à valider ou à jeter.</p>
+
+<h2>1. Identité</h2>
+<table>
+  <tr><th>Sujet</th><th>Valeur</th></tr>
+  <tr><td>Marque / éditeur</td><td><b>Paname Dev</b></td></tr>
+  <tr><td>Domaine</td><td><code>panamedev.fr</code> (branchement des sous-domaines plus tard)</td></tr>
+  <tr><td>Contact</td><td><code>contact@panamedev.fr</code> partout</td></tr>
+  <tr><td>Copyright</td><td><code>© 2026 Paname Dev</code>, puis <code>© 2026–année en cours</code></td></tr>
+  <tr><td>Mention</td><td><code>Conçu et codé avec Claude</code> · version courte : <code>Fait avec Claude</code></td></tr>
+  <tr><td>Langue et ton</td><td>Français, tutoiement, phrases courtes, on dit ce que l'app fait avant comment</td></tr>
+</table>
+<div class="quote"><b>Des apps faites pour l'utilisateur, par un utilisateur.</b><br><span class="note">L'histoire : des apps que j'avais toujours voulu avoir, qui n'existaient pas, alors je les ai créées, avec Claude.</span></div>
+
+<h2>2. Les icônes aujourd'hui</h2>
+<p class="lead">Tool Proj et Desk Mail suivent la même recette. Les autres ont leur propre style.</p>
+<div class="row">
+  <figure><img class="icon" src="../assets/img/grandpaname.png" alt=""><figcaption><b>Grand Paname</b><small>carte du réseau</small></figcaption></figure>
+  <figure><img class="icon" src="../assets/img/toolproj.png" alt=""><figcaption><b>Tool Proj</b><small>vert · famille</small></figcaption></figure>
+  <figure><img class="icon" src="../assets/img/deskmail.png" alt=""><figcaption><b>Desk Mail</b><small>corail · famille</small></figcaption></figure>
+  <figure><img class="icon" src="../assets/img/nearpass.svg" alt=""><figcaption><b>Near Pass</b><small>provisoire</small></figcaption></figure>
+  <figure><img class="icon" src="../assets/img/scoreboard.png" alt=""><figcaption><b>ScoreBoard</b><small>pion + « 21 »</small></figcaption></figure>
+  <figure><img class="icon" src="../assets/img/urbasim-icon.png" alt=""><figcaption><b>UrbaSim</b><small>immeubles</small></figcaption></figure>
+</div>
+<h3>Lisibilité en petit (96 · 48 · 32 px)</h3>
+<div class="sizes">
+  <img src="../assets/img/toolproj.png" width="96" height="96" alt="" style="border-radius:22%"><img src="../assets/img/toolproj.png" width="48" height="48" alt="" style="border-radius:22%"><img src="../assets/img/toolproj.png" width="32" height="32" alt="" style="border-radius:22%">
+  <span style="width:18px"></span>
+  <img src="../assets/img/deskmail.png" width="96" height="96" alt="" style="border-radius:22%"><img src="../assets/img/deskmail.png" width="48" height="48" alt="" style="border-radius:22%"><img src="../assets/img/deskmail.png" width="32" height="32" alt="" style="border-radius:22%">
+</div>
+
+<h2>3. Palette</h2>
+<h3>Pastels partagés (les objets des icônes)</h3>
+<div class="grid">
+  <div class="card"><div class="sw" style="background:#ffe66d;color:#5c4a00">Jaune</div><b>#ffe66d <span class="tag ok">en usage</span></b></div>
+  <div class="card"><div class="sw" style="background:#ff9ec3;color:#7a2349">Rose</div><b>#ff9ec3 <span class="tag ok">en usage</span></b></div>
+  <div class="card"><div class="sw" style="background:#8fd3ff;color:#0e4766">Ciel</div><b>#8fd3ff <span class="tag try">proposition</span></b></div>
+  <div class="card"><div class="sw" style="background:#ffb27a;color:#6a3400">Pêche</div><b>#ffb27a <span class="tag try">proposition</span></b></div>
+  <div class="card"><div class="sw" style="background:#a8e6a1;color:#1f5a1a">Menthe</div><b>#a8e6a1 <span class="tag try">proposition</span></b></div>
+  <div class="card"><div class="sw" style="background:#cdbcff;color:#42318a">Lavande</div><b>#cdbcff <span class="tag try">proposition</span></b></div>
+  <div class="card"><div class="sw" style="background:#fff4d6;color:#6a5a2a;border:1px solid #eadfba">Crème</div><b>#fff4d6 <span class="tag try">proposition</span></b></div>
+</div>
+<h3>Couleurs d'app (fond + encre foncée)</h3>
+<div class="grid">
+  <div class="card"><div class="pair"><div class="sw" style="background:#0d7c72;color:#fff">Fond</div><div class="sw" style="background:#0d5c55;color:#fff">Encre</div></div><b>Vert · Tool Proj</b><small>#0d7c72 · #0d5c55</small> <span class="tag ok">définitive</span></div>
+  <div class="card"><div class="pair"><div class="sw" style="background:#e8604c;color:#fff">Fond</div><div class="sw" style="background:#a63a2b;color:#fff">Encre</div></div><b>Corail · Desk Mail</b><small>#e8604c · #a63a2b</small> <span class="tag ok">définitive</span></div>
+  <div class="card"><div class="pair"><div class="sw" style="background:#8a6bff;color:#fff">Fond</div><div class="sw" style="background:#5b43b8;color:#fff">Encre</div></div><b>Violet · Near Pass</b><small>#8a6bff</small> <span class="tag try">provisoire</span></div>
+  <div class="card"><div class="pair"><div class="sw" style="background:#f08a24;color:#3d2100">Fond</div><div class="sw" style="background:#a85a10;color:#fff">Encre</div></div><b>Orange</b><small>#f08a24 · #a85a10</small> <span class="tag try">piste</span></div>
+  <div class="card"><div class="pair"><div class="sw" style="background:#2f9fe0;color:#04304d">Fond</div><div class="sw" style="background:#1c6a9c;color:#fff">Encre</div></div><b>Bleu ciel</b><small>#2f9fe0 · #1c6a9c</small> <span class="tag try">piste</span></div>
+  <div class="card"><div class="pair"><div class="sw" style="background:#7a4fd1;color:#fff">Fond</div><div class="sw" style="background:#4f2f94;color:#fff">Encre</div></div><b>Violet profond</b><small>#7a4fd1 · #4f2f94</small> <span class="tag try">piste</span></div>
+  <div class="card"><div class="pair"><div class="sw" style="background:#3b4cc0;color:#fff">Fond</div><div class="sw" style="background:#232f86;color:#fff">Encre</div></div><b>Indigo</b><small>#3b4cc0 · #232f86</small> <span class="tag hold">gardé de côté</span></div>
+  <div class="card"><div class="pair"><div class="sw" style="background:#d9467a;color:#fff">Fond</div><div class="sw" style="background:#a72251;color:#fff">Encre</div></div><b>Framboise</b><small>#d9467a · #a72251</small> <span class="tag try">proposition</span></div>
+  <div class="card"><div class="pair"><div class="sw" style="background:#d9a21b;color:#3d2c00">Fond</div><div class="sw" style="background:#987113;color:#fff">Encre</div></div><b>Moutarde</b><small>#d9a21b · #987113</small> <span class="tag try">proposition</span></div>
+  <div class="card"><div class="pair"><div class="sw" style="background:#4a6275;color:#fff">Fond</div><div class="sw" style="background:#344552;color:#fff">Encre</div></div><b>Ardoise</b><small>#4a6275 · #344552</small> <span class="tag try">proposition</span></div>
+  <div class="card"><div class="pair"><div class="sw" style="background:#2b4b8f;color:#fff">Fond</div><div class="sw" style="background:#1e3564;color:#fff">Encre</div></div><b>Bleu nuit</b><small>#2b4b8f · #1e3564</small> <span class="tag try">proposition</span></div>
+</div>
+<p class="note">Autres apps (couleurs actuelles) : Grand Paname bleu <code>#3aa0ff</code> sur fond nuit <code>#010e26</code> · ScoreBoard vert <code>#2fbf8f</code> · UrbaSim bleu <code>#3d86f0</code>. L'encre est la même teinte que le fond, environ 30 % plus sombre.</p>
+
+<h2>4. Mesures des icônes</h2>
+<p class="lead">Des repères pour garder l'air de famille, pas des obligations.</p>
+<div class="anat">
+  <div class="box"><img src="../assets/img/deskmail.png" alt=""><div class="m"></div></div>
+  <table>
+    <tr><th>Quoi</th><th>Repère</th></tr>
+    <tr><td>Coins du carré de fond</td><td><b>22 %</b> du côté</td></tr>
+    <tr><td>Marge intérieure (pointillés)</td><td><b>12 %</b> de chaque côté</td></tr>
+    <tr><td>Épaisseur du trait</td><td><b>≈ 4,5 %</b> de l'icône, bouts et angles arrondis</td></tr>
+    <tr><td>Coins des objets</td><td><b>≈ 14 %</b> de leur hauteur</td></tr>
+    <tr><td>Inclinaison</td><td><b>+12°</b> derrière, <b>−6°</b> devant (Desk Mail) ; ≈ 6° et −4° (Tool Proj)</td></tr>
+    <tr><td>Tailles de test</td><td>96 · 48 · 32 px</td></tr>
+  </table>
+</div>
+<h3>L'esprit (sans règle)</h3>
+<p>Un fond uni en carré arrondi · des objets plats et pastel qui racontent l'app · un trait foncé épais · tout arrondi, sans dégradé ni ombre · des objets qui se chevauchent un peu · lisible en tout petit. L'objet est toujours celui de l'app : on ne met pas des post-it sur Near Pass.</p>
+
+<h2>5. Formes de l'interface (le site)</h2>
+<div class="shapes">
+  <div class="s-card"><b>Carte</b><br><span class="note">coins 14 à 22 px, bordure fine</span></div>
+  <span class="s-pill">Bouton plein</span><span class="s-pill g">Bouton discret</span><span class="s-chip">puce</span>
+</div>
+<p class="note" style="margin-top:12px">Boutons et puces en pilule (999 px) · une seule couleur d'accent par app, pour les actions et l'état actif · le rouge est réservé aux problèmes · tout se vérifie en clair et en sombre · animations 250 à 400 ms, <code>cubic-bezier(.2,.8,.2,1)</code>, qui respectent « réduire les animations ».</p>
+
+<h2>6. À discuter</h2>
+<ul class="q">
+  <li><b>Le titulaire du copyright</b>Paname Dev comme marque ? ou ton nom ?</li>
+  <li><b>La couleur de Near Pass</b>Violet provisoire. Violet profond, orange, bleu ciel, framboise… ? Et son icône (radar actuel, ou autre idée).</li>
+  <li><b>Grand Paname, ScoreBoard, UrbaSim</b>Garder leurs icônes telles quelles, ou les rapprocher doucement de la famille (palette, formes) ?</li>
+  <li><b>Les pastels et couleurs « proposition »</b>Lesquels garder, lesquels retirer ?</li>
+  <li><b>« ScoreBoard » ou « Score Board »</b>L'app affiche « Score Board » ; le site écrit ScoreBoard.</li>
+  <li><b>Les promesses « sans pub, sans pistage »</b>Vraies pour quelles apps ? On ne les affiche que page par page.</li>
+  <li><b>L'icône du site</b>Six tuiles aux couleurs des six apps : on garde ?</li>
+</ul>
+
+<p class="note" style="margin-top:40px">© 2026 Paname Dev · Conçu et codé avec Claude · contact@panamedev.fr</p>
+</main>
+</body>
+</html>

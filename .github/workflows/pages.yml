@@ -27,7 +27,7 @@ jobs:
         run: |
           python3 scripts/build_site.py
           mkdir _site
-          cp -r index.html style.css main.js assets _site/
+          cp -r index.html style.css main.js assets branding _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
