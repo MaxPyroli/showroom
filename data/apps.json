@@ -1,5 +1,5 @@
 {
-  "_aide": "Source unique du site. Après modification : python3 scripts/build_site.py (régénère les sections « apps » de index.html). Captures : assets/shots/<slug>/NN-light.jpg et NN-dark.jpg (01 = vue d'ensemble, puis une par fonctionnalité dans l'ordre ; NN.jpg seul = identique dans les deux thèmes). Décors dessinés (avant les vraies captures) : data/mockups/<slug>.html. Formats : phone (portrait), window (bureau 16:10), duo (bureau + mobile : fichiers NN-desktop-light/dark et NN-mobile-light/dark). Champs optionnels : title_font (police du titre), links (boutons), legal (liens légaux). Ajouter une app = ajouter une entrée ici, une icône dans assets/img/, puis lancer le script : nav, icônes d'accueil et section sont générées.",
+  "_aide": "Source unique du site. Après modification : python3 scripts/build_site.py (régénère les sections « apps » de index.html). Captures : assets/shots/<slug>/NN-light.jpg et NN-dark.jpg (01 = vue d'ensemble, puis une par fonctionnalité dans l'ordre ; NN.jpg seul = identique dans les deux thèmes). Décors dessinés (avant les vraies captures) : data/mockups/<slug>.html. Formats : phone (portrait), window (bureau 16:10), duo (bureau + mobile : fichiers NN-desktop-light/dark et NN-mobile-light/dark). Champs optionnels : title_font (police du titre), links (boutons), legal (liens légaux). Ajouter une app = ajouter une entrée ici, une icône dans assets/img/, puis lancer le script : nav, icônes d'accueil et section sont générées. Champ optionnel tile : couleur de la tuile de l'icône du site et de l'animation d'accueil (par défaut : accent).",
   "apps": [
     {
       "slug": "grand-paname",
@@ -51,7 +51,8 @@
         }
       ],
       "legal": [],
-      "title_font": "GrandParis"
+      "title_font": "GrandParis",
+      "tile": "#3aa0ff"
     },
     {
       "slug": "tool-proj",
@@ -102,7 +103,8 @@
           "hint": "La liste des membres ou l'écran de connexion (bureau + mobile)"
         }
       ],
-      "legal": []
+      "legal": [],
+      "tile": "#0d7c72"
     },
     {
       "slug": "desk-mail",
@@ -148,7 +150,8 @@
           "label": "Politique de confidentialité",
           "url": "https://maxpyroli.github.io/panamail-pages/"
         }
-      ]
+      ],
+      "tile": "#e8604c"
     },
     {
       "slug": "near-pass",
@@ -194,7 +197,8 @@
           "label": "Politique de confidentialité",
           "url": "https://maxpyroli.github.io/nearpass-site/"
         }
-      ]
+      ],
+      "tile": "#8a6bff"
     },
     {
       "slug": "scoreboard",
@@ -245,7 +249,8 @@
           "hint": "Le décompte du mode assistant"
         }
       ],
-      "legal": []
+      "legal": [],
+      "tile": "#2fbf8f"
     },
     {
       "slug": "urbasim",
@@ -292,7 +297,8 @@
           "hint": "Le mode d'emploi ou les nouveautés (version bureau)"
         }
       ],
-      "legal": []
+      "legal": [],
+      "tile": "#e0457b"
     }
   ]
 }

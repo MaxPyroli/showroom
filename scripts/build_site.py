@@ -12,6 +12,7 @@ GitHub Pages le fait à chaque déploiement).
 """
 import html
 import json
+import math
 import re
 from pathlib import Path
 
@@ -117,7 +118,23 @@ def orbit(i, n, app):
     delay = -((i * 1.3) % 5)
     depth = (18, 26, 34, 40, 22, 44)[i % 6]
     return (f'<a href="#{app["slug"]}" class="ico" data-depth="{depth}" '
+            f'data-tile="{app.get("tile", app["accent"])}" '
             f'style="left:{left:.1f}%;top:{top}%;animation-delay:{delay:.1f}s"><img src="assets/img/{app["icon"]}" alt=""></a>')
+
+
+def favicon():
+    """Icône du site : les tuiles des apps disposées en cercle (le « logo » de l'animation d'accueil)."""
+    n = len(APPS)
+    r = 142 if n <= 6 else 150
+    size = 112 if n <= 6 else max(60, min(112, 2 * r * math.sin(math.pi / n) - 26))
+    rects = ""
+    for i, a in enumerate(APPS):
+        ang = math.radians(-90 + i * 360 / n)
+        x, y = 256 + r * math.cos(ang) - size / 2, 256 + r * math.sin(ang) - size / 2
+        rects += f'<rect x="{x:.0f}" y="{y:.0f}" width="{size:.0f}" height="{size:.0f}" rx="{size * 32 / 112:.0f}" fill="{a.get("tile", a["accent"])}"/>'
+    (ROOT / "assets" / "img" / "favicon.svg").write_text(
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="113" fill="#0b0d14"/>{rects}</svg>\n',
+        encoding="utf-8")
 
 
 def fill(src, name, content):
@@ -126,6 +143,7 @@ def fill(src, name, content):
     return pat.sub(lambda m: m.group(1) + content + m.group(2), src)
 
 
+favicon()
 index = ROOT / "index.html"
 src = index.read_text(encoding="utf-8")
 src = fill(src, "NAV", "\n".join(f'    <a href="#{a["slug"]}">{e(a["name"])}</a>' for a in APPS))

@@ -144,7 +144,7 @@ Sur le site : une app = une variable `--a`.
 5. Déposer les captures dans `assets/shots/<slug>/` (section 9).
 6. Appliquer la liste de contrôle de la section 2 et ajouter l'app au tableau de la section 4 et de la section 7.
 
-Reste manuel : l'icône du site (`assets/img/favicon.svg`, six tuiles) et, si besoin, un décor dessiné (`data/mockups/<slug>.html`) avant les vraies captures.
+L'icône du site (`assets/img/favicon.svg`, les tuiles des apps en cercle) et l'animation d'accueil sont générées à partir de `data/apps.json` (champ `tile` = couleur de la tuile). Reste manuel : si besoin, un décor dessiné (`data/mockups/<slug>.html`) avant les vraies captures.
 
 ## 7. État de l'harmonisation (à tenir à jour)
 
@@ -170,6 +170,7 @@ Légende : ✅ fait · ⬜ à faire · ❓ à vérifier. Mis à jour le 2026-10-
 - 2026-10-27 : Tool Proj est montré en version bureau **et** mobile (format `duo`) ; UrbaSim en version bureau uniquement (le mobile n'est pas optimisé).
 - 2026-10-27 : charte d'icônes de Desk Mail intégrée **en version très légère** (section 3 bis) : une palette et quelques idées à reprendre librement, aucune règle ni interdit. Tool Proj prend son vert d'icône `#0d7c72` comme accent. Near Pass garde son icône radar provisoire.
 - 2026-10-27 : icône réelle de Desk Mail (corail, deux enveloppes) : l'accent de l'app passe du bleu au corail. La page de confidentialité de Desk Mail, elle, est encore en bleu : à harmoniser.
+- 2026-10-27 : animation d'accueil : le logo du site (les tuiles des apps en cercle sur fond sombre) apparaît, tourne, puis les tuiles se transforment en icônes et se posent sur la rangée d'icônes de l'accueil. Un clic, une touche ou la molette la passe ; elle est désactivée si l'utilisateur a demandé moins d'animations.
 - 2026-10-27 : décisions : on garde toute la palette élargie (pastels et couleurs d'app) ; la palette de Grand Paname est une catégorie à part ; l'app s'écrit « Score Board » ; « sans pub, sans pistage » est vrai pour toutes les apps ; l'icône du site garde les six icônes, disposées **en cercle** plutôt qu'en deux lignes.
 - 2026-10-27 : icône du site (favicon) propre à Paname Dev : six tuiles aux couleurs des six apps, et non l'icône d'une app.
 - 2026-10-27 : création de la charte. Socle léger, une couleur d'accent par app, tutoiement. Domaine `panamedev.fr`, contact unique `contact@panamedev.fr`. Copyright et mention de conception à poser partout.

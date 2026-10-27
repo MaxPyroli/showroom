@@ -295,3 +295,10 @@ aside hr{border:0;border-top:1px solid #2a323d;margin:6px 0}aside span{padding:4
   .flip .shotarea{order:1}
   .flip .ctrl{left:auto;right:0}
 }
+
+/* ---------- animation d'accueil : le logo se déploie en icônes ---------- */
+.intro .hero .reveal{opacity:0;transform:translateY(34px)}
+.intro .ico{z-index:6}
+.intro .scroll{opacity:0}
+.intro-logo{position:fixed;z-index:5;background:#0b0d14;box-shadow:0 30px 80px -20px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08);pointer-events:none}
+.ico .tile{position:absolute;inset:0;border-radius:28%;pointer-events:none}

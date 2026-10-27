@@ -93,6 +93,59 @@
   });
   addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelector('.zoom')?.remove(); });
 
+  // Animation d'accueil : le logo (tuiles en cercle) tourne, puis les tuiles deviennent les icônes
+  const runIntro = () => {
+    const icons = [...document.querySelectorAll('.orbit .ico')];
+    const done = () => root.classList.remove('intro');
+    if (!icons.length || reduce || !root.classList.contains('intro')) return done();
+    const orbit = document.querySelector('.orbit').getBoundingClientRect();
+    const L = Math.min(260, innerWidth * 0.6), cx = innerWidth / 2, cy = innerHeight / 2;
+    const R = L * 142 / 512, T = L * 112 / 512, n = icons.length, D = 3800;
+    const logo = document.createElement('div');
+    logo.className = 'intro-logo';
+    logo.style.cssText = `width:${L}px;height:${L}px;left:${cx - L / 2}px;top:${cy - L / 2}px;border-radius:${L * 113 / 512}px`;
+    document.body.append(logo);
+    const anims = [];
+    const smooth = (x) => { x = Math.max(0, Math.min(1, x)); return x * x * (3 - 2 * x); };
+    const inOut = (x) => (x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+    icons.forEach((el, i) => {
+      const size = el.offsetWidth;
+      const fx = orbit.left + el.offsetLeft + size / 2, fy = orbit.top + el.offsetTop + size / 2;
+      const a0 = (-90 + i * 360 / n) * Math.PI / 180;
+      const tile = document.createElement('i');
+      tile.className = 'tile';
+      tile.style.background = el.dataset.tile || 'var(--a)';
+      el.append(tile);
+      const frames = [];
+      for (let k = 0; k <= 90; k++) {
+        const t = k / 90, e = smooth((t - 0.5) / 0.5);
+        const th = a0 + Math.PI * 2.4 * inOut(Math.min(1, t / 0.85));
+        const px = cx + R * Math.cos(th), py = cy + R * Math.sin(th);
+        const s = (T / size) * (1 - e) + e;
+        frames.push({ translate: `${(px * (1 - e) + fx * e - fx).toFixed(1)}px ${(py * (1 - e) + fy * e - fy).toFixed(1)}px`, scale: s.toFixed(3), offset: t });
+      }
+      const o = { duration: D, easing: 'linear' };
+      anims.push(el.animate(frames, o));
+      anims.push(el.querySelector('img').animate([{ opacity: 0 }, { opacity: 0, offset: .6 }, { opacity: 1 }], o));
+      anims.push(tile.animate([{ opacity: 1 }, { opacity: 1, offset: .6 }, { opacity: 0 }], { ...o, fill: 'forwards' }));
+    });
+    anims.push(logo.animate([
+      { opacity: 0, scale: .85 }, { opacity: 1, scale: 1, offset: .1 }, { opacity: 1, scale: 1, offset: .5 }, { opacity: 0, scale: 1.2 }
+    ], { duration: D, easing: 'ease-out', fill: 'forwards' }));
+    let ended = false;
+    const end = () => {
+      if (ended) return; ended = true;
+      anims.forEach((a) => a.cancel());
+      logo.remove(); document.querySelectorAll('.orbit .tile').forEach((t) => t.remove());
+      done();
+    };
+    setTimeout(done, D * 0.8);
+    anims[0].finished.then(end).catch(end);
+    const skip = () => { end(); removeEventListener('pointerdown', skip); removeEventListener('keydown', skip); removeEventListener('wheel', skip); };
+    addEventListener('pointerdown', skip); addEventListener('keydown', skip); addEventListener('wheel', skip, { passive: true });
+  };
+  runIntro();
+
   // Compteurs du tableau de scores
   const ease = (t) => 1 - Math.pow(1 - t, 3);
   const countIO = new IntersectionObserver((entries) => {
