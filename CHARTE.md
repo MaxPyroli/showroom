@@ -160,7 +160,7 @@ Légende : ✅ fait · 🟡 partiel · ⬜ à faire · ❌ manque important · �
 | App | Contact `@panamedev.fr` | Copyright | Mention Claude | Nom | Bloc charte (consignes) | Page de confidentialité | Requêtes tiers inutiles |
 |---|---|---|---|---|---|---|---|
 | Grand Paname | ⬜ ancien `grandpaname.fun` (app + page) | ⬜ | 🟡 « Gemini et Claude » | ✅ | ⬜ | ⬜ contact, ©, date | ⬜ Leaflet via unpkg (tuiles CARTO : service nécessaire, à nommer) |
-| Tool Proj | ⬜ aucun | ⬜ | ⬜ | ✅ | ⬜ | ❌ inexistante | ⬜ Google Fonts + jsDelivr |
+| Tool Proj | ✅ (v0.20.2) | ✅ | ✅ | ✅ | ✅ | ✅ `confidentialite.html` | ✅ polices et supabase-js hébergés |
 | Desk Mail | ⬜ ancien (page) | ⬜ | ❓ | ✅ | ❓ | 🟡 éditeur ✅, encore bleue | ✅ (page) / ❓ (app) |
 | Near Pass | ⬜ ancien (page) | ⬜ | ❓ | ✅ | ❓ | ⬜ | ✅ (page) / ❓ (app) |
 | Score Board | ⬜ champ vide | ⬜ | ⬜ | ❌ « PanaGames » sous l'icône Android | ⬜ | 🟡 contact vide, partage en ligne non décrit | ✅ (aucune trouvée) |
@@ -196,6 +196,7 @@ Du plus ancien au plus récent.
 - Audit des dépôts d'apps (lecture seule) : rapport dans `branding/audit-depots-2026-10-28.md`. Constats : aucun outil de pub ni de mesure d'audience dans le code, mais « données chez l'utilisateur » n'est pas vrai pour toutes les apps (Tool Proj : Supabase ; Score Board web : Firebase) : à dire seulement « sans pub, sans pistage ». Liens du site corrigés vers `toolproj.panamedev.fr` et `urbasim.panamedev.fr` (bouton « Jouer »).
 - **Promesse corrigée** : seule « **sans pub, sans pistage** » est vraie pour toutes les apps ; « données chez l'utilisateur » est retiré (voir section 3). Nouvelles règles d'harmonisation : aucune requête tierce inutile (polices et bibliothèques hébergées avec l'app), page de confidentialité obligatoire, nom unique partout, mention de conception exacte, identifiant `fr.panamedev.<app>` pour les apps non publiées.
 - Site vitrine : polices Inter et Bricolage Grotesque hébergées (`assets/fonts/`), plus aucune requête vers Google : vérifié, un seul domaine contacté.
+- **Tool Proj 0.20.2 (2026-10-28)** : harmonisé. Polices (Bricolage Grotesque, Figtree, Kalam) et supabase-js hébergés avec l'app (zéro requête tierce mesurée), page `confidentialite.html`, liens + « © 2026 Paname Dev » sur l'écran de connexion et Mon compte, bloc de la charte dans `CLAUDE.md`. Non fait : l'audit mobile complet (`test/mobile-audit.cjs`, demande Supabase local).
 - *(à compléter à chaque décision, avec la date et l'app concernée)*
 
 ## 9. Site vitrine : page unique, carrousels et captures d'écran
