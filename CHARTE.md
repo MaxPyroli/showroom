@@ -92,27 +92,15 @@ Inspirées de Tool Proj et Desk Mail (leur charte d'icônes complète est gardé
 
 Ce sont des **repères pour garder l'air de famille**, pas des obligations : s'écarter un peu est normal quand l'icône l'exige.
 
-| App | Couleur | Encre |
+| Couleur · app (teinte) | Fond | Encre |
 |---|---|---|
-| Tool Proj | `#0d7c72` | `#0d5c55` |
-| Desk Mail | `#e8604c` | `#a63a2b` |
-| Near Pass | `#8a6bff` (provisoire) | à choisir |
-| Rouge (20°) | `#d15b60` | `#8b2d34` |
-| Orange (50°) | `#cb6620` | `#833b01` |
-| Ambre (80°) | `#ae7c02` | `#6c4c01` |
-| Jaune olive (110°) | `#8c8c06` | `#565600` |
-| Vert pomme (140°) | `#4f9b3e` | `#246213` |
-| Vert menthe (165°) | `#029e72` | `#006246` |
-| Turquoise (195°) | `#009a9a` | `#035f5f` |
-| Bleu ciel (230°) | `#0993c1` | `#005b79` |
-| Bleu (260°) | `#4d84df` | `#245098` |
-| Violet (290°) | `#8673d9` | `#534293` |
-| Magenta (325°) | `#b263b7` | `#743578` |
-| Rose (355°) | `#c95a8b` | `#852d56` |
+| Corail · Desk Mail (31°) | `#e8604c` | `#a63a2b` |
+| Ocre · Score Board (proposé) (108°) | `#878300` | `#5f5c02` |
+| Vert canard · Tool Proj (185°) | `#0d7c72` | `#0d5c55` |
+| Bleu · UrbaSim (proposé) (253°) | `#3f80ca` | `#285a93` |
+| Magenta · Near Pass (proposé) (322°) | `#a261ac` | `#75427c` |
 
-**Palette calculée** (`python3 scripts/palette.py`) : 12 teintes régulièrement espacées en OKLCH, **même luminosité (0,62) et même intensité (0,15, réduite si la couleur sort de l'écran)**, pour que toutes aient le même poids. Aucune n'est attribuée : chaque app choisit la sienne, en s'écartant le moins possible de la roue. Tool Proj tombe près du Turquoise (plus sombre), Desk Mail entre Rouge et Orange ; Near Pass et les autres sont à replacer sur la roue. L'encre est la même teinte que le fond, plus sombre (luminosité 0,44). Les couleurs de la palette sont calculées, pas encore testées sur une vraie icône.
-
-Score Board et UrbaSim n'ont pas encore de couleur dans la palette : leurs couleurs actuelles (section 4) sont à rapprocher d'une teinte de la roue, au choix du propriétaire. **Grand Paname a sa propre palette, à part** (ci-dessous).
+**Palette calculée** (`python3 scripts/palette.py`) : elle part de **Tool Proj et Desk Mail, qui ne bougent pas**. Les autres couleurs sont placées sur la roue (OKLCH) pour que **l'écart entre deux voisines soit le même (70 à 77°)** : aucune app n'est proche d'une autre. Elles prennent la luminosité et l'intensité **moyennes** de Tool Proj et Desk Mail (L 0,59, C 0,13). L'encre est la même teinte, plus sombre (L −0,13). Les trois nouvelles sont des **propositions** (Score Board, UrbaSim, Near Pass), à confirmer sur une vraie icône. Le Ocre sort un peu olive : à cette luminosité, le jaune ne peut pas être autre chose. **Grand Paname est hors palette** (couleurs de son logo) mais son bleu (228°) se glisse entre le vert canard et le bleu d'UrbaSim : à surveiller.
 
 **Palette propre de Grand Paname : les couleurs de son logo** (mesurées sur `assets/img/grandpaname.png`) : un fond bleu nuit et les couleurs des lignes du réseau.
 
