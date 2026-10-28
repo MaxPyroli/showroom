@@ -104,25 +104,23 @@ L'encre est la même teinte que le fond, environ 30 % plus sombre. Les couleurs 
 
 Score Board et UrbaSim gardent leurs couleurs et leurs icônes (section 4). **Grand Paname a sa propre palette, à part** (ci-dessous).
 
-**Palette propre de Grand Paname** (trois thèmes : clair / sombre / OLED), tirée de son guide graphique :
+**Palette propre de Grand Paname : les couleurs de son logo** (mesurées sur `assets/img/grandpaname.png`) : un fond bleu nuit et les couleurs des lignes du réseau.
 
-| Rôle | Clair | Sombre | OLED |
-|---|---|---|---|
-| Fond | `#ffffff` | `#010e26` | `#000000` |
-| Fond discret | `#f1f2f6` | `#07213f` | `#050505` |
-| Fond de carte | `#ffffff` | `#031a3a` | `#000000` |
-| Texte | `#25303b` | `#ddeeff` | `#ddeeff` |
-| Texte secondaire | `#7f8c8d` | `#6e99cc` | `#6e99cc` |
-| Accent | `#3498db` | `#5ab3f5` | `#5ab3f5` |
-| Pastille active | `#ddeeff` | `#0a2d64` | `#0a0a0a` |
+| Rôle | Couleur | Valeur |
+|---|---|---|
+| Fond du logo | bleu nuit | `#041b3b` |
+| Ligne | rouge | `#e23f3a` |
+| Ligne | jaune | `#f8c607` |
+| Ligne | vert | `#33b368` |
+| Ligne | bleu | `#0ca8d8` |
 
-Étoile de favori : or `#f2b705`. Le rouge est réservé aux problèmes de trafic. Police : GrandParis. Sur le site vitrine, l'accent utilisé est `#3aa0ff`.
+Les couleurs des lignes de métro, RER et tram dans l'app viennent des données officielles du réseau, jamais du thème. L'interface de l'app a en plus ses trois thèmes (clair, sombre, OLED), décrits dans son propre guide graphique (`docs/guide-graphique.md`, dépôt `grand-paname-app`) ; police GrandParis. Sur le site vitrine, l'accent utilisé pour Grand Paname est `#3aa0ff`.
 
 ## 4. L'âme de chaque app (reste libre)
 
 | App | Accent | Matière / ambiance | Police | Plateforme |
 |---|---|---|---|---|
-| Grand Paname | `#3aa0ff`, fond nuit `#010e26` | Carte plein écran, barre de recherche et navigation flottantes, verre dépoli, trois thèmes (clair, sombre, OLED) | GrandParis | Android (Expo) |
+| Grand Paname | Couleurs du logo : fond `#041b3b`, lignes rouge `#e23f3a`, jaune `#f8c607`, vert `#33b368`, bleu `#0ca8d8` (accent du site : `#3aa0ff`) | Carte plein écran, barre de recherche et navigation flottantes, verre dépoli, trois thèmes (clair, sombre, OLED) | GrandParis | Android (Expo) |
 | Tool Proj | `#0d7c72` (vert, encre `#0d5c55`) | Papier : post-it colorés légèrement penchés | Système | Web / PWA, bureau + mobile |
 | Desk Mail | `#e8604c` (corail, encre `#a63a2b`, icône : deux enveloppes rose et jaune) | Sobre et dense, logiciel de bureau ; accents corail | Segoe UI | Windows |
 | Near Pass | `#8a6bff` (violet provisoire ; couleur d'app non définie) | Radar, halos, lumière | Système | Android |
@@ -186,6 +184,7 @@ Du plus ancien au plus récent.
 - Maquette Tool Proj interactive : on coche le rond d'un post-it pour le barrer, et inversement ; tableau à plat (l'inclinaison 3D décalait les clics).
 - Indicateur de défilement de l'accueil : un simple chevron animé, discret, sans pastille ; plus bas.
 - Mise en ligne sur OVH (SFTP, déploiement automatique), fichiers CSS et JS versionnés dans leur adresse pour éviter les anciens fichiers en cache (section 11).
+- Palette de Grand Paname corrigée : ce sont les **couleurs de son logo** (fond bleu nuit et quatre couleurs de lignes), pas les couleurs de l'interface de l'app.
 - *(à compléter à chaque décision, avec la date et l'app concernée)*
 
 ## 9. Site vitrine : page unique, carrousels et captures d'écran
