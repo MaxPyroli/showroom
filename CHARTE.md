@@ -100,7 +100,20 @@ Ce sont des **repères pour garder l'air de famille**, pas des obligations : s'�
 | Bleu · UrbaSim (proposé) (253°) | `#3f80ca` | `#285a93` |
 | Magenta · Near Pass (proposé) (322°) | `#a261ac` | `#75427c` |
 
-**Palette calculée** (`python3 scripts/palette.py`) : elle part de **Tool Proj et Desk Mail, qui ne bougent pas**. Les autres couleurs sont placées sur la roue (OKLCH) pour que **l'écart entre deux voisines soit le même (70 à 77°)** : aucune app n'est proche d'une autre. Elles prennent la luminosité et l'intensité **moyennes** de Tool Proj et Desk Mail (L 0,59, C 0,13). L'encre est la même teinte, plus sombre (L −0,13). Les trois nouvelles sont des **propositions** (Score Board, UrbaSim, Near Pass), à confirmer sur une vraie icône. Le Ocre sort un peu olive : à cette luminosité, le jaune ne peut pas être autre chose. **Grand Paname est hors palette** (couleurs de son logo) mais son bleu (228°) se glisse entre le vert canard et le bleu d'UrbaSim : à surveiller.
+**Palette calculée** (`python3 scripts/palette.py`) : elle part de **Tool Proj et Desk Mail, qui ne bougent pas**. Les autres couleurs sont placées sur la roue (OKLCH) pour que **l'écart entre deux voisines soit le même (70 à 77°)** : aucune app n'est proche d'une autre. Elles prennent la luminosité et l'intensité **moyennes** de Tool Proj et Desk Mail (L 0,59, C 0,13). L'encre est la même teinte, plus sombre (L −0,13). L'Ocre est validé pour Score Board. Les deux autres nouvelles sont des **propositions** (Score Board, UrbaSim, Near Pass), à confirmer sur une vraie icône. Le Ocre sort un peu olive : à cette luminosité, le jaune ne peut pas être autre chose. **Grand Paname est hors palette** (couleurs de son logo) mais son bleu (228°) se glisse entre le vert canard et le bleu d'UrbaSim : à surveiller.
+
+**Réserve** : le milieu exact entre deux couleurs voisines, même luminosité et même intensité, pour **remplacer** une couleur principale si elle ne convient pas (voir la règle d'éloignement ci-dessous). Le Cyan (219°) est tout près du bleu de Grand Paname (228°) : à éviter.
+
+| Couleur (teinte) | Fond | Encre |
+|---|---|---|
+| Orange brûlé (69°) | `#ae6e05` | `#7d4d00` |
+| Vert (146°) | `#44924e` | `#2b6833` |
+| Cyan (219°) | `#0a8ca9` | `#046378` |
+| Violet (288°) | `#7b70c5` | `#574e90` |
+| Rose (356°) | `#b85b80` | `#853d5a` |
+
+**Règle d'éloignement** : deux apps ne prennent pas des couleurs à **moins de 60° de teinte** l'une de l'autre (la luminosité ne compte pas : deux couleurs de même teinte se confondent, claires ou foncées). `python3 scripts/palette.py` vérifie la liste des apps et signale les paires trop proches. Conséquences : les 5 couleurs principales sont toutes à 68° ou plus les unes des autres, donc compatibles entre elles ; **les couleurs de réserve ne s'ajoutent pas** (elles sont à 35° de leurs voisines), elles servent à **remplacer** une couleur principale, jamais à venir en plus ; avec cet écart, la roue ne tient que **5 apps** (6 au maximum). Une nouvelle app doit donc soit prendre la place d'une teinte, soit faire revoir la palette. Contrôle actuel : **Grand Paname** (bleu du logo, 228°) est à 43° de Tool Proj et 25° d'UrbaSim : conflit à régler (soit l'accent du site de Grand Paname reste le bleu de son logo et on accepte l'exception, soit UrbaSim change de teinte).
+
 
 **Palette propre de Grand Paname : les couleurs de son logo** (mesurées sur `assets/img/grandpaname.png`) : un fond bleu nuit et les couleurs des lignes du réseau.
 

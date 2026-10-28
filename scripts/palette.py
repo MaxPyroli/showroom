@@ -8,7 +8,8 @@ des deux points fixes. L'encre = même teinte, plus sombre.
 Usage : python3 scripts/palette.py   (affiche le tableau Markdown et le HTML)"""
 import math
 FIXES = [('Desk Mail', 'Corail', '#e8604c', '#a63a2b'), ('Tool Proj', 'Vert canard', '#0d7c72', '#0d5c55')]
-NOUVELLES = ['Ocre', 'Bleu', 'Magenta']          # entre les deux points fixes, dans l'ordre de la roue
+NOUVELLES = ['Ocre', 'Bleu', 'Magenta']
+INTERMEDIAIRES = ['Orange brûlé', 'Vert', 'Cyan', 'Violet', 'Rose']   # milieux, dans l'ordre de la roue (réserve)          # entre les deux points fixes, dans l'ordre de la roue
 D_ENCRE_L, F_ENCRE_C = 0.13, 0.82
 
 def to_oklch(h):
@@ -58,6 +59,33 @@ def palette():
         out.append((nom, '', fond, encre, hh, L, c))
     return out
 
+ECART_MIN = 60   # degrés de teinte minimum entre deux apps (règle d'éloignement)
+APPS = {'Desk Mail': 31, 'Score Board': 108, 'Tool Proj': 185, 'UrbaSim': 253, 'Near Pass': 322, 'Grand Paname (logo)': 228}
+
+def conflits(apps=APPS):
+    """Paires d'apps dont les teintes sont à moins de ECART_MIN degrés."""
+    noms = list(apps); out = []
+    for i in range(len(noms)):
+        for j in range(i+1, len(noms)):
+            d = abs(apps[noms[i]]-apps[noms[j]]); d = min(d, 360-d)
+            if d < ECART_MIN: out.append((noms[i], noms[j], d))
+    return out
+
+def reserve():
+    """Couleurs de réserve : au milieu de chaque paire de voisines de palette()."""
+    pal = palette(); L, C = pal[1][5], pal[1][6]; out = []
+    for k, nom in enumerate(INTERMEDIAIRES):
+        a, b = pal[k][4], pal[(k+1) % len(pal)][4]
+        h = (a+((b-a) % 360)/2) % 360
+        fond, c = hexa(L, C, h); encre, _ = hexa(L-D_ENCRE_L, c*F_ENCRE_C, h)
+        out.append((nom, '', fond, encre, h, L, c))
+    return out
+
 if __name__ == '__main__':
     for n, role, f, e, h, L, c in palette():
         print(f'| {n}{" · "+role if role else ""} ({h:.0f}°) | `{f}` | `{e}` |  L={L:.2f} C={c:.2f}')
+    print('--- réserve')
+    for n, role, f, e, h, L, c in reserve(): print(f'| {n} ({h:.0f}°) | `{f}` | `{e}` |')
+    print('--- règle : écart mini %d° entre deux apps' % ECART_MIN)
+    c = conflits()
+    print('\n'.join(f'  trop proches : {a} / {b} ({d:.0f}°)' for a, b, d in c) if c else '  aucun conflit')
