@@ -1,12 +1,12 @@
 {
-  "_aide": "Source unique du site. Après modification : python3 scripts/build_site.py (régénère les sections « apps » de index.html). Captures : assets/shots/<slug>/NN-light.jpg et NN-dark.jpg (01 = vue d'ensemble, puis une par fonctionnalité dans l'ordre ; NN.jpg seul = identique dans les deux thèmes). Décors dessinés (avant les vraies captures) : data/mockups/<slug>.html. Formats : phone (portrait), window (bureau 16:10), duo (bureau + mobile : fichiers NN-desktop-light/dark et NN-mobile-light/dark). Champs optionnels : title_font (police du titre), links (boutons), legal (liens légaux). Ajouter une app = ajouter une entrée ici, une icône dans assets/img/, puis lancer le script : nav, icônes d'accueil et section sont générées. Champ optionnel tile : couleur de la tuile de l'icône du site et de l'animation d'accueil (par défaut : accent).",
+  "_aide": "Source unique du site. Après modification : python3 scripts/build_site.py (régénère les sections « apps » de index.html). Captures : assets/shots/<slug>/NN-light.jpg et NN-dark.jpg (01 = vue d'ensemble, puis une par fonctionnalité dans l'ordre ; NN.jpg seul = identique dans les deux thèmes). Décors dessinés (avant les vraies captures) : data/mockups/<slug>.html. Formats : phone (portrait), window (bureau 16:10), duo (bureau + mobile : fichiers NN-desktop-light/dark et NN-mobile-light/dark). Champs optionnels : title_font (police du titre), links (boutons), legal (liens légaux). Ajouter une app = ajouter une entrée ici, une icône dans assets/img/, puis lancer le script : nav, icônes d'accueil et section sont générées. Champ optionnel tile : couleur de la tuile de l'icône du site et de l'animation d'accueil (par défaut : accent). Champ optionnel btn_text : couleur du texte des boutons pleins quand l'accent est clair (par défaut blanc).",
   "apps": [
     {
       "slug": "grand-paname",
       "name": "Grand Paname",
       "icon": "grandpaname.png",
-      "accent": "#3aa0ff",
-      "glow": "#3aa0ff",
+      "accent": "#0ca8d8",
+      "glow": "#0ca8d8",
       "format": "phone",
       "tag": "L'application phare",
       "tagline": "Tout le réseau d'Île-de-France dans la poche.",
@@ -52,7 +52,8 @@
       ],
       "legal": [],
       "title_font": "GrandParis",
-      "tile": "#3aa0ff"
+      "tile": "#0ca8d8",
+      "btn_text": "#041b3b"
     },
     {
       "slug": "tool-proj",

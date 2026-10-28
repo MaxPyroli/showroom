@@ -114,13 +114,13 @@ Score Board et UrbaSim gardent leurs couleurs et leurs icônes (section 4). **Gr
 | Ligne | vert | `#33b368` |
 | Ligne | bleu | `#0ca8d8` |
 
-Les couleurs des lignes de métro, RER et tram dans l'app viennent des données officielles du réseau, jamais du thème. L'interface de l'app a en plus ses trois thèmes (clair, sombre, OLED), décrits dans son propre guide graphique (`docs/guide-graphique.md`, dépôt `grand-paname-app`) ; police GrandParis. Sur le site vitrine, l'accent utilisé pour Grand Paname est `#3aa0ff`.
+Les couleurs des lignes de métro, RER et tram dans l'app viennent des données officielles du réseau, jamais du thème. L'interface de l'app a en plus ses trois thèmes (clair, sombre, OLED), décrits dans son propre guide graphique (`docs/guide-graphique.md`, dépôt `grand-paname-app`) ; police GrandParis. Sur le site vitrine, l'accent de Grand Paname est le bleu de son logo, `#0ca8d8` (texte bleu nuit `#041b3b` sur les boutons pleins, pour la lisibilité).
 
 ## 4. L'âme de chaque app (reste libre)
 
 | App | Accent | Matière / ambiance | Police | Plateforme |
 |---|---|---|---|---|
-| Grand Paname | Couleurs du logo : fond `#041b3b`, lignes rouge `#e23f3a`, jaune `#f8c607`, vert `#33b368`, bleu `#0ca8d8` (accent du site : `#3aa0ff`) | Carte plein écran, barre de recherche et navigation flottantes, verre dépoli, trois thèmes (clair, sombre, OLED) | GrandParis | Android (Expo) |
+| Grand Paname | Couleurs du logo : fond `#041b3b`, lignes rouge `#e23f3a`, jaune `#f8c607`, vert `#33b368`, bleu `#0ca8d8` (accent du site : le bleu du logo `#0ca8d8`) | Carte plein écran, barre de recherche et navigation flottantes, verre dépoli, trois thèmes (clair, sombre, OLED) | GrandParis | Android (Expo) |
 | Tool Proj | `#0d7c72` (vert, encre `#0d5c55`) | Papier : post-it colorés légèrement penchés | Système | Web / PWA, bureau + mobile |
 | Desk Mail | `#e8604c` (corail, encre `#a63a2b`, icône : deux enveloppes rose et jaune) | Sobre et dense, logiciel de bureau ; accents corail | Segoe UI | Windows |
 | Near Pass | `#8a6bff` (violet provisoire ; couleur d'app non définie) | Radar, halos, lumière | Système | Android |
@@ -185,6 +185,7 @@ Du plus ancien au plus récent.
 - Indicateur de défilement de l'accueil : un simple chevron animé, discret, sans pastille ; plus bas.
 - Mise en ligne sur OVH (SFTP, déploiement automatique), fichiers CSS et JS versionnés dans leur adresse pour éviter les anciens fichiers en cache (section 11).
 - Palette de Grand Paname corrigée : ce sont les **couleurs de son logo** (fond bleu nuit et quatre couleurs de lignes), pas les couleurs de l'interface de l'app.
+- Accent de Grand Paname sur le site : le bleu du logo `#0ca8d8` (à la place de `#3aa0ff`), avec un texte bleu nuit `#041b3b` sur les boutons pleins car le blanc y serait peu lisible.
 - *(à compléter à chaque décision, avec la date et l'app concernée)*
 
 ## 9. Site vitrine : page unique, carrousels et captures d'écran

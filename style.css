@@ -7,7 +7,7 @@
   --g1:#6db6ff; --g2:#a07bff; --g3:#ff7fb0; --g4:#ffb86b; --atx-mix:#fff; --atx-pct:50%;
   --sh-radar:0 40px 90px -20px rgba(80,50,200,.7); --sh-lg:0 40px 80px -20px rgba(0,0,0,.85); --sh-md:0 20px 50px -14px rgba(0,0,0,.8); --sh-sm:0 14px 34px -10px rgba(0,0,0,.7);
   color-scheme:dark;
-  --glow:#3aa0ff; --a:#3aa0ff;
+  --glow:#0ca8d8; --a:#0ca8d8;
   --display:"Bricolage Grotesque","Inter",system-ui,sans-serif; --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
   --ease:cubic-bezier(.2,.8,.2,1);
 }
@@ -68,7 +68,7 @@ ul{list-style:none;padding:0}
 .btn.ghost{background:var(--card);backdrop-filter:blur(8px)}
 .btn.ghost:hover{border-color:var(--a,var(--g2));box-shadow:0 12px 30px -14px var(--a,var(--g2))}
 .btn.big{font-size:1.15rem;padding:16px 30px}
-.app-btn{background:var(--a);border-color:transparent;color:#fff;box-shadow:0 10px 30px -10px var(--a)}
+.app-btn{background:var(--a);border-color:transparent;color:var(--btn-ink,#fff);box-shadow:0 10px 30px -10px var(--a)}
 .app-btn:hover{box-shadow:0 18px 44px -10px var(--a);filter:brightness(1.06)}
 
 /* ---------- hero ---------- */
@@ -106,7 +106,6 @@ ul{list-style:none;padding:0}
 .tilt{transition:transform .25s var(--ease);transform-style:preserve-3d;position:relative;z-index:2;will-change:transform}
 
 /* couleurs par app */
-.gp{--a:#3aa0ff}.tp{--a:#14b8a6}.dm{--a:#4b7df0}.np{--a:#8a6bff}.sb{--a:#2fbf8f}.ub{--a:#3d86f0}
 .dm .f1{top:auto;bottom:8%;left:-2%}
 
 /* ---------- Grand Paname : téléphone ---------- */
@@ -210,7 +209,7 @@ aside hr{border:0;border-top:1px solid #2a323d;margin:6px 0}aside span{padding:4
 
 
 /* ---------- apps : en-tête + carrousel ---------- */
-.app{--a:#3aa0ff}
+.app{--a:#0ca8d8}
 .app{--at:color-mix(in oklab,var(--a) var(--atx-pct),var(--atx-mix))}
 .app{padding:clamp(60px,9vw,110px) 0}
 .ahead{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:16px clamp(24px,6vw,80px);margin-bottom:clamp(24px,4vw,44px)}

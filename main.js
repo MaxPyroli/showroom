@@ -43,7 +43,7 @@
   sections.forEach((s) => glowIO.observe(s));
   const hero = document.querySelector('.hero');
   if (hero) new IntersectionObserver((es) => {
-    if (es[0].isIntersecting) { root.style.setProperty('--glow', '#3aa0ff'); links.forEach((a) => a.classList.remove('on')); }
+    if (es[0].isIntersecting) { root.style.setProperty('--glow', '#0ca8d8'); links.forEach((a) => a.classList.remove('on')); }
   }, { rootMargin: '-45% 0px -45% 0px' }).observe(hero);
 
   // Carrousels : flèches, points, balayage tactile et clavier

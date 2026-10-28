@@ -85,8 +85,9 @@ def section(app, index):
         for l in app["links"])
     links += "".join(f'<a class="btn ghost" href="{e(l["url"])}" target="_blank" rel="noopener">{e(l["label"])} ↗</a>' for l in app["legal"])
     chips = "".join(f"<span>{e(c)}</span>" for c in app["chips"])
-    title_style = f' style="font-family:\'{app["title_font"]}\',var(--display);font-weight:700;letter-spacing:0"' if app.get("title_font") else ""
-    return f'''<section class="app {slug}{' flip' if index % 2 else ''}" id="{slug}" data-glow="{app['glow']}" style="--a:{app['accent']}">
+    btn_ink = f";--btn-ink:{app['btn_text']}" if app.get("btn_text") else ""
+    title_style = f' style="font-family:\'{app["title_font"]}\',var(--display);font-weight:700;letter-spacing:0;font-size:clamp(2.1rem,4.4vw,3.6rem)"' if app.get("title_font") else ""
+    return f'''<section class="app {slug}{' flip' if index % 2 else ''}" id="{slug}" data-glow="{app['glow']}" style="--a:{app['accent']}{btn_ink}">
   <div class="wrap">
     <header class="ahead">
       <div class="aleft">
