@@ -149,17 +149,17 @@ L'icône du site (`assets/img/favicon.svg`, les tuiles des apps en cercle) et l'
 
 ## 7. État de l'harmonisation (à tenir à jour)
 
-Légende : ✅ fait · ⬜ à faire · ❓ à vérifier. Mis à jour le 2026-10-28 (site vitrine) ; les lignes des apps datent de la lecture des dépôts du 2026-10-27 et n'ont pas encore été vérifiées dans le code des apps.
+Légende : ✅ fait · 🟡 partiel · ⬜ à faire · ❌ manque important · ❓ non vérifiable. Audit des dépôts du 2026-10-28 : rapport détaillé dans `branding/audit-depots-2026-10-28.md`.
 
-| App | Contact `@panamedev.fr` | Copyright | Mention Claude | Notes |
-|---|---|---|---|---|
-| Grand Paname | ❓ | ⬜ | ⬜ | Ancien domaine `grandpaname.fun` à retirer ; `docs/confidentialite.html` à revoir |
-| Tool Proj | ❓ | ⬜ | ⬜ | |
-| Desk Mail | ⬜ (page : `panamail-pages`) | ⬜ | ⬜ | Icône réelle (corail) intégrée au site ; la page de confidentialité est encore en bleu, à passer au corail ; le dépôt de la page s'appelle encore « panamail » |
-| Near Pass | ⬜ (page : `nearpass-site`, affiche `contact@grandpaname.fun`) | ⬜ | ⬜ | Icône radar provisoire ; couleur d'app à choisir |
-| Score Board | ❓ | ⬜ | ⬜ | Le README dit encore « PanaGames » ; `PRIVACY.md` à revoir |
-| UrbaSim | ❓ | ⬜ | ⬜ | |
-| Site Showroom | ✅ | ✅ | ✅ | En ligne sur `panamedev.fr`, déploiement automatique |
+| App | Contact `@panamedev.fr` | Copyright | Mention Claude | Nom | Bloc charte (consignes) | Page de confidentialité |
+|---|---|---|---|---|---|---|
+| Grand Paname | ⬜ ancien `grandpaname.fun` (app + page) | ⬜ | 🟡 « Gemini et Claude » | ✅ | ⬜ | ⬜ contact, ©, date |
+| Tool Proj | ⬜ aucun | ⬜ | ⬜ | ✅ | ⬜ | ❌ inexistante |
+| Desk Mail | ⬜ ancien (page) | ⬜ | ❓ | ✅ | ❓ | 🟡 éditeur ✅, encore bleue |
+| Near Pass | ⬜ ancien (page) | ⬜ | ❓ | ✅ | ❓ | ⬜ |
+| Score Board | ⬜ champ vide | ⬜ | ⬜ | ❌ « PanaGames » sous l'icône Android | ⬜ | 🟡 contact vide |
+| UrbaSim (jeu) | ⬜ aucun | ⬜ | ⬜ | ✅ | ⬜ | ❌ inexistante |
+| Site Showroom | ✅ | ✅ | ✅ | ✅ | — | — (charge Google Fonts : à héberger soi-même) |
 
 ## 8. Journal des décisions de design
 
@@ -187,6 +187,7 @@ Du plus ancien au plus récent.
 - Palette de Grand Paname corrigée : ce sont les **couleurs de son logo** (fond bleu nuit et quatre couleurs de lignes), pas les couleurs de l'interface de l'app.
 - Accent de Grand Paname sur le site : le bleu du logo `#0ca8d8` (à la place de `#3aa0ff`), avec un texte bleu nuit `#041b3b` sur les boutons pleins car le blanc y serait peu lisible.
 - Liens d'ancre du site (menu, logo, flèche, « Découvrir ») : le défilement se fait sans laisser `#…` dans l'adresse, pour que l'animation d'accueil se rejoue au rechargement. Un lien partagé vers une section (`/#desk-mail`) arrive directement sur la section, sans animation.
+- Audit des dépôts d'apps (lecture seule) : rapport dans `branding/audit-depots-2026-10-28.md`. Constats : aucun outil de pub ni de mesure d'audience dans le code, mais « données chez l'utilisateur » n'est pas vrai pour toutes les apps (Tool Proj : Supabase ; Score Board web : Firebase) : à dire seulement « sans pub, sans pistage ». Liens du site corrigés vers `toolproj.panamedev.fr` et `urbasim.panamedev.fr` (bouton « Jouer »).
 - *(à compléter à chaque décision, avec la date et l'app concernée)*
 
 ## 9. Site vitrine : page unique, carrousels et captures d'écran

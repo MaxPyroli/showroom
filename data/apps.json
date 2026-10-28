@@ -73,7 +73,7 @@
       "links": [
         {
           "label": "Ouvrir l'app ↗",
-          "url": "https://maxpyroli.github.io/Tool-Proj/"
+          "url": "https://toolproj.panamedev.fr/"
         }
       ],
       "hero_hint": "L'aperçu d'un projet : bureau et mobile",
@@ -269,6 +269,10 @@
         "Prix et règles indicatifs"
       ],
       "links": [
+        {
+          "label": "Jouer ↗",
+          "url": "https://urbasim.panamedev.fr/"
+        },
         {
           "label": "Voir l'outil d'origine ↗",
           "url": "https://maxpyroli.github.io/urbasim/",
