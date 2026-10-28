@@ -205,8 +205,8 @@
       "slug": "scoreboard",
       "name": "Score Board",
       "icon": "scoreboard.png",
-      "accent": "#2fbf8f",
-      "glow": "#2fbf8f",
+      "accent": "#878300",
+      "glow": "#878300",
       "format": "phone",
       "tag": "Jeux de société",
       "tagline": "Fini le papier et le crayon.",
@@ -218,8 +218,13 @@
       ],
       "links": [
         {
+          "label": "Ouvrir l'app ↗",
+          "url": "https://scoreboard.panamedev.fr/"
+        },
+        {
           "label": "Voir le projet ↗",
-          "url": "https://github.com/MaxPyroli/Score-Board"
+          "url": "https://github.com/MaxPyroli/Score-Board",
+          "ghost": true
         }
       ],
       "hero_hint": "L'accueil avec les jeux",
@@ -251,14 +256,15 @@
         }
       ],
       "legal": [],
-      "tile": "#2fbf8f"
+      "tile": "#878300",
+      "btn_text": "#1a1800"
     },
     {
       "slug": "urbasim",
       "name": "UrbaSim",
       "icon": "urbasim-icon.png",
-      "accent": "#3d86f0",
-      "glow": "#4a90f2",
+      "accent": "#3f80ca",
+      "glow": "#4d8fd8",
       "format": "window",
       "tag": "Jeu · Bêta",
       "tagline": "Le Monopoly de l'immobilier réel.",
@@ -303,7 +309,7 @@
         }
       ],
       "legal": [],
-      "tile": "#e0457b"
+      "tile": "#3f80ca"
     }
   ]
 }

@@ -115,7 +115,8 @@
     const orbit = document.querySelector('.orbit').getBoundingClientRect();
     const vw = root.clientWidth, vh = root.clientHeight;   // sans la barre de défilement
     const L = Math.min(260, vw * 0.6);
-    const R = L * 142 / 512, T = L * 112 / 512, n = icons.length, D = 3800;
+    const R = L * 142 / 512, T = L * 112 / 512, n = icons.length;
+    const HOLD = 800, SPIN = 3800, D = HOLD + SPIN;   // HOLD : le logo apparaît et attend avant de tourner
     const logo = document.createElement('div');
     logo.className = 'intro-logo';
     logo.style.cssText = `width:${L}px;height:${L}px;left:50%;top:50%;margin:${-L / 2}px 0 0 ${-L / 2}px;border-radius:${L * 113 / 512}px`;
@@ -140,26 +141,27 @@
       el.append(tile);
       const frames = [], N = 240;
       for (let k = 0; k <= N; k++) {
-        const t = k / N, e = outCubic((t - 0.46) / 0.54);
-        const th = a0 + Math.PI * 2 * TURNS * G(t) / G1;
+        const t = k / N, u = Math.max(0, (t * D - HOLD) / SPIN), e = outCubic((u - 0.46) / 0.54);
+        const th = a0 + Math.PI * 2 * TURNS * G(u) / G1;
         const px = cx + R * Math.cos(th), py = cy + R * Math.sin(th);
         const s = (T / size) * (1 - e) + e;
         frames.push({ translate: `${(px * (1 - e) + fx * e - fx).toFixed(1)}px ${(py * (1 - e) + fy * e - fy).toFixed(1)}px`, scale: s.toFixed(3), offset: t });
       }
       const o = { duration: D, easing: 'linear' };
       anims.push(el.animate(frames, o));
-      anims.push(el.querySelector('img').animate([{ opacity: 0 }, { opacity: 0, offset: .62 }, { opacity: 1 }], o));
-      anims.push(tile.animate([{ opacity: 1 }, { opacity: 1, offset: .62 }, { opacity: 0 }], { ...o, fill: 'forwards' }));
+      const at = (x) => (HOLD + x * SPIN) / D;           // position dans la séquence complète
+      anims.push(el.querySelector('img').animate([{ opacity: 0 }, { opacity: 0, offset: at(.62) }, { opacity: 1 }], o));
+      anims.push(tile.animate([{ opacity: 1 }, { opacity: 1, offset: at(.62) }, { opacity: 0 }], { ...o, fill: 'forwards' }));
     });
     // le fond du logo grandit jusqu'à couvrir l'écran et devient le fond de la page
     const pageBg = getComputedStyle(document.body).backgroundColor;
     const cover = 1.7 * Math.max(vw, vh) / L;
     anims.push(logo.animate([
       { opacity: 0, scale: .85, offset: 0 },
-      { opacity: 1, scale: 1, offset: .1 },
-      { opacity: 1, scale: 1, offset: .42, easing: 'cubic-bezier(.65,0,.35,1)' },
-      { opacity: 1, scale: cover, backgroundColor: pageBg, offset: .76 },
-      { opacity: 0, scale: cover, backgroundColor: pageBg, offset: .96 },
+      { opacity: 1, scale: 1, offset: HOLD * .5 / D },
+      { opacity: 1, scale: 1, offset: (HOLD + .42 * SPIN) / D, easing: 'cubic-bezier(.65,0,.35,1)' },
+      { opacity: 1, scale: cover, backgroundColor: pageBg, offset: (HOLD + .76 * SPIN) / D },
+      { opacity: 0, scale: cover, backgroundColor: pageBg, offset: (HOLD + .96 * SPIN) / D },
       { opacity: 0, scale: cover, backgroundColor: pageBg, offset: 1 }
     ], { duration: D, easing: 'linear', fill: 'forwards' }));
     // pendant la séquence, on garde la page en haut (sinon le cercle se décalerait) ; rien n'interrompt l'animation
@@ -180,7 +182,7 @@
       root.classList.remove('intro-fly');
       done();
     };
-    setTimeout(done, D * 0.78);
+    setTimeout(done, HOLD + SPIN * 0.78);
     anims[0].finished.then(end).catch(end);
     setTimeout(end, D + 600);
   };
