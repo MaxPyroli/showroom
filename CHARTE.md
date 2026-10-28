@@ -97,19 +97,22 @@ Ce sont des **repères pour garder l'air de famille**, pas des obligations : s'�
 | Tool Proj | `#0d7c72` | `#0d5c55` |
 | Desk Mail | `#e8604c` | `#a63a2b` |
 | Near Pass | `#8a6bff` (provisoire) | à choisir |
-| Orange (piste) | `#f08a24` | `#a85a10` |
-| Bleu ciel (piste) | `#2f9fe0` | `#1c6a9c` |
-| Violet (piste) | `#7a4fd1` | `#4f2f94` |
-| Indigo (gardé de côté) | `#3b4cc0` | `#232f86` |
-| Framboise (proposition) | `#d9467a` | `#a72251` |
-| Moutarde (proposition) | `#d9a21b` | `#987113` |
-| Ardoise (proposition) | `#4a6275` | `#344552` |
-| Brun Score Board (proposition, d'après l'idée d'icône) | `#b0602a` | `#7b431d` |
-| Bleu nuit (proposition) | `#2b4b8f` | `#1e3564` |
+| Rouge (20°) | `#d15b60` | `#8b2d34` |
+| Orange (50°) | `#cb6620` | `#833b01` |
+| Ambre (80°) | `#ae7c02` | `#6c4c01` |
+| Jaune olive (110°) | `#8c8c06` | `#565600` |
+| Vert pomme (140°) | `#4f9b3e` | `#246213` |
+| Vert menthe (165°) | `#029e72` | `#006246` |
+| Turquoise (195°) | `#009a9a` | `#035f5f` |
+| Bleu ciel (230°) | `#0993c1` | `#005b79` |
+| Bleu (260°) | `#4d84df` | `#245098` |
+| Violet (290°) | `#8673d9` | `#534293` |
+| Magenta (325°) | `#b263b7` | `#743578` |
+| Rose (355°) | `#c95a8b` | `#852d56` |
 
-L'encre est la même teinte que le fond, environ 30 % plus sombre. Les couleurs « piste » et « proposition » sont calculées, pas encore testées sur une vraie icône.
+**Palette calculée** (`python3 scripts/palette.py`) : 12 teintes régulièrement espacées en OKLCH, **même luminosité (0,62) et même intensité (0,15, réduite si la couleur sort de l'écran)**, pour que toutes aient le même poids. Aucune n'est attribuée : chaque app choisit la sienne, en s'écartant le moins possible de la roue. Tool Proj tombe près du Turquoise (plus sombre), Desk Mail entre Rouge et Orange ; Near Pass et les autres sont à replacer sur la roue. L'encre est la même teinte que le fond, plus sombre (luminosité 0,44). Les couleurs de la palette sont calculées, pas encore testées sur une vraie icône.
 
-Score Board et UrbaSim gardent leurs couleurs et leurs icônes (section 4). **Grand Paname a sa propre palette, à part** (ci-dessous).
+Score Board et UrbaSim n'ont pas encore de couleur dans la palette : leurs couleurs actuelles (section 4) sont à rapprocher d'une teinte de la roue, au choix du propriétaire. **Grand Paname a sa propre palette, à part** (ci-dessous).
 
 **Palette propre de Grand Paname : les couleurs de son logo** (mesurées sur `assets/img/grandpaname.png`) : un fond bleu nuit et les couleurs des lignes du réseau.
 
