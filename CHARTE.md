@@ -186,6 +186,7 @@ Du plus ancien au plus récent.
 - Mise en ligne sur OVH (SFTP, déploiement automatique), fichiers CSS et JS versionnés dans leur adresse pour éviter les anciens fichiers en cache (section 11).
 - Palette de Grand Paname corrigée : ce sont les **couleurs de son logo** (fond bleu nuit et quatre couleurs de lignes), pas les couleurs de l'interface de l'app.
 - Accent de Grand Paname sur le site : le bleu du logo `#0ca8d8` (à la place de `#3aa0ff`), avec un texte bleu nuit `#041b3b` sur les boutons pleins car le blanc y serait peu lisible.
+- Liens d'ancre du site (menu, logo, flèche, « Découvrir ») : le défilement se fait sans laisser `#…` dans l'adresse, pour que l'animation d'accueil se rejoue au rechargement. Un lien partagé vers une section (`/#desk-mail`) arrive directement sur la section, sans animation.
 - *(à compléter à chaque décision, avec la date et l'app concernée)*
 
 ## 9. Site vitrine : page unique, carrousels et captures d'écran
