@@ -11,8 +11,9 @@ Dépôt de référence : `MaxPyroli/showroom` (le site vitrine contient la mise 
 | Sujet | Valeur |
 |---|---|
 | Marque / éditeur | **Paname Dev** |
-| Domaine | `panamedev.fr` : **le site est en ligne** (hébergement OVH, voir section 11) ; **chaque app a le sous-domaine de son nom** : `toolproj.panamedev.fr`, `urbasim.panamedev.fr`, etc. (créé chez OVH, redirigé vers l'hébergement de l'app) |
-| Contact | **`contact@panamedev.fr`** : adresse unique, partout |
+| Domaine | `panamedev.fr` : **le site est en ligne** (hébergement OVH, voir section 11) |
+| Adresse de chaque app | **Toute app web migre vers son sous-domaine de `panamedev.fr`**, qui porte le nom de l'app : `toolproj.panamedev.fr`, `urbasim.panamedev.fr`, etc. (enregistrement DNS créé chez OVH, domaine personnalisé réglé chez l'hébergeur de l'app). L'ancienne adresse (`github.io`, `grandpaname.fun`…) redirige vers la nouvelle. **À migrer** : liens dans l'app, README, pages légales, fiche du store, site vitrine ; attention, les clés d'accès (passkeys) sont liées au domaine et sont à recréer |
+| Contact | **`contact@panamedev.fr`** : adresse unique, partout. **La boîte existe déjà chez OVH : rien à créer.** Il suffit de l'écrire dans l'app, ses pages et ses fiches |
 | Copyright | **`© 2026 Paname Dev`** : l'année de première publication, puis `© 2026–<année en cours>` ; jamais l'année seule en dur sans raison |
 | Mention de conception | **Version longue** (à propos, README, store) : `Pensé par Paname Dev et codé par Claude` ; **version courte** (pieds de page, à côté du copyright) : `Codé par Claude` (Claude, par Anthropic) |
 | Promesse | **Sans pub, sans pistage** : vrai pour toutes les apps, on le dit partout. « Données chez toi », « hors-ligne », « zéro serveur » : seulement app par app, quand c'est exact |
@@ -29,11 +30,12 @@ Ancien contact à **remplacer partout** : `contact@grandpaname.fun`. Grand Panam
 
 À cocher pour chaque app, et à garder cohérent à chaque modification.
 
+- [ ] **Adresse** : l'app web est servie sur son sous-domaine `<nom>.panamedev.fr` (l'ancienne adresse redirige) et tous les liens (README, store, pages légales, site vitrine) pointent vers la nouvelle.
 - [ ] **Icône** à jour (idées de la section 3 bis, librement).
 - [ ] **Écran « À propos » / Paramètres** de l'app : version, ligne de crédit (section 1), lien confidentialité, contact.
 - [ ] **Page de confidentialité** : rubrique « Contact » = `contact@panamedev.fr`, pied de page = ligne de crédit, date de mise à jour.
 - [ ] **README du dépôt** : en bas, la ligne de crédit.
-- [ ] **Fiche du store** (Play Store, etc.) : e-mail de contact du développeur, mention « Conçu avec Claude » dans la description longue, lien de confidentialité.
+- [ ] **Fiche du store** (Play Store, etc.) : e-mail de contact du développeur, mention « Pensé par Paname Dev et codé par Claude » dans la description longue, lien de confidentialité.
 - [ ] **Site / PWA** (si applicable) : pied de page, `<meta name="author">`, manifeste.
 - [ ] **Licence** : si une licence existe, le titulaire est `Paname Dev`.
 - [ ] **Fichier de consignes Claude du dépôt** (`CLAUDE.md` ou `AGENTS.md`) : contient le bloc de la section 12.
