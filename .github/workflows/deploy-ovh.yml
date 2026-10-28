@@ -19,12 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HAS_FTP: ${{ secrets.FTP_SERVER != '' }}
-      HAS_SSH: ${{ secrets.SSH_HOST != '' }}
+      HAS_SFTP: ${{ secrets.SFTP_HOST != '' }}
     steps:
       - uses: actions/checkout@v4
 
       - name: Assembler le site
-        if: env.HAS_FTP == 'true' || env.HAS_SSH == 'true'
+        if: env.HAS_FTP == 'true' || env.HAS_SFTP == 'true'
         run: |
           pip install --quiet pillow
           python3 scripts/package.py
@@ -40,15 +40,22 @@ jobs:
           local-dir: dist/site/
           server-dir: ${{ secrets.FTP_DIR || './www/' }}
 
-      - name: Envoyer par SSH
-        if: env.HAS_SSH == 'true'
+      - name: Envoyer par SFTP
+        if: env.HAS_SFTP == 'true'
         env:
-          SSH_KEY: ${{ secrets.SSH_KEY }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_PATH: ${{ secrets.SSH_PATH || 'www/' }}
+          SFTP_HOST: ${{ secrets.SFTP_HOST }}
+          SFTP_PORT: ${{ secrets.SFTP_PORT || '22' }}
+          SFTP_USER: ${{ secrets.SFTP_USER }}
+          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          SFTP_KEY: ${{ secrets.SFTP_KEY }}
+          SFTP_DIR: ${{ secrets.SFTP_DIR || 'www/' }}
         run: |
-          install -m 700 -d ~/.ssh
-          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
-          chmod 600 ~/.ssh/id_deploy
-          rsync -az -e "ssh -i ~/.ssh/id_deploy -o StrictHostKeyChecking=accept-new" dist/site/ "$SSH_USER@$SSH_HOST:$SSH_PATH"
+          sudo apt-get install -y --no-install-recommends lftp >/dev/null
+          OPTS="set sftp:auto-confirm yes; set net:max-retries 3; set net:timeout 30"
+          if [ -n "$SFTP_KEY" ]; then
+            install -m 700 -d ~/.ssh
+            printf '%s\n' "$SFTP_KEY" > ~/.ssh/id_deploy && chmod 600 ~/.ssh/id_deploy
+            OPTS="$OPTS; set sftp:connect-program 'ssh -a -x -i $HOME/.ssh/id_deploy'"
+          fi
+          lftp -u "$SFTP_USER","$SFTP_PASSWORD" -p "$SFTP_PORT" "sftp://$SFTP_HOST" \
+            -e "$OPTS; mirror -R --no-perms --verbose dist/site/ $SFTP_DIR; bye"

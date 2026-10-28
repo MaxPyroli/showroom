@@ -9,26 +9,28 @@ Le workflow `.github/workflows/deploy-ovh.yml` publie le site à chaque modifica
 ci-dessous existent. À créer sur GitHub : dépôt `showroom` → Settings → Secrets and variables → Actions →
 New repository secret. Ne jamais écrire ces valeurs dans une conversation, un fichier ou un commit.
 
-### Option FTP (toutes les offres OVH)
+### Option SFTP (recommandée : chiffrée)
 
 | Secret | Valeur |
 |---|---|
-| `FTP_SERVER` | le serveur FTP indiqué dans l'espace client OVH (ex. `ftp.cluster0xx.hosting.ovh.net`) |
+| `SFTP_HOST` | le serveur indiqué dans l'espace client OVH, onglet « FTP - SSH » de l'hébergement (ex. `ssh.cluster0xx.hosting.ovh.net`) |
+| `SFTP_PORT` *(optionnel)* | le port affiché dans ce même onglet (par défaut `22`) |
+| `SFTP_USER` | l'identifiant |
+| `SFTP_PASSWORD` | son mot de passe |
+| `SFTP_KEY` *(optionnel)* | une clé privée dédiée au déploiement, si tu préfères une clé au mot de passe |
+| `SFTP_DIR` *(optionnel)* | dossier distant, par défaut `www/` |
+
+### Option FTP (si le SFTP ne marche pas)
+
+| Secret | Valeur |
+|---|---|
+| `FTP_SERVER` | le serveur FTP indiqué dans l'espace client OVH |
 | `FTP_USER` | l'identifiant FTP |
 | `FTP_PASSWORD` | son mot de passe |
 | `FTP_DIR` *(optionnel)* | dossier distant, par défaut `./www/` |
-| `FTP_PROTOCOL` *(optionnel)* | `ftps` (par défaut, chiffré) ou `ftp` si le serveur n'accepte pas le chiffrement |
+| `FTP_PROTOCOL` *(optionnel)* | `ftps` (par défaut, chiffré) ou `ftp` si le serveur refuse le chiffrement |
 
-### Option SSH (offres Pro et Performance)
-
-| Secret | Valeur |
-|---|---|
-| `SSH_HOST` | le serveur SSH de l'hébergement |
-| `SSH_USER` | l'identifiant |
-| `SSH_KEY` | la clé privée dédiée au déploiement (créer une clé spéciale, jamais la clé personnelle) |
-| `SSH_PATH` *(optionnel)* | dossier distant, par défaut `www/` |
-
-Si les deux jeux existent, les deux envois ont lieu. Le déploiement n'efface rien sur le serveur :
+Mieux vaut n'en renseigner qu'un seul (si les deux existent, les deux envois ont lieu). Le déploiement n'efface rien sur le serveur :
 un fichier supprimé du site reste en ligne tant qu'on ne le supprime pas à la main.
 
 ## Domaine, certificat, mail
