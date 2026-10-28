@@ -15,6 +15,7 @@ Dépôt de référence : `MaxPyroli/showroom` (le site vitrine contient la mise 
 | Contact | **`contact@panamedev.fr`** : adresse unique, partout |
 | Copyright | **`© 2026 Paname Dev`** : l'année de première publication, puis `© 2026–<année en cours>` ; jamais l'année seule en dur sans raison |
 | Mention de conception | **`Conçu et codé avec Claude`** (Claude, par Anthropic) |
+| Promesse | **Sans pub, sans pistage** : vrai pour toutes les apps, on le dit partout. « Données chez toi », « hors-ligne », « zéro serveur » : seulement app par app, quand c'est exact |
 | Langue | Français, tutoiement, ton simple et direct |
 
 Ancien contact à **remplacer partout** : `contact@grandpaname.fun`. Grand Paname quitte son ancien domaine ; le nom de l'app, lui, ne change pas.
@@ -46,7 +47,12 @@ Ancien contact à **remplacer partout** : `contact@grandpaname.fun`. Grand Panam
 | Accent | **Une seule couleur d'accent par app**, pour les actions et l'état actif. Le rouge est réservé aux problèmes |
 | Thèmes | Toute nouvelle couleur vérifiée en clair et en sombre (Grand Paname ajoute un sombre OLED) |
 | Mouvement | Courbe `cubic-bezier(.2,.8,.2,1)`, 250–400 ms, apparition douce vers le haut ; respecter `prefers-reduced-motion` |
-| Vie privée | **Sans pub, sans pistage, données chez l'utilisateur : vrai pour toutes les apps**, donc on peut le dire partout (site, fiches, README) |
+| Vie privée | **Sans pub, sans pistage** : vrai pour toutes les apps, donc dit partout (site, fiches, README). **Ne pas écrire « données chez toi » pour toutes** : faux pour Tool Proj (Supabase), Score Board en ligne (Firebase), Grand Paname (API d'Île-de-France Mobilités) ; à réserver aux apps où c'est exact (Desk Mail, Near Pass) |
+| Services tiers | **Aucune requête vers un tiers pour afficher l'app** : polices, bibliothèques et scripts sont **hébergés avec l'app** (pas de Google Fonts, jsDelivr, unpkg, cdnjs…), car ces services voient l'adresse IP de l'utilisateur. Les services **nécessaires** (tuiles de carte, API de données, base de données, connexion) sont autorisés mais **nommés dans la page de confidentialité** de l'app |
+| Pages légales obligatoires | **Toute app a une page de confidentialité**, même courte : éditeur (Paname Dev), contact, ce qui est stocké et où, services tiers utilisés (nommés), date de mise à jour (à changer à chaque modification) |
+| Nom | **Un seul nom partout** : sous l'icône du téléphone, fiche de store, README, interface, thème et dépôt. Exemple à corriger : « PanaGames » → « Score Board » |
+| Identifiant technique | Pour une app **pas encore publiée**, un identifiant de la forme `fr.panamedev.<app>` (proposition) ; il ne peut plus changer après la première publication. Les apps déjà publiées gardent le leur (ex. Grand Paname : `fun.grandpaname.app`) |
+| Mention de conception | **Exacte** : « Conçu et codé avec Claude » ; si un autre outil a réellement contribué, on le dit (Grand Paname affiche « Gemini et Claude » : à confirmer) |
 | Pages légales | Gabarit sobre : fond neutre, carte « En résumé » avec filet d'accent à gauche, accent de l'app |
 | Ombres | Trois niveaux (grande, moyenne, petite) définis **par thème** : profondes en sombre, douces et teintées bleu nuit en clair. Elles ne doivent jamais être coupées par un conteneur |
 | Boutons | Pilule ; au survol : léger soulèvement et reflet qui glisse ; le bouton plein prend le dégradé du titre. Écrire le survol avec `translate`/`scale` (pas `transform`, que les animations d'apparition écrasent) |
@@ -151,15 +157,15 @@ L'icône du site (`assets/img/favicon.svg`, les tuiles des apps en cercle) et l'
 
 Légende : ✅ fait · 🟡 partiel · ⬜ à faire · ❌ manque important · ❓ non vérifiable. Audit des dépôts du 2026-10-28 : rapport détaillé dans `branding/audit-depots-2026-10-28.md`.
 
-| App | Contact `@panamedev.fr` | Copyright | Mention Claude | Nom | Bloc charte (consignes) | Page de confidentialité |
-|---|---|---|---|---|---|---|
-| Grand Paname | ⬜ ancien `grandpaname.fun` (app + page) | ⬜ | 🟡 « Gemini et Claude » | ✅ | ⬜ | ⬜ contact, ©, date |
-| Tool Proj | ⬜ aucun | ⬜ | ⬜ | ✅ | ⬜ | ❌ inexistante |
-| Desk Mail | ⬜ ancien (page) | ⬜ | ❓ | ✅ | ❓ | 🟡 éditeur ✅, encore bleue |
-| Near Pass | ⬜ ancien (page) | ⬜ | ❓ | ✅ | ❓ | ⬜ |
-| Score Board | ⬜ champ vide | ⬜ | ⬜ | ❌ « PanaGames » sous l'icône Android | ⬜ | 🟡 contact vide |
-| UrbaSim (jeu) | ⬜ aucun | ⬜ | ⬜ | ✅ | ⬜ | ❌ inexistante |
-| Site Showroom | ✅ | ✅ | ✅ | ✅ | — | — (charge Google Fonts : à héberger soi-même) |
+| App | Contact `@panamedev.fr` | Copyright | Mention Claude | Nom | Bloc charte (consignes) | Page de confidentialité | Requêtes tiers inutiles |
+|---|---|---|---|---|---|---|---|
+| Grand Paname | ⬜ ancien `grandpaname.fun` (app + page) | ⬜ | 🟡 « Gemini et Claude » | ✅ | ⬜ | ⬜ contact, ©, date | ⬜ Leaflet via unpkg (tuiles CARTO : service nécessaire, à nommer) |
+| Tool Proj | ⬜ aucun | ⬜ | ⬜ | ✅ | ⬜ | ❌ inexistante | ⬜ Google Fonts + jsDelivr |
+| Desk Mail | ⬜ ancien (page) | ⬜ | ❓ | ✅ | ❓ | 🟡 éditeur ✅, encore bleue | ✅ (page) / ❓ (app) |
+| Near Pass | ⬜ ancien (page) | ⬜ | ❓ | ✅ | ❓ | ⬜ | ✅ (page) / ❓ (app) |
+| Score Board | ⬜ champ vide | ⬜ | ⬜ | ❌ « PanaGames » sous l'icône Android | ⬜ | 🟡 contact vide, partage en ligne non décrit | ✅ (aucune trouvée) |
+| UrbaSim (jeu) | ⬜ aucun | ⬜ | ⬜ | ✅ | ⬜ | ❌ inexistante | ✅ (tuiles OSM : à nommer) |
+| Site Showroom | ✅ | ✅ | ✅ | ✅ | — | — | ✅ polices hébergées, **aucune requête tierce** |
 
 ## 8. Journal des décisions de design
 
@@ -188,6 +194,8 @@ Du plus ancien au plus récent.
 - Accent de Grand Paname sur le site : le bleu du logo `#0ca8d8` (à la place de `#3aa0ff`), avec un texte bleu nuit `#041b3b` sur les boutons pleins car le blanc y serait peu lisible.
 - Liens d'ancre du site (menu, logo, flèche, « Découvrir ») : le défilement se fait sans laisser `#…` dans l'adresse, pour que l'animation d'accueil se rejoue au rechargement. Un lien partagé vers une section (`/#desk-mail`) arrive directement sur la section, sans animation.
 - Audit des dépôts d'apps (lecture seule) : rapport dans `branding/audit-depots-2026-10-28.md`. Constats : aucun outil de pub ni de mesure d'audience dans le code, mais « données chez l'utilisateur » n'est pas vrai pour toutes les apps (Tool Proj : Supabase ; Score Board web : Firebase) : à dire seulement « sans pub, sans pistage ». Liens du site corrigés vers `toolproj.panamedev.fr` et `urbasim.panamedev.fr` (bouton « Jouer »).
+- **Promesse corrigée** : seule « **sans pub, sans pistage** » est vraie pour toutes les apps ; « données chez l'utilisateur » est retiré (voir section 3). Nouvelles règles d'harmonisation : aucune requête tierce inutile (polices et bibliothèques hébergées avec l'app), page de confidentialité obligatoire, nom unique partout, mention de conception exacte, identifiant `fr.panamedev.<app>` pour les apps non publiées.
+- Site vitrine : polices Inter et Bricolage Grotesque hébergées (`assets/fonts/`), plus aucune requête vers Google : vérifié, un seul domaine contacté.
 - *(à compléter à chaque décision, avec la date et l'app concernée)*
 
 ## 9. Site vitrine : page unique, carrousels et captures d'écran
@@ -215,6 +223,7 @@ Le site est **une seule page** (`index.html`). Chaque app y a une section avec u
 
 - **En ligne** : `https://panamedev.fr` (hébergement OVH, Apache). `https://maxpyroli.github.io/showroom/` reste un secours.
 - **Déploiement automatique** : à chaque modification poussée sur la branche, le workflow GitHub `.github/workflows/deploy-ovh.yml` assemble le site (`python3 scripts/package.py`) et l'envoie en **SFTP** dans `www/`. Les identifiants sont des *secrets* du dépôt (`SFTP_HOST`, `SFTP_USER`, `SFTP_PASSWORD`…), jamais dans un fichier ni dans une conversation. Détails : `hosting/LISEZMOI.md`.
+- **Aucune requête tierce** : les polices (Inter, Bricolage Grotesque, GrandParis) sont dans `assets/fonts/` (licences OFL jointes) ; ne jamais remettre de lien vers Google Fonts ou un CDN.
 - **Rien n'est supprimé** sur le serveur : un fichier retiré du site reste en ligne tant qu'on ne l'enlève pas à la main.
 - **Cache** : les fichiers `style.css` et `main.js` sont versionnés dans leur adresse (`?v=…`, calculé par `scripts/build_site.py`), donc une mise à jour est prise en compte tout de suite. Ne jamais publier de CSS ou de JS sans passer par le script.
 - **À faire côté OVH** : forcer le HTTPS (3 lignes à décommenter dans `hosting/.htaccess`), créer l'adresse `contact@panamedev.fr`, sous-domaines par app.
@@ -225,6 +234,6 @@ Le site est **une seule page** (`index.html`). Chaque app y a une section avec u
 ```md
 ## Charte Paname Dev
 - La charte commune est dans `MaxPyroli/showroom`, fichier `CHARTE.md` (lien brut, branche de travail actuelle : https://raw.githubusercontent.com/MaxPyroli/showroom/claude/modest-babbage-vp5jts/CHARTE.md ; remplacer par `main` quand la branche sera fusionnée). La lire au début d'une tâche qui touche à l'interface, aux textes, aux pages légales, au README ou au store.
-- Identité à utiliser telle quelle : éditeur « Paname Dev », contact `contact@panamedev.fr`, copyright `© 2026 Paname Dev`, mention « Conçu et codé avec Claude ». Promesse vraie pour toutes les apps : sans pub, sans pistage, données chez l'utilisateur.
+- Identité à utiliser telle quelle : éditeur « Paname Dev », contact `contact@panamedev.fr`, copyright `© 2026 Paname Dev`, mention « Conçu et codé avec Claude ». Promesse vraie pour toutes les apps : **sans pub, sans pistage** (ne pas écrire « données chez toi » ni « hors-ligne » sauf si c'est exact pour l'app). Aucune requête vers un tiers pour afficher l'app : polices, bibliothèques et scripts hébergés avec l'app ; les services nécessaires (cartes, API, base de données) sont nommés dans la page de confidentialité. Toute app a une page de confidentialité, un seul nom partout et une mention de conception exacte.
 - Si l'app s'écarte de la charte, le signaler à l'utilisateur au lieu de corriger en silence ; noter toute nouvelle décision de design dans la section 8 de la charte.
 ```

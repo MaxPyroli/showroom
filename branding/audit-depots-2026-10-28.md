@@ -38,7 +38,7 @@ J'ai cherché dans tout le code les outils de publicité et de mesure d'audience
 Trois nuances à connaître avant de l'écrire partout :
 - **« Données chez l'utilisateur » n'est pas vrai pour toutes les apps.** Tool Proj stocke comptes et projets sur Supabase. Le partage en ligne de Score Board (version web) passe par Firebase Realtime Database. Grand Paname interroge l'API d'Île-de-France Mobilités. Je recommande de ne dire partout que **« sans pub, sans pistage »**, et de ne parler de « données chez toi » que pour les apps où c'est exact (Desk Mail, Near Pass).
 - **Des requêtes vers des tiers existent** : Tool Proj charge ses polices depuis Google Fonts (`public/index.html:17-19`) et une bibliothèque depuis jsDelivr ; Grand Paname charge la carte Leaflet depuis `unpkg.com` (`app/MapWebView.tsx:23-24`). Ce n'est pas du pistage voulu, mais ces services voient l'adresse IP du visiteur. Pour que « sans pistage » soit irréprochable : héberger ces fichiers soi-même.
-- **Le site vitrine lui-même charge Google Fonts.** Même remarque : je peux héberger les polices sur le site.
+- **Le site vitrine chargeait lui aussi Google Fonts** : **corrigé** (28 oct.). Les polices sont hébergées dans `assets/fonts/` ; mesure faite avec un navigateur : un seul domaine contacté, le site lui-même.
 
 ### 3. Les domaines panamedev.fr existent déjà pour deux apps
 `toolproj.panamedev.fr` et `urbasim.panamedev.fr` répondent (HTTP 200). Le site vitrine pointait encore vers les anciennes adresses `github.io` : **corrigé** dans cette mise à jour du site (Tool Proj, et un bouton « Jouer » pour le jeu UrbaSim).
@@ -93,6 +93,22 @@ Score Board (`claude/board-game-scoring-app-pzw3tx`) et UrbaSim jeu (`claude/bli
 - Conforme : domaine `urbasim.panamedev.fr` (`jeu/public/CNAME`).
 - L'outil d'origine (dépôt `urbasim`) : rien à faire, c'est une archive.
 
+## Supprimer les requêtes vers des tiers (marche à suivre)
+
+Principe retenu dans la charte : **aucune requête tierce inutile** (polices, bibliothèques, scripts hébergés avec l'app). Les services nécessaires (tuiles de carte, API, base de données) restent, mais sont nommés dans la page de confidentialité.
+
+**Site vitrine** : fait.
+
+**Tool Proj** (testable dans un navigateur, sans build) :
+1. Polices : télécharger Bricolage Grotesque et Figtree en `.woff2` (paquets `@fontsource-variable/bricolage-grotesque` et `@fontsource-variable/figtree`, licence OFL), les mettre dans `public/fonts/`, ajouter les `@font-face` dans `public/styles.css`, **supprimer les trois lignes `public/index.html:17-19`**, et ajouter les fichiers à la liste `SHELL` de `public/sw.js` (pour le hors-ligne).
+2. Supabase : `public/data.js:2` importe la bibliothèque depuis `cdn.jsdelivr.net`. La copier dans `public/vendor/supabase-js.js` (même version `2.117.2`), changer l'import, l'ajouter à `SHELL`, puis retirer `cdn.jsdelivr.net`, `fonts.googleapis.com` et `fonts.gstatic.com` de `CACHEABLE_HOSTS` (`public/sw.js:7`).
+3. Créer la page de confidentialité (e-mails collectés pour la connexion, base Supabase nommée).
+Je peux appliquer ces trois points moi-même et les tester dans un navigateur, **si tu m'autorises à écrire dans le dépôt `Tool-Proj`**.
+
+**Grand Paname** (à tester sur un téléphone) :
+- `app/MapWebView.tsx:23-24` charge Leaflet (feuille de style et script) depuis `unpkg.com`, dans la page HTML de la carte. Il faut embarquer ces deux fichiers avec l'app (les inclure dans la page HTML ou les livrer comme ressources) : c'est un changement natif qu'on ne peut vérifier que sur un appareil, donc plutôt pour la conversation qui travaille sur l'app.
+- Les tuiles de carte (CARTO) et l'API Île-de-France Mobilités sont nécessaires : à nommer dans `docs/confidentialite.html`.
+
 ## Ordre conseillé
 
 1. **Contact** : remplacer partout par `contact@panamedev.fr` (5 endroits, une ligne chacun).
@@ -100,7 +116,7 @@ Score Board (`claude/board-game-scoring-app-pzw3tx`) et UrbaSim jeu (`claude/bli
 3. **Pages de confidentialité manquantes** : Tool Proj (urgent : e-mails collectés) puis UrbaSim.
 4. **Blocs de consignes** dans les dépôts (section 12 de la charte) pour que les prochaines conversations Claude appliquent la charte.
 5. **Copyright et mention de conception** dans les écrans « À propos » et les pages légales.
-6. **Promesse** : écrire « sans pub, sans pistage » (vrai) mais pas « données chez toi » partout ; héberger polices et bibliothèques soi-même (Tool Proj, Grand Paname, site vitrine).
+6. **Promesse** : « sans pub, sans pistage » (vrai) partout ; pas « données chez toi » sauf là où c'est exact. **Charte mise à jour en conséquence.** Héberger polices et bibliothèques soi-même : site vitrine ✅ fait, Tool Proj et Grand Paname à faire.
 
 ## Limites de l'audit
 
