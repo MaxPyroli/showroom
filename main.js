@@ -191,6 +191,15 @@
   }, { threshold: 0.6 });
   document.querySelectorAll('[data-count]').forEach((el) => countIO.observe(el));
 
+  // Maquette Tool Proj : on coche le rond d'un post-it pour le passer en « fait » (barré), et inversement
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('.chk');
+    if (!b) return;
+    const done = b.closest('.note').classList.toggle('done');
+    b.setAttribute('aria-pressed', done);
+    b.setAttribute('aria-label', done ? 'Marquer comme à faire' : 'Marquer comme fait');
+  });
+
   if (reduce || !fine) return;
 
   // Icônes du hero : parallaxe à la souris
