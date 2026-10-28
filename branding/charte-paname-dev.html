@@ -108,7 +108,7 @@
   <div class="card"><div class="pair"><div class="sw" style="background:#a261ac;color:#1b1b1b">Fond</div><div class="sw" style="background:#75427c;color:#fff">Encre</div></div><b>Magenta · Near Pass (proposé)</b><small>#a261ac · #75427c · 322°</small> <span class="tag try">proposition</span></div>
 </div>
 <h3>Couleurs de réserve (entre les couleurs d'app)</h3>
-<p class="note">Le milieu exact entre deux couleurs voisines, même luminosité et même intensité. Elles servent à <b>remplacer</b> une couleur principale, jamais à venir en plus (règle ci-dessous). Le <b>Cyan</b> (219°) est tout près du bleu de Grand Paname (228°) : à éviter.</p>
+<p class="note">Le milieu exact entre deux couleurs voisines, même luminosité et même intensité. Elles s'utilisent <b>en plus</b> des couleurs principales pour de futures apps (règle ci-dessous).</p>
 <div class="grid">
   <div class="card"><div class="pair"><div class="sw" style="background:#ae6e05;color:#1b1b1b">Fond</div><div class="sw" style="background:#7d4d00;color:#fff">Encre</div></div><b>Orange brûlé</b><small>#ae6e05 · #7d4d00 · 69°</small> <span class="tag hold">réserve</span></div>
   <div class="card"><div class="pair"><div class="sw" style="background:#44924e;color:#1b1b1b">Fond</div><div class="sw" style="background:#2b6833;color:#fff">Encre</div></div><b>Vert</b><small>#44924e · #2b6833 · 146°</small> <span class="tag hold">réserve</span></div>
@@ -118,13 +118,13 @@
 </div>
 <h3>Règle d'éloignement</h3>
 <ul style="max-width:72ch;line-height:1.65;padding-left:1.2rem">
-  <li><b>60° de teinte minimum</b> entre deux apps. La luminosité ne compte pas : deux couleurs de même teinte se confondent, claires ou foncées.</li>
-  <li><b>Les 5 couleurs principales</b> sont à 68° ou plus les unes des autres : compatibles entre elles.</li>
-  <li><b>La réserve remplace, elle n'ajoute pas</b> : ses couleurs sont à 35° de leurs voisines.</li>
-  <li><b>La roue ne tient que 5 apps</b> (6 au maximum). Une nouvelle app prend la place d'une teinte ou fait revoir la palette.</li>
-  <li><b>Contrôle actuel</b> : <code>python3 scripts/palette.py</code> signale Grand Paname (bleu du logo, 228°) à 43° de Tool Proj et 25° d'UrbaSim : <b>conflit à régler</b>.</li>
+  <li><b>60° de teinte minimum</b> entre deux couleurs principales, et entre deux couleurs de réserve. La luminosité ne compte pas : deux couleurs de même teinte se confondent, claires ou foncées.</li>
+  <li><b>30° minimum</b> entre une principale et une réserve : les réserves sont à 35° de leurs voisines, elles passent.</li>
+  <li><b>Les réserves s'ajoutent aux principales</b>, mais jamais deux réserves proches (elles sont à 69° ou plus l'une de l'autre : toutes compatibles). La roue tient jusqu'à <b>10 apps</b>.</li>
+  <li><b>Exception acceptée : Grand Paname</b> garde le bleu de son logo (228°), proche de Tool Proj et d'UrbaSim ; ce n'est pas un conflit.</li>
+  <li><code>python3 scripts/palette.py</code> vérifie la liste des apps et signale les paires trop proches.</li>
 </ul>
-<p class="note">Sur la roue, le cercle vide bleu est <b>Grand Paname</b> (bleu de son logo, 228°) : il a sa propre palette, mais il se glisse entre le vert canard et le bleu d'UrbaSim ; à surveiller. Le <b>Ocre</b> sort un peu olive : à cette luminosité, le jaune ne peut pas être autre chose.</p>
+<p class="note">Sur la roue, le cercle vide bleu est <b>Grand Paname</b> (bleu de son logo, 228°), hors palette. Le <b>Ocre</b> sort un peu olive : à cette luminosité, le jaune ne peut pas être autre chose.</p>
 
 <h3>Grand Paname : sa propre palette (les couleurs de son logo)</h3>
 <p class="note" style="margin:0 0 6px">Mesurées sur le logo : un fond bleu nuit et les couleurs des lignes. Les couleurs des lignes de métro dans l'app viennent des données officielles, jamais du thème. L'interface a aussi ses trois thèmes (clair, sombre, OLED), décrits dans son guide graphique. Sur le site vitrine, l'accent de Grand Paname est le bleu de son logo, <code>#0ca8d8</code> (texte bleu nuit sur les boutons pleins, pour la lisibilité).</p>

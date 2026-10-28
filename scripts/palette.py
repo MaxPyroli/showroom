@@ -59,16 +59,19 @@ def palette():
         out.append((nom, '', fond, encre, hh, L, c))
     return out
 
-ECART_MIN = 60   # degrés de teinte minimum entre deux apps (règle d'éloignement)
-APPS = {'Desk Mail': 31, 'Score Board': 108, 'Tool Proj': 185, 'UrbaSim': 253, 'Near Pass': 322, 'Grand Paname (logo)': 228}
+ECART_MIN = 60     # degrés de teinte minimum entre deux couleurs du même groupe (principales entre elles, réserve entre elles)
+ECART_MIXTE = 30   # entre une couleur principale et une couleur de réserve
+# (teinte, groupe) : 'P' = principale, 'R' = réserve. Grand Paname n'y est pas : exception acceptée (couleurs de son logo).
+APPS = {'Desk Mail': (31, 'P'), 'Score Board': (108, 'P'), 'Tool Proj': (185, 'P'), 'UrbaSim': (253, 'P'), 'Near Pass': (322, 'P')}
 
 def conflits(apps=APPS):
-    """Paires d'apps dont les teintes sont à moins de ECART_MIN degrés."""
+    """Paires d'apps dont les teintes sont trop proches (même groupe < ECART_MIN, groupes mêlés < ECART_MIXTE)."""
     noms = list(apps); out = []
     for i in range(len(noms)):
         for j in range(i+1, len(noms)):
-            d = abs(apps[noms[i]]-apps[noms[j]]); d = min(d, 360-d)
-            if d < ECART_MIN: out.append((noms[i], noms[j], d))
+            (h1, g1), (h2, g2) = apps[noms[i]], apps[noms[j]]
+            d = abs(h1-h2); d = min(d, 360-d)
+            if d < (ECART_MIN if g1 == g2 else ECART_MIXTE): out.append((noms[i], noms[j], d))
     return out
 
 def reserve():
@@ -86,6 +89,6 @@ if __name__ == '__main__':
         print(f'| {n}{" · "+role if role else ""} ({h:.0f}°) | `{f}` | `{e}` |  L={L:.2f} C={c:.2f}')
     print('--- réserve')
     for n, role, f, e, h, L, c in reserve(): print(f'| {n} ({h:.0f}°) | `{f}` | `{e}` |')
-    print('--- règle : écart mini %d° entre deux apps' % ECART_MIN)
+    print('--- règle : %d° mini entre deux couleurs du même groupe, %d° entre principale et réserve' % (ECART_MIN, ECART_MIXTE))
     c = conflits()
     print('\n'.join(f'  trop proches : {a} / {b} ({d:.0f}°)' for a, b, d in c) if c else '  aucun conflit')
