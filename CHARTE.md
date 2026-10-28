@@ -104,6 +104,7 @@ Ce sont des **repères pour garder l'air de famille**, pas des obligations : s'�
 | Framboise (proposition) | `#d9467a` | `#a72251` |
 | Moutarde (proposition) | `#d9a21b` | `#987113` |
 | Ardoise (proposition) | `#4a6275` | `#344552` |
+| Brun Score Board (proposition, d'après l'idée d'icône) | `#b0602a` | `#7b431d` |
 | Bleu nuit (proposition) | `#2b4b8f` | `#1e3564` |
 
 L'encre est la même teinte que le fond, environ 30 % plus sombre. Les couleurs « piste » et « proposition » sont calculées, pas encore testées sur une vraie icône.
