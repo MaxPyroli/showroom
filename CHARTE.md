@@ -95,12 +95,12 @@ Ce sont des **repères pour garder l'air de famille**, pas des obligations : s'�
 | Couleur · app (teinte) | Fond | Encre |
 |---|---|---|
 | Corail · Desk Mail (31°) | `#e8604c` | `#a63a2b` |
-| Ocre · Score Board (proposé) (108°) | `#878300` | `#5f5c02` |
+| Ocre · Score Board (108°) | `#878300` | `#5f5c02` |
 | Vert canard · Tool Proj (185°) | `#0d7c72` | `#0d5c55` |
-| Bleu · UrbaSim (proposé) (253°) | `#3f80ca` | `#285a93` |
-| Magenta · Near Pass (proposé) (322°) | `#a261ac` | `#75427c` |
+| Bleu · UrbaSim (253°) | `#3f80ca` | `#285a93` |
+| Magenta · Near Pass (322°) | `#a261ac` | `#75427c` |
 
-**Palette calculée** (`python3 scripts/palette.py`) : elle part de **Tool Proj et Desk Mail, qui ne bougent pas**. Les autres couleurs sont placées sur la roue (OKLCH) pour que **l'écart entre deux voisines soit le même (70 à 77°)** : aucune app n'est proche d'une autre. Elles prennent la luminosité et l'intensité **moyennes** de Tool Proj et Desk Mail (L 0,59, C 0,13). L'encre est la même teinte, plus sombre (L −0,13). L'Ocre est validé pour Score Board. Les deux autres nouvelles sont des **propositions** (Score Board, UrbaSim, Near Pass), à confirmer sur une vraie icône. Le Ocre sort un peu olive : à cette luminosité, le jaune ne peut pas être autre chose. **Grand Paname est hors palette** (couleurs de son logo, exception acceptée).
+**Palette calculée** (`python3 scripts/palette.py`) : elle part de **Tool Proj et Desk Mail, qui ne bougent pas**. Les autres couleurs sont placées sur la roue (OKLCH) pour que **l'écart entre deux voisines soit le même (70 à 77°)** : aucune app n'est proche d'une autre. Elles prennent la luminosité et l'intensité **moyennes** de Tool Proj et Desk Mail (L 0,59, C 0,13). L'encre est la même teinte, plus sombre (L −0,13). Attribution **validée** (2026-10-28) : Ocre pour Score Board, Bleu pour UrbaSim, Magenta pour Near Pass. Ces couleurs sont calculées, pas encore testées sur une vraie icône. Le Ocre sort un peu olive : à cette luminosité, le jaune ne peut pas être autre chose. **Grand Paname est hors palette** (couleurs de son logo, exception acceptée).
 
 **Réserve** : le milieu exact entre deux couleurs voisines, même luminosité et même intensité, pour de futures apps, **en plus** des couleurs principales (voir la règle d'éloignement ci-dessous). 
 
@@ -134,9 +134,9 @@ Les couleurs des lignes de métro, RER et tram dans l'app viennent des données 
 | Grand Paname | Couleurs du logo : fond `#041b3b`, lignes rouge `#e23f3a`, jaune `#f8c607`, vert `#33b368`, bleu `#0ca8d8` (accent du site : le bleu du logo `#0ca8d8`) | Carte plein écran, barre de recherche et navigation flottantes, verre dépoli, trois thèmes (clair, sombre, OLED) | GrandParis | Android (Expo) |
 | Tool Proj | `#0d7c72` (vert, encre `#0d5c55`) | Papier : post-it colorés légèrement penchés | Système | Web / PWA, bureau + mobile |
 | Desk Mail | `#e8604c` (corail, encre `#a63a2b`, icône : deux enveloppes rose et jaune) | Sobre et dense, logiciel de bureau ; accents corail | Segoe UI | Windows |
-| Near Pass | `#8a6bff` (violet provisoire ; couleur d'app non définie) | Radar, halos, lumière | Système | Android |
-| Score Board (écrit « Score Board » dans l'app) | `#2fbf8f` (thème app `#1f6f5c`) + jaune | Papier crème, contour épais sombre, ombre pleine ; chaque jeu a sa carte en dégradé (Tarot violet, Skyjo bleu, Aventuriers du Rail rouge, Sushi Go Party corail, 6 qui prend orange) | Système, titres gras | Android + Web / PWA |
-| UrbaSim (jeu, bêta) | `#3d86f0` (bouton `#2a6ff0`) | Ciel en dégradé, immeubles colorés (rose, jaune, bleu, vert), ton ludique | Système | Web, version bureau (mobile non optimisé) |
+| Near Pass | Magenta `#a261ac` (encre `#75427c`), couleur de la palette ; l'icône radar violette actuelle reste provisoire | Radar, halos, lumière | Système | Android |
+| Score Board (écrit « Score Board » dans l'app) | Ocre `#878300` (encre `#5f5c02`) à terme, couleur de la palette ; aujourd'hui vert `#2fbf8f` (thème app `#1f6f5c`) + jaune | Papier crème, contour épais sombre, ombre pleine ; chaque jeu a sa carte en dégradé (Tarot violet, Skyjo bleu, Aventuriers du Rail rouge, Sushi Go Party corail, 6 qui prend orange) | Système, titres gras | Android + Web / PWA |
+| UrbaSim (jeu, bêta) | Bleu `#3f80ca` (encre `#285a93`), couleur de la palette ; aujourd'hui `#3d86f0` (bouton `#2a6ff0`) | Ciel en dégradé, immeubles colorés (rose, jaune, bleu, vert), ton ludique | Système | Web, version bureau (mobile non optimisé) |
 
 Sur le site : une app = une variable `--a`.
 
@@ -202,6 +202,7 @@ Du plus ancien au plus récent.
 - **Promesse corrigée** : seule « **sans pub, sans pistage** » est vraie pour toutes les apps ; « données chez l'utilisateur » est retiré (voir section 3). Nouvelles règles d'harmonisation : aucune requête tierce inutile (polices et bibliothèques hébergées avec l'app), page de confidentialité obligatoire, nom unique partout, mention de conception exacte, identifiant `fr.panamedev.<app>` pour les apps non publiées.
 - Site vitrine : polices Inter et Bricolage Grotesque hébergées (`assets/fonts/`), plus aucune requête vers Google : vérifié, un seul domaine contacté.
 - **Tool Proj 0.20.2 (2026-10-28)** : harmonisé. Polices (Bricolage Grotesque, Figtree, Kalam) et supabase-js hébergés avec l'app (zéro requête tierce mesurée), page `confidentialite.html`, liens + « © 2026 Paname Dev » sur l'écran de connexion et Mon compte, bloc de la charte dans `CLAUDE.md`. Non fait : l'audit mobile complet (`test/mobile-audit.cjs`, demande Supabase local).
+- **Palette d'apps (2026-10-28)** : palette calculée à partir de Tool Proj (185°) et Desk Mail (31°), points fixes, avec les autres teintes à écart égal sur la roue (OKLCH). Attribution validée : Ocre → Score Board, Bleu → UrbaSim, Magenta → Near Pass ; Grand Paname hors palette (couleurs de son logo, exception acceptée). 5 couleurs de réserve utilisables en plus. Règle d'éloignement : 60° mini entre deux couleurs du même groupe, 30° entre principale et réserve. `scripts/palette.py` vérifie. Les apps concernées doivent adapter leur icône (Score Board : ocre ; UrbaSim : bleu ; Near Pass : magenta) ; le site vitrine garde les anciennes couleurs tant que les icônes n'ont pas changé.
 - *(à compléter à chaque décision, avec la date et l'app concernée)*
 
 ## 9. Site vitrine : page unique, carrousels et captures d'écran
