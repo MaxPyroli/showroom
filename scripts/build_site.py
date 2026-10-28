@@ -11,6 +11,7 @@ Le script détecte les fichiers présents : le relancer après avoir ajouté des
 GitHub Pages le fait à chaque déploiement).
 """
 import html
+import hashlib
 import json
 import math
 import re
@@ -151,5 +152,13 @@ src = fill(src, "ORBIT", "\n".join("    " + orbit(i, len(APPS), a) for i, a in e
 new = "\n\n".join(section(a, i) for i, a in enumerate(APPS))
 pattern = re.compile(r"(<!-- APPS:START[^>]*-->\n).*?(<!-- APPS:END -->)", re.S)
 assert pattern.search(src), "marqueurs APPS:START / APPS:END introuvables dans index.html"
-index.write_text(pattern.sub(lambda m: m.group(1) + new + "\n\n" + m.group(2), src), encoding="utf-8")
+def version(name):
+    return hashlib.md5((ROOT / name).read_bytes()).hexdigest()[:8]
+
+
+src = pattern.sub(lambda m: m.group(1) + new + "\n\n" + m.group(2), src)
+# adresse versionnée : une mise à jour du CSS ou du JS est prise en compte tout de suite
+src = re.sub(r'href="style\.css(\?v=\w+)?"', lambda m: f'href="style.css?v={version("style.css")}"', src)
+src = re.sub(r'src="main\.js(\?v=\w+)?"', lambda m: f'src="main.js?v={version("main.js")}"', src)
+index.write_text(src, encoding="utf-8")
 print(f"index.html : {len(APPS)} apps, {sum(len(a['features']) + 1 for a in APPS)} diapositives")
