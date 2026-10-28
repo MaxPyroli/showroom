@@ -227,7 +227,7 @@ Le site est **une seule page** (`index.html`). Chaque app y a une section avec u
 - **Aucune requête tierce** : les polices (Inter, Bricolage Grotesque, GrandParis) sont dans `assets/fonts/` (licences OFL jointes) ; ne jamais remettre de lien vers Google Fonts ou un CDN.
 - **Rien n'est supprimé** sur le serveur : un fichier retiré du site reste en ligne tant qu'on ne l'enlève pas à la main.
 - **Cache** : les fichiers `style.css` et `main.js` sont versionnés dans leur adresse (`?v=…`, calculé par `scripts/build_site.py`), donc une mise à jour est prise en compte tout de suite. Ne jamais publier de CSS ou de JS sans passer par le script.
-- **À faire côté OVH** : forcer le HTTPS (3 lignes à décommenter dans `hosting/.htaccess`), créer l'adresse `contact@panamedev.fr`, sous-domaines par app.
+- **HTTPS forcé** (2026-10-28) : redirection active dans `hosting/.htaccess`. L'adresse `contact@panamedev.fr` existe chez OVH. Reste : sous-domaines par app.
 - **Paquet manuel** : `python3 scripts/package.py` produit `dist/panamedev-site.zip` (à envoyer à la main si besoin).
 
 ## 12. Bloc à copier dans le `CLAUDE.md` / `AGENTS.md` de chaque app
