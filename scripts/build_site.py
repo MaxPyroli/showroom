@@ -161,5 +161,10 @@ src = pattern.sub(lambda m: m.group(1) + new + "\n\n" + m.group(2), src)
 # adresse versionnée : une mise à jour du CSS ou du JS est prise en compte tout de suite
 src = re.sub(r'href="style\.css(\?v=\w+)?"', lambda m: f'href="style.css?v={version("style.css")}"', src)
 src = re.sub(r'src="main\.js(\?v=\w+)?"', lambda m: f'src="main.js?v={version("main.js")}"', src)
+# idem pour les images (icônes, captures) : le navigateur les garde 1 mois, donc le nom change quand le fichier change
+def _img(m):
+    f = ROOT / m.group(1)
+    return f"{m.group(1)}?v={version(m.group(1))}" if f.is_file() else m.group(0)
+src = re.sub(r"(assets/(?:img|shots)/[^\"'\s)?]+\.(?:png|jpe?g|webp|svg))(?:\?v=\w+)?", _img, src)
 index.write_text(src, encoding="utf-8")
 print(f"index.html : {len(APPS)} apps, {sum(len(a['features']) + 1 for a in APPS)} diapositives")
