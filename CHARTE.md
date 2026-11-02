@@ -138,7 +138,7 @@ Les couleurs des lignes de métro, RER et tram dans l'app viennent des données 
 | Desk Mail | `#e8604c` (corail, encre `#a63a2b`, icône : deux enveloppes rose et jaune) | Sobre et dense, logiciel de bureau ; accents corail | Segoe UI | Windows |
 | Near Pass | Magenta `#a261ac` (encre `#75427c`), couleur de la palette ; l'icône radar violette actuelle reste provisoire | Radar, halos, lumière | Système | Android |
 | Score Board (écrit « Score Board » dans l'app) | Ocre `#878300` (encre `#5f5c02`), couleur de la palette, appliquée à l'icône (pion rose et dé bleu ciel) ; thème de l'app `#1f6f5c` + jaune | Papier crème, contour épais sombre, ombre pleine ; chaque jeu a sa carte en dégradé (Tarot violet, Skyjo bleu, Aventuriers du Rail rouge, Sushi Go Party corail, 6 qui prend orange) | Système, titres gras | Android + Web / PWA |
-| UrbaSim (jeu, bêta) | Bleu `#3f80ca` (encre `#285a93`), couleur de la palette, utilisée comme **accent** (boutons, site vitrine) ; **icône à fond sombre avec skyline colorée** (exception à la palette : l'auteur préfère cette icône à la version à fond bleu) ; ancien bouton `#2a6ff0` | Ciel en dégradé, immeubles colorés (rose, jaune, bleu, vert), ton ludique | Système | Web, version bureau (mobile non optimisé) |
+| UrbaSim (jeu, bêta) | Bleu `#3f80ca` (encre `#285a93`), couleur de la palette, utilisée comme **accent** (boutons, site vitrine) ; **icône : skyline colorée sur le fond de Grand Paname `#041b3b`** (dessin réduit à 90 %, recentré ; exception à la palette, choix de l'auteur) ; ancien bouton `#2a6ff0` | Ciel en dégradé, immeubles colorés (rose, jaune, bleu, vert), ton ludique | Système | Web, version bureau (mobile non optimisé) |
 
 Sur le site : une app = une variable `--a`.
 
@@ -208,6 +208,7 @@ Du plus ancien au plus récent.
 - **Décisions du 2026-10-28** : copyright **© 2026 Paname Dev** confirmé (pseudo de développeur) ; la mention devient « Pensé par Paname Dev et codé par Claude » (longue) et « Codé par Claude » (courte), pour toutes les apps, parce que l'idée et la conception sont de Paname Dev (Grand Paname : plus aucune trace de Gemini) ; identifiant `fr.panamedev.<app>` adopté pour toute nouvelle app ; sous-domaine = nom de l'app ; icône de Grand Paname inchangée, icônes de Score Board et d'UrbaSim refaites aux couleurs de la palette et intégrées au site vitrine ; la charte en HTML est en ligne sur `https://panamedev.fr/branding/charte-paname-dev.html`.
 - **Icônes de Score Board (ocre) et d'UrbaSim (bleu) intégrées (2026-10-28)** : le site vitrine reprend leurs nouvelles icônes et couleurs ; Score Board a maintenant un bouton « Ouvrir l'app » vers `scoreboard.panamedev.fr`. Animation d'accueil : le logo attend 0,8 s avant de tourner.
 - **UrbaSim, icône (2026-11-02)** : retour à l'ancienne icône (fond sombre, skyline colorée) ; la version à fond bleu de la palette est abandonnée. Le Bleu `#3f80ca` reste la couleur d'accent de l'app (site, boutons). Exception assumée à la règle « fond d'icône = couleur de la palette ».
+- **UrbaSim, icône finale (2026-11-02)** : skyline colorée sur le bleu nuit de Grand Paname `#041b3b`, dessin à 90 % recentré (marge de 12 % respectée). Remplace la version à fond noir.
 - *(à compléter à chaque décision, avec la date et l'app concernée)*
 
 ## 9. Site vitrine : page unique, carrousels et captures d'écran
