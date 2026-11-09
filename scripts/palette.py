@@ -62,7 +62,7 @@ def palette():
 ECART_MIN = 60     # degrés de teinte minimum entre deux couleurs du même groupe (principales entre elles, réserve entre elles)
 ECART_MIXTE = 30   # entre une couleur principale et une couleur de réserve
 # (teinte, groupe) : 'P' = principale, 'R' = réserve. Grand Paname n'y est pas : exception acceptée (couleurs de son logo).
-APPS = {'Desk Mail': (31, 'P'), 'Score Board': (108, 'P'), 'Tool Proj': (185, 'P'), 'UrbaSim': (253, 'P'), 'Near Pass': (322, 'P')}
+APPS = {'Desk Mail': (31, 'P'), 'Score Board': (108, 'P'), 'Tool Proj': (185, 'P'), 'UrbaSim': (253, 'P'), 'Near Pass': (322, 'P'), 'Open Page': (219, 'R')}
 
 def conflits(apps=APPS):
     """Paires d'apps dont les teintes sont trop proches (même groupe < ECART_MIN, groupes mêlés < ECART_MIXTE)."""

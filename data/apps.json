@@ -310,6 +310,48 @@
       ],
       "legal": [],
       "tile": "#3f80ca"
+    },
+    {
+      "slug": "open-page",
+      "name": "Open Page",
+      "icon": "openpage.png",
+      "accent": "#0a8ca9",
+      "glow": "#1aa9c8",
+      "format": "window",
+      "tag": "Windows",
+      "tagline": "Lire et modifier tes PDF, ouvrir tes pages HTML.",
+      "pitch": "Un lecteur et éditeur de PDF, et un lecteur de pages HTML, pour Windows. Tout se passe sur ton ordinateur, même sans connexion.",
+      "chips": [
+        "Windows",
+        "Hors ligne",
+        "Aucun pistage"
+      ],
+      "links": [],
+      "hero_hint": "La fenêtre principale : un PDF ouvert avec ses outils",
+      "features": [
+        {
+          "title": "Lire tes PDF",
+          "text": "Ouvre et parcours tes documents PDF dans une fenêtre claire, sans passer par un service en ligne.",
+          "hint": "Un PDF ouvert, avec la liste des pages"
+        },
+        {
+          "title": "Les modifier",
+          "text": "Annote, surligne et retouche tes PDF directement dans l'application.",
+          "hint": "L'outil de surlignage en action"
+        },
+        {
+          "title": "Lire tes pages HTML",
+          "text": "Ouvre une page HTML enregistrée sur ton ordinateur et lis-la comme dans un navigateur, sans l'envoyer nulle part.",
+          "hint": "Une page HTML locale ouverte"
+        },
+        {
+          "title": "Hors ligne",
+          "text": "Aucune connexion nécessaire : tes fichiers restent sur ton ordinateur.",
+          "hint": "L'écran d'accueil de l'application"
+        }
+      ],
+      "legal": [],
+      "tile": "#0a8ca9"
     }
   ]
 }
