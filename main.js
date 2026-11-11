@@ -107,19 +107,28 @@
   });
   addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelector('.zoom')?.remove(); });
 
+  // Rangée d'icônes : écart fixe entre deux icônes (jamais de chevauchement), quel que soit leur nombre ;
+  // celles qui ne tiennent pas dans la largeur arrivent ensuite par le défilement
+  const orbitEl = document.querySelector('.orbit');
+  const layoutRow = () => {
+    if (reduce) return;                                  // mouvement réduit : disposition d'origine, toutes visibles
+    const list = [...orbitEl.querySelectorAll('.ico')].filter((el) => !el.hasAttribute('aria-hidden'));
+    if (!list.length) return;
+    const W = orbitEl.clientWidth, w = list[0].offsetWidth;
+    list.forEach((el, i) => { el.style.left = (0.02 * W + i * w * 1.6).toFixed(1) + 'px'; });
+  };
+  layoutRow();
+
   // Défilement : une fois les icônes en ligne (rien ne bouge à ce moment-là), la rangée défile vers la gauche
   // en boucle, pour que toutes les icônes passent, quel que soit leur nombre
-  let marqueeOn = false;
+  let marquee = null;
   const startMarquee = () => {
-    if (marqueeOn || reduce) return;
-    const orbitEl = document.querySelector('.orbit');
+    if (marquee || reduce) return;
     const originals = [...orbitEl.querySelectorAll('.ico')];
     if (originals.length < 2) return;
-    marqueeOn = true;
     const W = orbitEl.clientWidth, w = originals[0].offsetWidth, n = originals.length;
     const lefts = originals.map((el) => el.offsetLeft);
     const step = (lefts[n - 1] - lefts[0]) / (n - 1), P = n * step;      // largeur d'un « tour » de la rangée
-    const edge = Math.max(W, lefts[n - 1] + w);                           // les icônes ne s'effacent qu'en sortant
     const belt = document.createElement('div');
     belt.className = 'belt';
     orbitEl.append(belt);
@@ -135,19 +144,38 @@
     orbitEl.classList.add('run');
     const dur = P / 45 * 1000;                                            // ≈ 45 px par seconde
     const anim = belt.animate([{ transform: 'translateX(0)' }, { transform: `translateX(${-P}px)` }], { duration: dur, iterations: Infinity, easing: 'linear' });
-    orbitEl.addEventListener('pointerenter', () => anim.pause());
-    orbitEl.addEventListener('pointerleave', () => anim.play());
+    const pause = () => anim.pause(), play = () => anim.play();
+    orbitEl.addEventListener('pointerenter', pause);
+    orbitEl.addEventListener('pointerleave', play);
+    let raf = 0;
     const tick = () => {
       const sh = (anim.currentTime % dur) / dur * P;
-      for (const it of items) {
+      for (const it of items) {                                           // une icône s'efface en sortant, et apparaît en entrant
         const x0 = it.x - sh, x1 = x0 + w;
-        const f = Math.max(0, Math.min(1, 1 + x0 / w, 1 - (x1 - edge) / w));
-        it.el.style.opacity = f < 1 ? f.toFixed(2) : '';
+        const f = Math.max(0, Math.min(1, 1 + x0 / w, 1 - (x1 - W) / w));
+        const g = 1 - Math.min(1, sh / w) * (1 - f);                      // l'effacement s'installe progressivement (pas de saut au départ)
+        it.el.style.opacity = g < 1 ? g.toFixed(2) : '';
       }
-      requestAnimationFrame(tick);
+      raf = requestAnimationFrame(tick);
     };
     tick();
+    marquee = {
+      stop() {
+        cancelAnimationFrame(raf); anim.cancel();
+        orbitEl.removeEventListener('pointerenter', pause); orbitEl.removeEventListener('pointerleave', play);
+        items.forEach((it) => { if (it.el.hasAttribute('aria-hidden')) it.el.remove(); else { it.el.style.opacity = ''; orbitEl.append(it.el); } });
+        belt.remove(); orbitEl.classList.remove('run');
+      }
+    };
   };
+  let rs;
+  addEventListener('resize', () => {                                      // la rangée est recalculée si la fenêtre change de taille
+    clearTimeout(rs);
+    rs = setTimeout(() => {
+      if (!marquee) return;
+      marquee.stop(); marquee = null; layoutRow(); startMarquee();
+    }, 250);
+  });
 
   // Animation d'accueil : le logo (six tuiles en cercle) tourne, puis les tuiles deviennent les six premières icônes
   const runIntro = () => {

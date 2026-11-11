@@ -84,7 +84,7 @@ ul{list-style:none;padding:0}
 .cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:32px}
 .orbit{position:relative;width:min(900px,100%);height:clamp(110px,20vw,170px);margin-top:54px}
 .ico{position:absolute;width:clamp(60px,10vw,96px);aspect-ratio:1;border-radius:24%;box-shadow:var(--sh-md),0 0 0 1px rgba(var(--tint),.1);animation:bob 6s ease-in-out infinite;transition:translate .25s var(--ease),scale .3s}
-.orbit.run{overflow-x:clip}
+.orbit{overflow-x:clip}
 .belt{position:absolute;inset:0;pointer-events:none}
 .belt .ico{pointer-events:auto}
 .ico:hover{scale:1.14}
