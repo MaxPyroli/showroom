@@ -115,7 +115,8 @@
     const list = [...orbitEl.querySelectorAll('.ico')].filter((el) => !el.hasAttribute('aria-hidden'));
     if (!list.length) return;
     const W = orbitEl.clientWidth, w = list[0].offsetWidth;
-    list.forEach((el, i) => { el.style.left = (0.02 * W + i * w * 1.6).toFixed(1) + 'px'; });
+    const x0 = Math.max(0, (W - 900) / 2) + 0.02 * Math.min(W, 900);   // la rangée démarre là où elle était (au centre), puis traverse tout l'écran
+    list.forEach((el, i) => { el.style.left = (x0 + i * w * 1.6).toFixed(1) + 'px'; });
   };
   layoutRow();
 
@@ -128,29 +129,35 @@
     if (originals.length < 2) return;
     const W = orbitEl.clientWidth, w = originals[0].offsetWidth, n = originals.length;
     const lefts = originals.map((el) => el.offsetLeft);
-    const step = (lefts[n - 1] - lefts[0]) / (n - 1), P = n * step;      // largeur d'un « tour » de la rangée
+    const step = (lefts[n - 1] - lefts[0]) / (n - 1), P = n * step;      // largeur d'un jeu d'icônes
+    const PP = (n % 2 ? 2 : 1) * P;                                       // un tour complet : deux jeux si n est impair, pour que la vague haut/bas reste régulière à la jonction
     const belt = document.createElement('div');
     belt.className = 'belt';
     orbitEl.append(belt);
     originals.forEach((el) => belt.append(el));
-    const items = originals.map((el, i) => ({ el, x: lefts[i] }));
-    for (let k = 1; k * P < W + w + P; k++) originals.forEach((el, i) => {
+    const born = performance.now();
+    const items = originals.map((el, i) => ({ el, x: lefts[i], late: i >= 6 }));   // les icônes au-delà de la sixième apparaissent en fondu
+    // des jeux d'icônes de chaque côté, pour que l'écran soit toujours plein, y compris au moment où la boucle recommence
+    const kmin = -Math.max(1, Math.ceil((lefts[0] + w) / P)), kmax = Math.ceil((W + w + PP - lefts[0]) / P);
+    for (let k = kmin; k <= kmax; k++) if (k) originals.forEach((el, i) => {
       const c = el.cloneNode(true);
       c.setAttribute('aria-hidden', 'true'); c.tabIndex = -1;
       c.style.left = (lefts[i] + k * P) + 'px';
+      c.style.top = ((i + k * n) % 2 + 2) % 2 ? '50%' : '6%';             // une icône sur deux en haut, sans exception
       belt.append(c);
-      items.push({ el: c, x: lefts[i] + k * P });
+      items.push({ el: c, x: lefts[i] + k * P, late: k < 0 });
     });
     orbitEl.classList.add('run');
-    const dur = P / 45 * 1000;                                            // ≈ 45 px par seconde
-    const anim = belt.animate([{ transform: 'translateX(0)' }, { transform: `translateX(${-P}px)` }], { duration: dur, iterations: Infinity, easing: 'linear' });
+    const dur = PP / 45 * 1000;                                           // ≈ 45 px par seconde
+    const anim = belt.animate([{ transform: 'translateX(0)' }, { transform: `translateX(${-PP}px)` }], { duration: dur, iterations: Infinity, easing: 'linear' });
     let raf = 0;
     const tick = () => {
-      const sh = (anim.currentTime % dur) / dur * P;
+      const sh = (anim.currentTime % dur) / dur * PP;
       for (const it of items) {                                           // une icône s'efface en sortant, et apparaît en entrant
         const x0 = it.x - sh, x1 = x0 + w;
         const f = Math.max(0, Math.min(1, 1 + x0 / w, 1 - (x1 - W) / w));
-        const g = 1 - Math.min(1, sh / w) * (1 - f);                      // l'effacement s'installe progressivement (pas de saut au départ)
+        let g = 1 - Math.min(1, sh / w) * (1 - f);                        // l'effacement s'installe progressivement (pas de saut au départ)
+        if (it.late) g *= Math.min(1, (performance.now() - born) / 900);
         it.el.style.opacity = g < 1 ? g.toFixed(2) : '';
       }
       raf = requestAnimationFrame(tick);
