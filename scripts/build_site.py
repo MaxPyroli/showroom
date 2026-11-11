@@ -114,21 +114,22 @@ def section(app, index):
 </section>'''
 
 
+def orbit(i, n, app):
+    left = 2 + i * (84 / max(n - 1, 1))
+    top = 6 if i % 2 == 0 else 50
+    delay = -((i * 1.3) % 5)
+    depth = (18, 26, 34, 40, 22, 44)[i % 6]
+    return (f'<a href="#{app["slug"]}" class="ico" data-depth="{depth}" '
+            f'data-tile="{app.get("tile", app["accent"])}" '
+            f'style="left:{left:.1f}%;top:{top}%;animation-delay:{delay:.1f}s"><img src="assets/img/{app["icon"]}" alt=""></a>')
+
+
 # Le logo du site est FIXE : il ne change pas quand on ajoute une app (six tuiles en cercle).
 LOGO_TILES = ["#0ca8d8", "#0d7c72", "#e8604c", "#a261ac", "#878300", "#3f80ca"]
 
 
-def orbit(i, n, app):
-    delay = -((i * 1.3) % 5)
-    depth = (18, 26, 34, 40, 22, 44)[i % 6]
-    drop = round(22 + 22 * math.sin(i * 2.1))       # décalage vertical : une vague qui ne dépend pas du nombre d'apps
-    return (f'<a href="#{app["slug"]}" class="ico" data-depth="{depth}" '
-            f'data-tile="{app.get("tile", app["accent"])}" '
-            f'style="margin-top:{drop}px;animation-delay:{delay:.1f}s"><img src="assets/img/{app["icon"]}" alt=""></a>')
-
-
 def favicon():
-    """Icône du site : le logo fixe (six tuiles en cercle), le même quelle que soit le nombre d'apps."""
+    """Icône du site : le logo fixe (six tuiles en cercle), le même quel que soit le nombre d'apps."""
     n, r, size = len(LOGO_TILES), 142, 112
     rects = ""
     for i, color in enumerate(LOGO_TILES):
@@ -159,7 +160,6 @@ def version(name):
 
 
 src = pattern.sub(lambda m: m.group(1) + new + "\n\n" + m.group(2), src)
-src = re.sub(r'<div class="orbit"[^>]*>', f'<div class="orbit" aria-hidden="true" data-logo="{",".join(LOGO_TILES)}">', src, count=1)
 # adresse versionnée : une mise à jour du CSS ou du JS est prise en compte tout de suite
 src = re.sub(r'href="style\.css(\?v=\w+)?"', lambda m: f'href="style.css?v={version("style.css")}"', src)
 src = re.sub(r'src="main\.js(\?v=\w+)?"', lambda m: f'src="main.js?v={version("main.js")}"', src)
