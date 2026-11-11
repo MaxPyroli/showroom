@@ -50,7 +50,12 @@ jobs:
           SFTP_KEY: ${{ secrets.SFTP_KEY }}
           SFTP_DIR: ${{ secrets.SFTP_DIR || 'www/' }}
         run: |
-          sudo apt-get install -y --no-install-recommends lftp >/dev/null
+          # la liste des paquets est rafraîchie et l'installation réessayée (un miroir Ubuntu peut être injoignable un instant)
+          for i in 1 2 3; do
+            sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends lftp >/dev/null && break
+            [ "$i" = 3 ] && exit 1
+            sleep $((i * 10))
+          done
           OPTS="set sftp:auto-confirm yes; set net:max-retries 3; set net:timeout 30"
           if [ -n "$SFTP_KEY" ]; then
             install -m 700 -d ~/.ssh
