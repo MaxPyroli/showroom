@@ -107,49 +107,90 @@
   });
   addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelector('.zoom')?.remove(); });
 
-  // Animation d'accueil : le logo (tuiles en cercle) tourne, puis les tuiles deviennent les icônes
+  // Bande d'icônes : elles défilent en continu (le nombre d'apps n'a donc pas d'importance)
+  const orbitEl = document.querySelector('.orbit');
+  const icons = [...orbitEl.querySelectorAll('.ico')];
+  const belt = document.createElement('div');
+  belt.className = 'belt';
+  icons.forEach((el) => belt.append(el));
+  orbitEl.append(belt);
+  let startBelt = () => {};
+  if (reduce) orbitEl.classList.add('still');
+  else {
+    const gap = parseFloat(getComputedStyle(belt).columnGap) || 0;
+    const set = belt.scrollWidth - parseFloat(getComputedStyle(belt).paddingLeft) + gap;   // largeur d'un jeu d'icônes
+    const copies = Math.ceil((root.clientWidth + set) / set);
+    for (let c = 0; c < copies; c++) icons.forEach((el) => {
+      const k = el.cloneNode(true);
+      k.setAttribute('aria-hidden', 'true'); k.tabIndex = -1;
+      belt.append(k);
+    });
+    belt.style.setProperty('--set', set + 'px');
+    belt.style.setProperty('--belt-t', (set / 45).toFixed(1) + 's');    // ≈ 45 px par seconde
+    startBelt = () => orbitEl.classList.add('run');
+  }
+
+  // Animation d'accueil : le logo (six tuiles en cercle, toujours le même) attend un instant, puis tourne ;
+  // les tuiles des apps prennent le relais, de plus en plus vite (on ne distingue plus leur nombre), puis les icônes se mettent en ligne et défilent
   const runIntro = () => {
-    const icons = [...document.querySelectorAll('.orbit .ico')];
     const done = () => root.classList.remove('intro');
-    if (!icons.length || reduce || !root.classList.contains('intro')) return done();
-    const orbit = document.querySelector('.orbit').getBoundingClientRect();
+    if (!icons.length || reduce || !root.classList.contains('intro')) { done(); startBelt(); return; }
     const vw = root.clientWidth, vh = root.clientHeight;   // sans la barre de défilement
     const L = Math.min(260, vw * 0.6);
     const R = L * 142 / 512, T = L * 112 / 512, n = icons.length;
-    const HOLD = 800, SPIN = 3800, D = HOLD + SPIN;   // HOLD : le logo apparaît et attend avant de tourner
+    const Tn = Math.min(T, 0.92 * 2 * R * Math.sin(Math.PI / n));   // tuiles plus petites si beaucoup d'apps
+    const HOLD = 800, SPIN = 4800, D = HOLD + SPIN;   // HOLD : le logo apparaît et attend avant de tourner
+    const logoColors = (orbitEl.dataset.logo || '').split(',').filter(Boolean);
     const logo = document.createElement('div');
     logo.className = 'intro-logo';
     logo.style.cssText = `width:${L}px;height:${L}px;left:50%;top:50%;margin:${-L / 2}px 0 0 ${-L / 2}px;border-radius:${L * 113 / 512}px`;
     document.body.append(logo);
     const lr = logo.getBoundingClientRect();
     const cx = lr.left + L / 2, cy = lr.top + L / 2;      // le centre du cercle = le centre du logo
+    // positions d'arrivée, mesurées avant que quoi que ce soit ne bouge
+    const slots = icons.map((el) => { const r = el.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2, r.width]; });
     root.classList.add('intro-fly');
     const anims = [];
+    const at = (x) => (HOLD + x * SPIN) / D;           // position dans la séquence complète
     // rotation : la vitesse monte jusqu'à l'envol (t = .5) puis retombe
     const G = (t) => (t < .5 ? t * t : .25 + (1 - Math.pow(1 - (t - .5) / .5, 3)) / 6);
-    const G1 = G(1), TURNS = 4;
+    const G1 = G(1), TURNS = 8, N = 520;
     // envol : démarre vite, ralentit en arrivant
     const outCubic = (x) => 1 - Math.pow(1 - Math.max(0, Math.min(1, x)), 3);
+    const o = { duration: D, easing: 'linear' };
+    const X0 = .2, X1 = .34;          // le logo fixe laisse la place aux tuiles des apps, déjà en pleine vitesse
+    // les six tuiles du logo
+    const ltiles = logoColors.map((color, i) => {
+      const t = document.createElement('i');
+      t.className = 'ltile';
+      t.style.cssText = `left:${cx - T / 2}px;top:${cy - T / 2}px;width:${T}px;height:${T}px;background:${color}`;
+      document.body.append(t);
+      const a0 = (-90 + i * 360 / logoColors.length) * Math.PI / 180, frames = [];
+      for (let k = 0; k <= N; k++) {
+        const tt = k / N, u = Math.max(0, (tt * D - HOLD) / SPIN), th = a0 + Math.PI * 2 * TURNS * G(u) / G1;
+        frames.push({ translate: `${(R * Math.cos(th)).toFixed(1)}px ${(R * Math.sin(th)).toFixed(1)}px`, offset: tt });
+      }
+      anims.push(t.animate(frames, o));
+      anims.push(t.animate([{ opacity: 0 }, { opacity: 1, offset: HOLD * .5 / D }, { opacity: 1, offset: at(X0) }, { opacity: 0, offset: at(X1) }, { opacity: 0 }], { ...o, fill: 'forwards' }));
+      return t;
+    });
     icons.forEach((el, i) => {
-      const size = el.offsetWidth;
-      const fx = orbit.left + el.offsetLeft + size / 2, fy = orbit.top + el.offsetTop + size / 2;
+      const [fx, fy, size] = slots[i];
       const a0 = (-90 + i * 360 / n) * Math.PI / 180;
-      el.style.animationDelay = `${(i * 0.35).toFixed(2)}s`;   // le léger flottement reprend sans à-coup
       const tile = document.createElement('i');
       tile.className = 'tile';
       tile.style.background = el.dataset.tile || 'var(--a)';
       el.append(tile);
-      const frames = [], N = 240;
+      const frames = [];
       for (let k = 0; k <= N; k++) {
         const t = k / N, u = Math.max(0, (t * D - HOLD) / SPIN), e = outCubic((u - 0.46) / 0.54);
         const th = a0 + Math.PI * 2 * TURNS * G(u) / G1;
         const px = cx + R * Math.cos(th), py = cy + R * Math.sin(th);
-        const s = (T / size) * (1 - e) + e;
+        const s = (Tn / size) * (1 - e) + e;
         frames.push({ translate: `${(px * (1 - e) + fx * e - fx).toFixed(1)}px ${(py * (1 - e) + fy * e - fy).toFixed(1)}px`, scale: s.toFixed(3), offset: t });
       }
-      const o = { duration: D, easing: 'linear' };
       anims.push(el.animate(frames, o));
-      const at = (x) => (HOLD + x * SPIN) / D;           // position dans la séquence complète
+      anims.push(el.animate([{ opacity: 0 }, { opacity: 0, offset: at(X0) }, { opacity: 1, offset: at(X1) }, { opacity: 1 }], o));
       anims.push(el.querySelector('img').animate([{ opacity: 0 }, { opacity: 0, offset: at(.62) }, { opacity: 1 }], o));
       anims.push(tile.animate([{ opacity: 1 }, { opacity: 1, offset: at(.62) }, { opacity: 0 }], { ...o, fill: 'forwards' }));
     });
@@ -178,9 +219,11 @@
       removeEventListener('wheel', stop); removeEventListener('touchmove', stop);
       removeEventListener('keydown', stopKeys); removeEventListener('scroll', keepTop);
       anims.forEach((a) => a.cancel());
-      logo.remove(); document.querySelectorAll('.orbit .tile').forEach((t) => t.remove());
+      logo.remove(); ltiles.forEach((t) => t.remove());
+      document.querySelectorAll('.orbit .tile').forEach((t) => t.remove());
       root.classList.remove('intro-fly');
       done();
+      startBelt();        // les icônes sont à leur place : elles se mettent à défiler sans à-coup
     };
     setTimeout(done, HOLD + SPIN * 0.78);
     anims[0].finished.then(end).catch(end);
@@ -219,11 +262,11 @@
   if (reduce || !fine) return;
 
   // Icônes du hero : parallaxe à la souris
-  const icons = [...document.querySelectorAll('.ico')];
+  const allIcons = [...document.querySelectorAll('.ico')];
   addEventListener('pointermove', (e) => {
     if (root.classList.contains('intro-fly')) return;
     const x = e.clientX / innerWidth - 0.5, y = e.clientY / innerHeight - 0.5;
-    for (const el of icons) {
+    for (const el of allIcons) {
       const d = +el.dataset.depth;
       el.style.translate = `${x * d}px ${y * d}px`;
     }

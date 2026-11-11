@@ -82,8 +82,14 @@ ul{list-style:none;padding:0}
 @keyframes shine{to{background-position:-200% 0}}
 .lead{max-width:640px;margin:26px auto 0;color:var(--mut);font-size:clamp(1rem,2.2vw,1.2rem)}
 .cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:32px}
-.orbit{position:relative;width:min(900px,100%);height:clamp(110px,20vw,170px);margin-top:54px}
-.ico{position:absolute;width:clamp(60px,10vw,96px);aspect-ratio:1;border-radius:24%;box-shadow:var(--sh-md),0 0 0 1px rgba(var(--tint),.1);animation:bob 6s ease-in-out infinite;transition:translate .25s var(--ease),scale .3s}
+.orbit{--ico:clamp(60px,10vw,96px);position:relative;align-self:stretch;margin:54px -20px 0;overflow-x:clip;display:flex;justify-content:center}
+.belt{display:flex;gap:clamp(14px,3vw,30px);width:max-content;padding:12px 0 22px 6vw}
+.orbit.still .belt{width:auto;flex-wrap:wrap;justify-content:center;padding:20px 20px 36px}
+.orbit.run{-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.orbit.run .belt{animation:belt var(--belt-t,40s) linear infinite}
+.orbit.run .belt:hover{animation-play-state:paused}
+@keyframes belt{to{transform:translateX(calc(-1 * var(--set,50%)))}}
+.ico{position:relative;flex:none;width:var(--ico);aspect-ratio:1;border-radius:24%;box-shadow:var(--sh-md),0 0 0 1px rgba(var(--tint),.1);animation:bob 6s ease-in-out infinite;transition:translate .25s var(--ease),scale .3s}
 .ico:hover{scale:1.14}
 .ico img,.ico svg{width:100%;height:100%;border-radius:inherit}
 @keyframes bob{50%{transform:translateY(-14px) rotate(2deg)}}
@@ -199,7 +205,6 @@ aside hr{border:0;border-top:1px solid #2a323d;margin:6px 0}aside span{padding:4
   .app.rev .copy{order:0}
   .stage{min-height:360px}
   .f1{left:-4px}.f2{right:-4px}
-  .orbit{height:clamp(130px,30vw,170px)}
   .wbody{grid-template-columns:84px 1fr;height:270px}.read{display:none}
   .board,.win,.phone.shot{transform:none}
 }
@@ -328,6 +333,7 @@ aside hr{border:0;border-top:1px solid #2a323d;margin:6px 0}aside span{padding:4
 .intro-fly .ico{z-index:6}
 .intro .scroll{opacity:0}
 .intro-logo{position:fixed;z-index:5;background:#0b0d14;box-shadow:0 30px 80px -20px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08);pointer-events:none}
+.ltile{position:fixed;z-index:6;border-radius:28%;pointer-events:none}
 .ico .tile{position:absolute;inset:0;border-radius:28%;pointer-events:none}
 
 /* séparation nette entre les apps : filet teinté + numéro */

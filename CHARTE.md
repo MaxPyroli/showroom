@@ -159,7 +159,7 @@ Sur le site : une app = une variable `--a`.
 5. Déposer les captures dans `assets/shots/<slug>/` (section 9). Le déploiement sur OVH est automatique à chaque modification (section 11).
 6. Appliquer la liste de contrôle de la section 2 et ajouter l'app au tableau de la section 4 et de la section 7.
 
-L'icône du site (`assets/img/favicon.svg`, les tuiles des apps en cercle) et l'animation d'accueil sont générées à partir de `data/apps.json` (champ `tile` = couleur de la tuile). Reste manuel : si besoin, un décor dessiné (`data/mockups/<slug>.html`) avant les vraies captures.
+**Le logo du site est fixe** : six tuiles en cercle (`LOGO_TILES` dans `scripts/build_site.py`), qui ne change pas quand on ajoute une app ; `assets/img/favicon.svg` en est tiré. Les icônes de la page d'accueil, elles, viennent de `data/apps.json` (champ `tile` = couleur de la tuile de l'animation) et **défilent en continu**, quel que soit leur nombre. Reste manuel : si besoin, un décor dessiné (`data/mockups/<slug>.html`) avant les vraies captures.
 
 ## 7. État de l'harmonisation (à tenir à jour)
 
@@ -212,6 +212,7 @@ Du plus ancien au plus récent.
 - **UrbaSim, icône (2026-11-02)** : retour à l'ancienne icône (fond sombre, skyline colorée) ; la version à fond bleu de la palette est abandonnée. Le Bleu `#3f80ca` reste la couleur d'accent de l'app (site, boutons). Exception assumée à la règle « fond d'icône = couleur de la palette ».
 - **UrbaSim, icône finale (2026-11-02)** : skyline colorée sur le bleu nuit de Grand Paname `#041b3b`, dessin à 90 % recentré (marge de 12 % respectée). Remplace la version à fond noir.
 - **Nouvelle app : Open Page (2026-11-09)** : lecteur et éditeur de PDF + lecteur de pages HTML locales, bureau Windows, hors ligne. Couleur d'accent : **Cyan de la réserve `#0a8ca9`** (encre `#046378`, 219°) ; conforme à la règle d'éloignement (34° de Tool Proj et d'UrbaSim, en groupe mixte ; Grand Paname est en exception). Identifiant `fr.panamedev.openpage`. Icône fournie par l'auteur (2026-11-09) : deux feuilles (PDF crème et HTML lavande) et un surligneur jaune sur fond cyan, intégrée au site vitrine (`assets/img/openpage.png`). Ajoutée au site vitrine (7ᵉ app) ; textes à valider, pas encore de captures ni de page de confidentialité.
+- **Logo fixe et icônes qui défilent (2026-11-11)** : le logo du site ne dépend plus du nombre d'apps (six tuiles en cercle, couleurs fixes). Animation d'accueil : le logo attend 0,8 s, tourne, puis les tuiles des apps prennent le relais et tournent de plus en plus vite (8 tours, on ne distingue plus leur nombre), avant de partir se placer en ligne ; la ligne défile ensuite en continu (≈ 45 px/s, pause au survol), sur toute la largeur. Ajouter une app ne change donc ni le logo ni la mise en page. Mouvement réduit : la ligne reste fixe et passe à la ligne.
 - *(à compléter à chaque décision, avec la date et l'app concernée)*
 
 ## 9. Site vitrine : page unique, carrousels et captures d'écran
