@@ -50,17 +50,24 @@ jobs:
           SFTP_KEY: ${{ secrets.SFTP_KEY }}
           SFTP_DIR: ${{ secrets.SFTP_DIR || 'www/' }}
         run: |
-          # la liste des paquets est rafraîchie et l'installation réessayée (un miroir Ubuntu peut être injoignable un instant)
-          for i in 1 2 3; do
-            sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends lftp >/dev/null && break
-            [ "$i" = 3 ] && exit 1
-            sleep $((i * 10))
-          done
-          OPTS="set sftp:auto-confirm yes; set net:max-retries 3; set net:timeout 30"
           if [ -n "$SFTP_KEY" ]; then
             install -m 700 -d ~/.ssh
             printf '%s\n' "$SFTP_KEY" > ~/.ssh/id_deploy && chmod 600 ~/.ssh/id_deploy
-            OPTS="$OPTS; set sftp:connect-program 'ssh -a -x -i $HOME/.ssh/id_deploy'"
           fi
-          lftp -u "$SFTP_USER","$SFTP_PASSWORD" -p "$SFTP_PORT" "sftp://$SFTP_HOST" \
-            -e "$OPTS; mirror -R --no-perms --verbose dist/site/ $SFTP_DIR; bye"
+          # lftp si on arrive à l'installer vite ; sinon curl (déjà présent), pour ne pas dépendre des miroirs Ubuntu
+          if timeout 60 sudo apt-get update -qq -o Acquire::Retries=0 && timeout 120 sudo apt-get install -y --no-install-recommends lftp >/dev/null; then
+            OPTS="set sftp:auto-confirm yes; set net:max-retries 3; set net:timeout 30"
+            [ -n "$SFTP_KEY" ] && OPTS="$OPTS; set sftp:connect-program 'ssh -a -x -i $HOME/.ssh/id_deploy'"
+            lftp -u "$SFTP_USER","$SFTP_PASSWORD" -p "$SFTP_PORT" "sftp://$SFTP_HOST" \
+              -e "$OPTS; mirror -R --no-perms --verbose dist/site/ $SFTP_DIR; bye"
+          else
+            echo "lftp indisponible : envoi avec curl"
+            AUTH=(-u "$SFTP_USER:$SFTP_PASSWORD")
+            [ -n "$SFTP_KEY" ] && AUTH=(-u "$SFTP_USER:" --key "$HOME/.ssh/id_deploy")
+            cd dist/site
+            find . -type f | while read -r f; do
+              curl -sS --fail -k --connect-timeout 30 --retry 3 --ftp-create-dirs "${AUTH[@]}" -T "$f" \
+                "sftp://$SFTP_HOST:$SFTP_PORT/~/${SFTP_DIR%/}/${f#./}" || exit 1
+              echo "envoyé : ${f#./}"
+            done
+          fi
