@@ -144,10 +144,6 @@
     orbitEl.classList.add('run');
     const dur = P / 45 * 1000;                                            // ≈ 45 px par seconde
     const anim = belt.animate([{ transform: 'translateX(0)' }, { transform: `translateX(${-P}px)` }], { duration: dur, iterations: Infinity, easing: 'linear' });
-    const pause = () => anim.pause(), play = () => anim.play();
-    orbitEl.addEventListener('pointerenter', pause);
-    orbitEl.addEventListener('pointerleave', play);
-    orbitEl.addEventListener('pointercancel', play);
     let raf = 0;
     const tick = () => {
       const sh = (anim.currentTime % dur) / dur * P;
@@ -166,7 +162,6 @@
       phase: () => (anim.currentTime % dur) / dur,
       stop() {
         cancelAnimationFrame(raf); anim.cancel();
-        orbitEl.removeEventListener('pointerenter', pause); orbitEl.removeEventListener('pointerleave', play); orbitEl.removeEventListener('pointercancel', play);
         items.forEach((it) => { if (it.el.hasAttribute('aria-hidden')) it.el.remove(); else { it.el.style.opacity = ''; orbitEl.append(it.el); } });
         belt.remove(); orbitEl.classList.remove('run');
       }
