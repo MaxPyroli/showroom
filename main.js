@@ -122,7 +122,7 @@
   // Défilement : une fois les icônes en ligne (rien ne bouge à ce moment-là), la rangée défile vers la gauche
   // en boucle, pour que toutes les icônes passent, quel que soit leur nombre
   let marquee = null;
-  const startMarquee = () => {
+  const startMarquee = (phase = 0) => {
     if (marquee || reduce) return;
     const originals = [...orbitEl.querySelectorAll('.ico')];
     if (originals.length < 2) return;
@@ -147,6 +147,7 @@
     const pause = () => anim.pause(), play = () => anim.play();
     orbitEl.addEventListener('pointerenter', pause);
     orbitEl.addEventListener('pointerleave', play);
+    orbitEl.addEventListener('pointercancel', play);
     let raf = 0;
     const tick = () => {
       const sh = (anim.currentTime % dur) / dur * P;
@@ -158,11 +159,14 @@
       }
       raf = requestAnimationFrame(tick);
     };
+    anim.currentTime = phase * dur;                                       // reprise là où on en était après un redimensionnement
     tick();
     marquee = {
+      W,
+      phase: () => (anim.currentTime % dur) / dur,
       stop() {
         cancelAnimationFrame(raf); anim.cancel();
-        orbitEl.removeEventListener('pointerenter', pause); orbitEl.removeEventListener('pointerleave', play);
+        orbitEl.removeEventListener('pointerenter', pause); orbitEl.removeEventListener('pointerleave', play); orbitEl.removeEventListener('pointercancel', play);
         items.forEach((it) => { if (it.el.hasAttribute('aria-hidden')) it.el.remove(); else { it.el.style.opacity = ''; orbitEl.append(it.el); } });
         belt.remove(); orbitEl.classList.remove('run');
       }
@@ -172,8 +176,9 @@
   addEventListener('resize', () => {                                      // la rangée est recalculée si la fenêtre change de taille
     clearTimeout(rs);
     rs = setTimeout(() => {
-      if (!marquee) return;
-      marquee.stop(); marquee = null; layoutRow(); startMarquee();
+      if (!marquee || Math.abs(orbitEl.clientWidth - marquee.W) < 2) return;   // la barre d'adresse du téléphone change la hauteur, pas la largeur : on ne touche à rien
+      const ph = marquee.phase();
+      marquee.stop(); marquee = null; layoutRow(); startMarquee(ph);
     }, 250);
   });
 
