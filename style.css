@@ -345,7 +345,7 @@ body{counter-reset:appn}
 .sky-warm{background:radial-gradient(120% 80% at 50% 100%,rgba(255,126,58,.85),rgba(255,92,120,.5) 42%,rgba(255,170,90,.12) 72%,transparent)}
 .sky-cool{background:linear-gradient(to top,rgba(32,38,92,.78),rgba(12,16,48,.55) 55%,rgba(8,10,30,.35))}
 .orb{position:absolute;left:0;top:0;border-radius:50%;opacity:0;will-change:transform,opacity}
-.sun{background:radial-gradient(circle at 42% 38%,#fffbe0,#ffe07a 38%,#ffa63d 78%,#ff7a2e);box-shadow:0 0 70px 26px rgba(255,170,70,.55),0 0 160px 60px rgba(255,120,60,.3)}
-.moon{background:radial-gradient(circle at 36% 34%,#ffffff,#e4e9ff 55%,#aeb9ea);box-shadow:0 0 60px 18px rgba(170,190,255,.45);-webkit-mask:radial-gradient(circle at 74% 30%,transparent 52%,#000 53%);mask:radial-gradient(circle at 74% 30%,transparent 52%,#000 53%)}
+.sky-sun{background:radial-gradient(circle at 42% 38%,#fffbe0,#ffe07a 38%,#ffa63d 78%,#ff7a2e);box-shadow:0 0 70px 26px rgba(255,170,70,.55),0 0 160px 60px rgba(255,120,60,.3)}
+.sky-moon{background:radial-gradient(circle at 36% 34%,#ffffff,#e4e9ff 55%,#aeb9ea);box-shadow:0 0 60px 18px rgba(170,190,255,.45);-webkit-mask:radial-gradient(circle at 74% 30%,transparent 52%,#000 53%);mask:radial-gradient(circle at 74% 30%,transparent 52%,#000 53%)}
 html.theming,html.theming *,html.theming *::before,html.theming *::after{transition:background-color .9s ease,color .9s ease,border-color .9s ease,fill .9s ease,stroke .9s ease,box-shadow .9s ease !important}
 @media (prefers-reduced-motion:reduce){.sky{display:none}}
