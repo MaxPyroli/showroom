@@ -23,8 +23,9 @@
   const sunsetFx = (to) => {
     if (skyFx) { skyFx.end(); skyFx = null; }
     const D = 2000, SWITCH = 0.36;
-    const vw = innerWidth, vh = innerHeight, cx = vw / 2, cy = vh * 0.86, R = Math.min(vh * 0.62, vw * 0.5);
-    const size = Math.max(84, Math.min(vw, vh) * 0.16);
+    const vw = innerWidth, vh = innerHeight, cx = vw / 2, cy = vh * 0.88;
+    const Rx = vw * 0.42, Ry = Math.min(vh * 0.62, 560);              // arc ovale : large sur ordinateur, haut sur téléphone
+    const size = Math.max(52, Math.min(96, Math.min(vw, vh) * 0.14));  // astres plus petits sur téléphone
     const sky = document.createElement('div');
     sky.className = 'sky';
     sky.innerHTML = '<div class="sky-cool"></div><div class="sky-warm"></div><i class="orb sky-sun"></i><i class="orb sky-moon"></i>';
@@ -32,19 +33,19 @@
     const [cool, warm, sun, moon] = sky.children;
     for (const o of [sun, moon]) { o.style.width = o.style.height = size + 'px'; }
     // position d'un astre : angle 90° = tout en haut, 0° = horizon à droite, 180° = horizon à gauche
-    const at = (deg, k = 1) => { const a = deg * Math.PI / 180; return `translate(${(cx + R * Math.cos(a) - size / 2).toFixed(0)}px, ${(cy - R * k * Math.sin(a) - size / 2).toFixed(0)}px)`; };
-    const path = (from, to, n = 24) => Array.from({ length: n + 1 }, (_, i) => ({ transform: at(from + (to - from) * i / n), offset: i / n }));
+    const at = (deg) => { const a = deg * Math.PI / 180; return `translate(${(cx + Rx * Math.cos(a) - size / 2).toFixed(0)}px, ${(cy - Ry * Math.sin(a) - size / 2).toFixed(0)}px)`; };
+    // trajet d'un astre entre les instants t0 et t1 de l'animation (0 à 1), avec sa propre accélération ; immobile avant et après
+    const path = (from, to, t0, t1, ease, n = 28) => [{ transform: at(from), offset: 0 }, ...Array.from({ length: n + 1 }, (_, i) => ({ transform: at(from + (to - from) * ease(i / n)), offset: t0 + (t1 - t0) * i / n })), { transform: at(to), offset: 1 }];
     const lin = { duration: D, easing: 'linear', fill: 'forwards' };
-    const goes = { duration: D, easing: 'cubic-bezier(.5,0,.8,.6)', fill: 'forwards' };     // l'astre qui part accélère vers l'horizon
-    const comes = { duration: D, easing: 'cubic-bezier(.25,.4,.35,1)', fill: 'forwards' }; // l'astre qui arrive traverse de gauche à droite et ralentit en finissant à droite
     const all = [];
     const run = (el, frames, opts) => all.push(el.animate(frames, opts));
     // l'astre qui part : du haut du ciel vers l'horizon à droite, vite ; l'astre qui arrive : de l'horizon à gauche jusqu'à la droite de l'écran
     const leaving = to === 'dark' ? sun : moon, arriving = to === 'dark' ? moon : sun;
-    run(leaving, path(to === 'dark' ? 90 : 128, -12), goes);
-    run(leaving, [{ opacity: 1 }, { opacity: 1, offset: .45 }, { opacity: 0, offset: .62 }, { opacity: 0 }], lin);
-    run(arriving, path(198, 24), comes);
-    run(arriving, [{ opacity: 0 }, { opacity: 0, offset: .03 }, { opacity: 1, offset: .16 }, { opacity: 1, offset: .9 }, { opacity: 0 }], lin);
+    // l'astre qui part est parti avant que l'autre n'arrive en haut du ciel : ils ne se croisent jamais
+    run(leaving, path(90, -14, 0, .5, (u) => Math.pow(u, 1.7)), lin);
+    run(leaving, [{ opacity: 1 }, { opacity: 1, offset: .34 }, { opacity: 0, offset: .5 }, { opacity: 0 }], lin);
+    run(arriving, path(200, 24, .24, 1, (u) => 1 - Math.pow(1 - u, 2.2)), lin);
+    run(arriving, [{ opacity: 0 }, { opacity: 0, offset: .24 }, { opacity: 1, offset: .34 }, { opacity: 1, offset: .92 }, { opacity: 0 }], lin);
     if (to === 'dark') {
       run(warm, [{ opacity: 0 }, { opacity: .95, offset: .32 }, { opacity: 0, offset: .72 }, { opacity: 0 }], lin);
       run(cool, [{ opacity: 0 }, { opacity: 0, offset: .3 }, { opacity: .5, offset: .6 }, { opacity: .35, offset: .86 }, { opacity: 0 }], lin);
