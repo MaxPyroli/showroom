@@ -118,8 +118,7 @@ def orbit(i, n, app):
     left = 2 + i * (84 / max(n - 1, 1))
     top = 6 if i % 2 == 0 else 50
     delay = -((i * 1.3) % 5)
-    depth = (18, 26, 34, 40, 22, 44)[i % 6]
-    return (f'<a href="#{app["slug"]}" class="ico" data-depth="{depth}" '
+    return (f'<a href="#{app["slug"]}" class="ico" '
             f'data-tile="{app.get("tile", app["accent"])}" '
             f'style="left:{left:.1f}%;top:{top}%;animation-delay:{delay:.1f}s"><img src="assets/img/{app["icon"]}" alt=""></a>')
 

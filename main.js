@@ -358,16 +358,31 @@
 
   if (reduce || !fine) return;
 
-  // Icônes du hero : parallaxe à la souris
-  const icons = [...document.querySelectorAll('.ico')];
-  addEventListener('pointermove', (e) => {
+  // Icônes du hero : celle qu'on pointe grossit et les autres s'écartent un peu (valable pour toutes, y compris celles qui défilent)
+  let lifted = null;
+  const unlift = () => {
+    if (!lifted) return;
+    lifted.classList.remove('lift'); lifted = null;
+    orbitEl.querySelectorAll('.ico').forEach((el) => { el.style.translate = ''; });
+  };
+  const lift = (ico) => {
+    if (lifted === ico) return;
+    unlift(); lifted = ico; ico.classList.add('lift');
+    const r0 = ico.getBoundingClientRect(), c0 = r0.left + r0.width / 2, step = ico.offsetWidth * 1.6;
+    orbitEl.querySelectorAll('.ico').forEach((el) => {
+      if (el === ico) return;
+      const r = el.getBoundingClientRect(), dx = r.left + r.width / 2 - c0;
+      if (Math.abs(dx) < step * 0.4) return;
+      const shift = Math.min(34, 26 / Math.pow(Math.abs(dx) / step, 1.3)) * Math.sign(dx);   // les voisines s'écartent le plus, les lointaines à peine
+      el.style.translate = `${shift.toFixed(1)}px 0`;
+    });
+  };
+  orbitEl.addEventListener('pointerover', (e) => {
     if (root.classList.contains('intro-fly')) return;
-    const x = e.clientX / innerWidth - 0.5, y = e.clientY / innerHeight - 0.5;
-    for (const el of icons) {
-      const d = +el.dataset.depth;
-      el.style.translate = `${x * d}px ${y * d}px`;
-    }
+    const ico = e.target.closest('.ico');
+    if (ico) lift(ico); else unlift();
   });
+  orbitEl.addEventListener('pointerleave', unlift);
 
   // Inclinaison 3D des maquettes
   document.querySelectorAll('.tilt').forEach((el) => {
