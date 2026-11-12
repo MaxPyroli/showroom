@@ -23,29 +23,28 @@
   const sunsetFx = (to) => {
     if (skyFx) { skyFx.end(); skyFx = null; }
     const D = 2000, SWITCH = 0.36;
-    const vw = innerWidth, vh = innerHeight, cx = vw / 2, cy = vh * 0.88;
-    const Rx = vw * 0.42, Ry = Math.min(vh * 0.62, 560);              // arc ovale : large sur ordinateur, haut sur téléphone
-    const size = Math.max(52, Math.min(96, Math.min(vw, vh) * 0.14));  // astres plus petits sur téléphone
+    const vw = innerWidth, vh = innerHeight;
+    const size = Math.max(60, Math.min(100, Math.min(vw, vh) * 0.15));   // taille de l'astre, adaptée aux petits écrans
     const sky = document.createElement('div');
     sky.className = 'sky';
-    sky.innerHTML = '<div class="sky-cool"></div><div class="sky-warm"></div><i class="orb sky-sun"></i><i class="orb sky-moon"></i>';
+    // on ne montre que l'astre du thème qu'on va avoir : le soleil pour le clair, la lune pour le sombre
+    sky.innerHTML = `<div class="sky-cool"></div><div class="sky-warm"></div><i class="orb ${to === 'dark' ? 'sky-moon' : 'sky-sun'}"></i>`;
     document.body.append(sky);
-    const [cool, warm, sun, moon] = sky.children;
-    for (const o of [sun, moon]) { o.style.width = o.style.height = size + 'px'; }
-    // position d'un astre : angle 90° = tout en haut, 0° = horizon à droite, 180° = horizon à gauche
-    const at = (deg) => { const a = deg * Math.PI / 180; return `translate(${(cx + Rx * Math.cos(a) - size / 2).toFixed(0)}px, ${(cy - Ry * Math.sin(a) - size / 2).toFixed(0)}px)`; };
-    // trajet d'un astre entre les instants t0 et t1 de l'animation (0 à 1), avec sa propre accélération ; immobile avant et après
-    const path = (from, to, t0, t1, ease, n = 28) => [{ transform: at(from), offset: 0 }, ...Array.from({ length: n + 1 }, (_, i) => ({ transform: at(from + (to - from) * ease(i / n)), offset: t0 + (t1 - t0) * i / n })), { transform: at(to), offset: 1 }];
+    const [cool, warm, orb] = sky.children;
+    orb.style.width = orb.style.height = size + 'px';
+    // trajet : il arrive d'en bas à gauche, monte en passant dans l'écran, et finit au milieu à gauche, déjà hors de l'écran
+    const P = [[vw * 0.1, vh + size * 0.6], [vw * 0.78, vh * 1.02], [vw * 0.9, vh * 0.42], [-size * 1.4, vh * 0.5]];
+    const bez = (u) => {
+      const m = 1 - u, w = [m * m * m, 3 * m * m * u, 3 * m * u * u, u * u * u];
+      return [0, 1].map((k) => P.reduce((a, pt, n) => a + w[n] * pt[k], 0));
+    };
+    const smooth = (u) => u * u * (3 - 2 * u);
+    const frames = Array.from({ length: 41 }, (_, i) => { const [x, y] = bez(smooth(i / 40)); return { transform: `translate(${(x - size / 2).toFixed(0)}px, ${(y - size / 2).toFixed(0)}px)`, offset: i / 40 }; });
     const lin = { duration: D, easing: 'linear', fill: 'forwards' };
     const all = [];
-    const run = (el, frames, opts) => all.push(el.animate(frames, opts));
-    // l'astre qui part : du haut du ciel vers l'horizon à droite, vite ; l'astre qui arrive : de l'horizon à gauche jusqu'à la droite de l'écran
-    const leaving = to === 'dark' ? sun : moon, arriving = to === 'dark' ? moon : sun;
-    // l'astre qui part est parti avant que l'autre n'arrive en haut du ciel : ils ne se croisent jamais
-    run(leaving, path(90, -14, 0, .5, (u) => Math.pow(u, 1.7)), lin);
-    run(leaving, [{ opacity: 1 }, { opacity: 1, offset: .34 }, { opacity: 0, offset: .5 }, { opacity: 0 }], lin);
-    run(arriving, path(200, 24, .24, 1, (u) => 1 - Math.pow(1 - u, 2.2)), lin);
-    run(arriving, [{ opacity: 0 }, { opacity: 0, offset: .24 }, { opacity: 1, offset: .34 }, { opacity: 1, offset: .92 }, { opacity: 0 }], lin);
+    const run = (el, fr, opts) => all.push(el.animate(fr, opts));
+    run(orb, frames, lin);
+    run(orb, [{ opacity: 0 }, { opacity: 1, offset: .1 }, { opacity: 1 }], lin);
     if (to === 'dark') {
       run(warm, [{ opacity: 0 }, { opacity: .95, offset: .32 }, { opacity: 0, offset: .72 }, { opacity: 0 }], lin);
       run(cool, [{ opacity: 0 }, { opacity: 0, offset: .3 }, { opacity: .5, offset: .6 }, { opacity: .35, offset: .86 }, { opacity: 0 }], lin);
@@ -54,10 +53,25 @@
       run(warm, [{ opacity: 0 }, { opacity: 0, offset: .25 }, { opacity: .85, offset: .55 }, { opacity: .25, offset: .88 }, { opacity: 0 }], lin);
     }
     root.classList.add('theming');
-    const timer = setTimeout(() => applyTheme(to), D * SWITCH);
-    const end = () => { clearTimeout(timer); clearTimeout(done); all.forEach((a) => a.cancel()); sky.remove(); root.classList.remove('theming'); };
-    const done = setTimeout(() => { end(); skyFx = null; }, D + 150);
-    skyFx = { end: () => { end(); applyTheme(to); } };
+    // tout est calé sur l'animation elle-même (et non sur des minuteries) : sur un téléphone lent, elle va jusqu'au bout
+    const lead = all[0];
+    let switched = false, finished = false, raf = 0;
+    const doSwitch = () => { if (!switched) { switched = true; applyTheme(to); } };
+    const end = () => {
+      if (finished) return; finished = true;
+      cancelAnimationFrame(raf); clearTimeout(safety);
+      doSwitch();
+      all.forEach((x) => x.cancel()); sky.remove(); root.classList.remove('theming');
+      if (skyFx && skyFx.sky === sky) skyFx = null;
+    };
+    const watch = () => {                                   // le thème change au milieu du trajet, quand la lueur est la plus forte
+      if (finished) return;
+      if ((lead.currentTime || 0) >= D * SWITCH) doSwitch(); else raf = requestAnimationFrame(watch);
+    };
+    watch();
+    lead.finished.then(end).catch(end);
+    const safety = setTimeout(end, D + 4000);               // filet de sécurité
+    skyFx = { sky, end };
   };
   let wanted = root.dataset.theme;                       // le thème voulu (le thème affiché change un peu plus tard, pendant l'animation)
   document.querySelector('.tbtn')?.addEventListener('click', () => {
