@@ -32,8 +32,8 @@
     document.body.append(sky);
     const [cool, warm, orb] = sky.children;
     orb.style.width = orb.style.height = size + 'px';
-    // trajet : il arrive d'en bas à gauche, monte en passant dans l'écran, et finit au milieu à gauche, déjà hors de l'écran
-    const P = [[vw * 0.1, vh + size * 0.6], [vw * 0.78, vh * 1.02], [vw * 0.9, vh * 0.42], [-size * 1.4, vh * 0.5]];
+    // trajet : toujours de gauche à droite. Il arrive d'en bas à gauche, monte en arc au-dessus de l'écran, et sort à droite, au milieu de la hauteur
+    const P = [[vw * 0.08, vh + size * 0.6], [vw * 0.1, vh * 0.3], [vw * 0.62, vh * 0.12], [vw + size * 1.4, vh * 0.5]];
     const bez = (u) => {
       const m = 1 - u, w = [m * m * m, 3 * m * m * u, 3 * m * u * u, u * u * u];
       return [0, 1].map((k) => P.reduce((a, pt, n) => a + w[n] * pt[k], 0));
